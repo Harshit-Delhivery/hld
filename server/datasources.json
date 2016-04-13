@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "localPsql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "url": "",
+    "database": "hld",
+    "password": "root",
+    "name": "localPsql",
+    "connector": "mysql",
+    "user": "root"
+  }
+}

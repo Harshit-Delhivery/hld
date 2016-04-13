@@ -1,0 +1,71 @@
+{
+  "name": "Offline",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "merchant_id": {
+      "type": "string",
+      "required": true
+    },
+    "merchant_name": {
+      "type": "string",
+      "required": true
+    },
+    "client": {
+      "type": "string",
+      "required": true
+    },
+    "fe_name": {
+      "type": "string",
+      "required": true
+    },
+    "arrived_at": {
+      "type": "date",
+      "required": true
+    },
+    "drop_started_at": {
+      "type": "date",
+      "required": true
+    },
+    "delivered_at": {
+      "type": "date",
+      "required": true
+    },
+    "offline_reason": {
+      "type": "string",
+      "required": true
+    },
+    "dcName": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

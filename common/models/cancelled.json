@@ -1,0 +1,75 @@
+{
+  "name": "Cancelled",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "restaurant": {
+      "type": "string",
+      "required": true
+    },
+    "order_code": {
+      "type": "string",
+      "required": true
+    },
+    "source": {
+      "type": "string",
+      "required": true
+    },
+    "fe_id": {
+      "type": "string",
+      "required": true
+    },
+    "assigned_at": {
+      "type": "date",
+      "required": true
+    },
+    "cancelled_at": {
+      "type": "date",
+      "required": true
+    },
+    "cancelled_by": {
+      "type": "string"
+    },
+    "cancellation_reason": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "final_status": {
+      "type": "string"
+    },
+    "dcName": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
