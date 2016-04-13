@@ -1,0 +1,91 @@
+<div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
+   <div class="panel panel-top">
+      <h1 class="page-header">
+         Cancelled History
+      </h1>
+   </div>
+   <div class="container-fluid" ng-init="getCancelledHistory()">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="margin-bottom: 16px">
+               <div class="row">
+                  <div class="col-md-4">
+                    <label class="control-label col-sm-4">From Date:</label>
+                    <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label >To Date:</label>
+                    <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" style="margin-top: 24px">
+                     <button type="submit" ng-click="getOfflineDatewise()" class="btn btn-primary">
+                        Search
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <div class="panel panel-default table-invoice table-responsive">
+               <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                  <thead style="width:98%;">
+                     <tr>
+                        <th width="7%" style="text-align: center">Date</th>
+                        <th width="8%" style="text-align: center">Restaurant</th>
+                        <th width="7%" style="text-align: center">Order Code</th>
+                        <th width="7%" style="text-align: center">Source</th>
+                        <th width="9%" style="text-align: center">Ground Pilot ID</th>
+                        <th width="9%" style="text-align: center">Assigned Time</th>
+                        <th width="9%" style="text-align: center">Cancellation Time</th>
+                        <th width="11%" style="text-align: center">Cancelled By</th>
+                        <th width="10%" style="text-align: center">Cancellation reason</th>
+                        <th width="9%" style="text-align: center">Description</th>
+                        <th width="10%" style="text-align: center">Final Status</th>
+                        <th width="2%" style="text-align: center">&nbsp;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="data in cancelledHistory">
+                        <td width="7%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yy'}}</td>
+
+                        <td width="8%" style="text-align: center" ng-bind="data.restaurant">
+                        </td>
+
+                        <td width="7%" style="text-align: center" ng-bind="data.order_code">
+                        </td>
+
+                        <td width="7%" style="text-align: center" ng-bind="data.source">
+                        </td>
+
+                        <td width="9%" style="text-align: center" ng-bind="data.fe_id">
+                        </td>
+
+                        <td width="9%" style="text-align: center">
+                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                        </td>
+
+                        <td width="9%" style="text-align: center">
+                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                        </td>
+
+                        <td width="11%" style="text-align: center" ng-bind="data.cancelled_by">
+                        </td>
+
+                        <td width="10%" style="text-align: center" ng-bind="data.cancellation_reason">
+                        </td>
+
+                        <td width="9%" style="text-align: center" ng-bind="data.description">
+                        </td>
+
+                        <td width="10%" style="text-align: center" ng-bind="data.final_status">
+                        </td>
+
+                        <td width="2%" style="text-align: center">
+                           <i class="fa fa-pencil"></i>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

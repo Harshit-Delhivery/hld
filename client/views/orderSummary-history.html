@@ -1,0 +1,135 @@
+<div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
+   <div class="panel panel-top">
+      <h1 class="page-header">
+         Order History
+      </h1>
+   </div>
+   <div class="container-fluid" ng-init="getOrderHistory()">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="margin-bottom: 16px">
+               <div class="row">
+                  <div class="col-md-4">
+                    <label class="control-label col-sm-4">From Date:</label>
+                    <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label >To Date:</label>
+                    <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" style="margin-top: 24px">
+                     <button type="submit" ng-click="getOrderDatewise()" class="btn btn-primary">
+                        Search
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <div class="panel panel-default table-invoice table-responsive">
+               <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                  <thead style="width:98%;">
+                     <tr>
+                        <th width="5%" style="text-align: center">Date</th>
+                        <th width="11%" style="text-align: center">Online_morning</th>
+                        <th width="11%" style="text-align: center">Online_evening</th>
+                        <th width="11%" style="text-align: center">Offline_morning</th>
+                        <th width="11%" style="text-align: center">Offline_evening</th>
+                        <th width="13%" style="text-align: center">Cancelled_morning</th>
+                        <th width="13%" style="text-align: center">Cancelled_evening</th>
+                        <th width="12%" style="text-align: center">Express_morning</th>
+                        <th width="12%" style="text-align: center">Express_evening</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="order in orderHistory">
+
+                        <td width="8%" style="text-align: center">{{order.date|dateFilter: 'dd-mm-yyyy'}}</td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.online_m">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.online_m" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.online_e">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.online_e" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.offline_m">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.offline_m" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.offline_e">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.offline_e" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.cancel_m">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.cancel_m" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.cancel_e">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.cancel_e" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.express_m">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.express_m" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.express_e">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="order.express_e" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="2%" ng-show="!edit" style="text-align: center">
+                          <button ng-click="edit=true" title="edit">
+                            <i class="fa fa-pencil"></i>
+                          </button>
+                        </td>
+
+                        <td width="1%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
+                          <button ng-click="edit=false; updateOrder(order)" title="Submit">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </td>
+
+                        <td width="1%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
+                          <button ng-click="edit=false" title="Cancel">
+                            <span class="fa fa-remove"></span>
+                          </button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

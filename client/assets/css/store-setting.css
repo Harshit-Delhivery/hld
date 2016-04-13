@@ -1,0 +1,182 @@
+.invoice-format .panel-heading{
+	padding-top: 0px;
+	padding-bottom: 3px;
+}
+.invoice-format_form {
+    padding-right: 74px;
+}
+.invoice-format_form label { 
+	font-size:14px; 
+	font-family: 'robotomedium'; 
+	font-weight:normal;  
+	color:#515151;
+	margin-bottom:5px;   
+}
+.invoice-format_form .form-group:nth-child(2){
+  margin-top: 20px;
+}
+.invoice-format_form .form-group:nth-child(3){
+  margin-top: 20px;
+}
+.file {
+    position: relative;
+    margin-top:5px;
+}
+.invoice-format .container-fluid .panel{
+	padding: 10px 30px 24px 30px;
+}
+.print-opt ul{
+  margin-bottom: 20px;
+}
+.print-opt strong{
+  padding-left: 0px !important;
+}
+.file label {
+    background: transparent;
+    padding: 4px 30px;
+    font-weight: normal;
+    transition: all .4s;
+    border:1px solid #797979;
+    border-radius: 3px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+.align-panel .form-group:nth-child(2){
+  margin-top: 100px;
+}
+.align-panel .form-group:nth-child(3){
+  margin-top: 80px;
+}
+.align-panel{
+  margin-top: 60px;
+  padding-right: 100px;
+}
+.invoice-format strong{
+  display: block;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  color:#757575;
+  font-weight:normal;
+}
+.invoice-format .ckbox{
+	padding-left: 15px;
+}
+.invoice-format_form textarea.form-control{
+	height: 80px;
+	box-shadow: none;
+	border-radius:0px;
+	resize:none;
+}
+.row-btn .pull-right .btn{
+	margin-left: 22px;
+}
+/*Tax Class*/
+.btn-addnew{
+	display: block;
+	margin-bottom: 20px;
+	margin-left: 32px;
+	padding: 4px 12px;
+    min-width: 115px;
+    border-radius: 2px;
+}
+.tax-class #scrollbar1{
+	margin: 0px;
+}
+.tax-class #scrollbar1 .viewport{
+	height: 240px;
+}
+.tax-class #scrollbar1 .disable{
+	display: block;
+}
+.tax-class .panel-data{
+	padding: 10px 11px 60px 11px;
+}
+.tax-class .table>thead>tr>th{
+	border-bottom: none;
+}
+.tax-class .table > thead > tr > th {
+    border-bottom: medium none;
+    color: #b3b3b3;
+    font-family: "robotomedium";
+    font-size: 12px;
+    font-weight: normal;
+    padding: 19px 8px;
+}
+.tax-class .table > tbody > tr > td {
+    color: #626262;
+    font-family: "robotoregular";
+    font-size: 13px;
+    padding: 15px 8px;
+    border-top: 1px solid #a1a1a1;
+}
+.tax-class .table > tbody > tr:last-child td{
+	border-bottom: 1px solid #a1a1a1;
+}
+.tax-class table > tbody > tr > td .fa {
+    display: block;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18px;
+}
+.modal-tax{
+	width: 495px;
+}
+.modal-tax .form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+.modal-tax .form-group .form-control {
+    padding-left: 0;
+}
+.modal-tax .form-control{
+    background-color: transparent;
+    border-left: medium none transparent;
+    border-radius: 0;
+    border-right: medium none transparent;
+    border-top: medium none transparent;
+    box-shadow: none;
+    height: 38px;
+}
+.modal-tax .modal-content .modal-body{
+	padding-right: 185px;
+	padding-left: 17px;
+}
+.modal-tax .modal-content .modal-header{
+	border:none;
+	margin-bottom: 10px;
+}
+.modal-tax .modal-content .modal-footer{
+	border-top: none;
+	text-align: center !important;
+	padding-top: 100px;
+}
+.modal-tax .modal-content .modal-footer .btn{
+	min-width: 83px;
+}
+.modal-tax .ckbox{
+  padding-left: 20px;
+}
+/*Categories*/
+
+/*billing*/
+.panel-invoice-set, .panel-printer{
+  min-height: 94px;
+  line-height: 86px;
+  display: block;
+}
+.panel-invoice-set>.fa, 
+.panel-printer>.fa{
+  font-size: 28px;
+  background-color: #f2f2f2;
+  padding: 33px 33px;
+  margin-right: 67px;
+}
+a.panel-invoice-set, 
+a.panel-printer{
+  color: #474747;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: 'robotomedium';
+}

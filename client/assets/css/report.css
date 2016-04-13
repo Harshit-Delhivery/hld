@@ -1,0 +1,197 @@
+.side-menu .open>.dropdown-menu {
+    display: block;
+    position: relative;
+    min-width: inherit;
+    float: none;
+    box-shadow: none;
+    border:none;
+}
+.outer-circle {
+    padding: 10px 100px;
+}
+.inner-circle{
+	background-color: #0082ad;
+	display: block;
+	height: 200px;
+    border-radius: 50%;
+    border: 7px solid #fff;
+    position: relative;
+}
+.chanel-sales{
+	background-color: #e4e4e4;
+}
+.in-circle{
+	background-color: #e4e4e4;
+	display: block;
+	border-radius: 50%;
+	border:7px solid #fff;
+	height: 100%;
+	width:100%;
+}
+.padding-cirlce{
+	padding: 50px;
+	height: 100%;
+	width:100%;
+	position: absolute;
+}
+.report-page ul li a.panel-title{
+	color: #333;
+}
+.report-page ul li a:hover,
+.report-page ul li a:focus
+{
+	text-decoration: none;
+}
+.report-page .btn-sales:hover,
+.report-page .btn-sales:focus,
+.report-page .btn-sales:active{
+	background-color: transparent;
+	outline: none;
+	box-shadow: none;
+}
+.report-page .panel-footer{
+	background-color: transparent;
+	border-top: none;
+}
+.report-page .btn-danger{
+	min-width: 120px;
+}
+.sold-product .pull-left{
+	margin-right: 20px;
+}
+.sold-product .pull-right{
+	margin-left: 12px;
+}
+.progress{
+	box-shadow: none;
+	background-color: transparent;
+	border-radius: 0px;
+	height: 8px;
+	margin-bottom: 0px;
+    display: block;
+    margin-top: 6px;
+}
+.progress-bar{
+	box-shadow: none;
+	float: none;
+    display: block;
+}
+.progress-bar-info{
+	background-color: #0082ad;
+}
+.report-page ul.dropdown-menu > ul li{
+	padding-left: 40px;
+}
+.report-page ul.dropdown-menu > ul li > a{
+	color: #333;
+	padding: 3px 0px;
+    display: block;
+}
+.report-page .panel-body > ul > li{
+    overflow: hidden;
+    margin: 4.5px 0px;
+}
+.report-page .panel-title{
+	color: #333;
+}
+.report-page .panel-heading{
+	padding: 0px;
+}
+ul.side-menu li > a{
+	color: #333;
+}
+.report-page .caret{
+	border-top: 6px dashed;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+}
+ul.side-menu li .caret{
+	margin-top: 7px;
+}
+.report-page .list-unstyled{
+	margin-bottom: 0px;
+}
+.report-sale .panel-body {
+    padding: 0px;
+}
+.report-sale h4 {
+    padding-left: 24px;
+    margin-bottom: 0px;
+}
+.report-sale .table > thead > tr > th {
+    border-bottom: medium none;
+    color: #b3b3b3;
+    font-family: "robotomedium";
+    font-size: 12px;
+    font-weight: normal;
+    padding: 19px 8px;
+    white-space: nowrap;
+}
+.report-sale .table > tbody > tr > td {
+    color: #626262;
+    font-family: "robotoregular";
+    font-size: 13px;
+    padding: 15px 8px;
+    border-top: 1px solid #bcbcbc;
+}
+.report-sale .navbar-form {
+    position: relative;
+    margin-bottom: 25px;
+}
+.report-sale .navbar-form .form-group {
+    display: block;
+}
+.report-sale .navbar-form .form-control {
+    border-radius: 4px;
+    box-shadow: initial;
+    height: 45px;
+    width: 100%;
+}
+.report-sale .navbar-form .btn-search {
+    top: 7px;
+}
+.report-sale .panel~.panel {
+    border-radius: 0px;
+}
+.report-sale #scrollbar1 {
+    margin: 0px;
+    position: relative;
+}
+.report-sale #scrollbar1 .scrollbar{
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+}
+.report-sale #scrollbar1 .viewport {
+    height: 280px;
+}
+.report-sale .table > thead > tr > th:first-child, 
+.report-sale .table > tbody > tr > td:first-child {
+    padding-left: 20px;
+}
+.pmt-col table tr>td{
+    border-top: none !important;
+    color: #b3b3b3 !important;
+}
+.pmt-col{
+    text-align: center;
+}
+.pmt-data table tr td{
+    border-top: none !important;
+}
+.pmt-data .table > thead > tr > th:first-child, 
+.pmt-data .table > tbody > tr > td:first-child{
+    padding-left: 8px;
+}
+#side-menu li .nav-second-level li a {
+    padding: 10px 10px 10px 70px;
+    color: #6a6c6f;
+    text-transform: none;
+}
+#side-menu li.active .nav-second-level li a{
+    background-color: #fff;
+}
+#side-menu li.active .nav-second-level li a:hover{
+background: #a6a6a6;
+    color: #fff;
+}

@@ -1,0 +1,111 @@
+<div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
+  <div class="panel panel-top">
+      <h1 class="page-header">
+         Enter Offline 
+      </h1>
+  </div>
+  <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="margin-bottom: 16px">
+            </div>
+            <div class="panel panel-default table-invoice table-responsive">
+               <div ng-class="alertClass" style="text-align: center">
+                  <strong>{{alertMessage}}</strong>
+                </div>
+               <table class="table table-bordered table-fixedheader" style="background-color: white">
+                  <thead style="width:98%;">
+                     <tr>
+                        <th width="10%" class="text-center">Date</th>
+                        <th width="10%" class="text-center">Merchant Id</th>
+                        <th width="10%" class="text-center">Merchant Name</th>
+                        <th width="10%" class="text-center">Client/Source</th>
+                        <th width="11%" class="text-center">Ground Pilot name</th>
+                        <th width="11%" class="text-center">Arrived at outlet time</th>
+                        <th width="11%" class="text-center">Drop started date</th>
+                        <th width="11%" class="text-center">Delivered</th>
+                        <th width="11%" class="text-center">Offline Reason</th>
+                        <th width="4%" class="text-center">&nbsp;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="data in offlineData" ng-show="offlineData">
+                        <td width="10%" class="text-center">
+                        {{data.date|dateFilter: 'dd-MM-yyyy'}}</td>
+                        <td width="10%" class="text-center" ng-bind="data.merchant_id">
+                        </td>
+                        <td width="10%" class="text-center" ng-bind="data.merchant_name">
+                           </div>
+                        </td>
+                        <td width="10%" class="text-center" ng-bind="data.client">
+                        </td>
+                        <td width="11%" class="text-center" ng-bind="data.fe_name">
+                        </td>
+                        <td width="11%" class="text-center">{{data.arrived_at|dateFilter: 'dd-MM-yyyy'}}
+                        </td>
+                        <td width="11%" class="text-center">{{data.drop_started_at|dateFilter: 'dd-MM-yyyy'}}
+                        </td>
+                        <td width="11%" class="text-center">{{data.delivered_at|dateFilter: 'dd-MM-yyyy'}}
+                        </td>
+                        <td width="11%" class="text-center" ng-bind="data.offline_reason">
+                        </td>
+                     </tr>
+                     <tr>
+                        <td width="10%" class="text-center">
+                           <div class="form-group">
+                              <input type="date" class="form-control" ng-model="date">
+                           </div>
+                        </td>
+                        <td width="10%" class="text-center">
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="0" ng-model="merchant_id">
+                           </div>
+                        </td>
+                        <td width="10%" class="text-center">
+                           <div class="form-group">
+                              <select class="form-control" ng-model="merchant_name">
+                                 <option value="zomato">Zomato</option>
+                              </select>
+                           </div>
+                        </td>
+                        <td width="10%" class="text-center">
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="abc" ng-model="client">
+                           </div>
+                        </td>
+                        <td width="11%" class="text-center">
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="xyz" ng-model="fe_name">
+                           </div>
+                        </td>
+                        <td width="11%" class="text-center">
+                           <div class="form-group">
+                              <input type="date" class="form-control" placeholder="" ng-model="arrived_at">
+                           </div>
+                        </td>
+                        <td width="11%" class="text-center">
+                           <div class="form-group">
+                              <input type="date" class="form-control" ng-model="drop_started_at">
+                           </div>
+                        </td>
+                        <td width="11%" class="text-center">
+                           <div class="form-group">
+                              <input type="date" class="form-control" ng-model="delivered_at">
+                           </div>
+                        </td>
+                        <td width="11%" class="text-center">
+                           <div class="form-group">
+                              <input type="text" class="form-control" placeholder="def" ng-model="offline_reason">
+                           </div>
+                        </td>
+                        <td width="4%" class="text-center">
+                           <i class="fa fa-plus-circle" ng-click="submitOffline()"></i>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+  </div>
+</div>

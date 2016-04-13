@@ -1,0 +1,117 @@
+.table-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.table-options > li {
+    display: inline-block;
+    margin-left: 5px;
+}
+.ckbox{
+    font-weight: normal;
+    position: relative;
+    display: block;
+    margin-bottom: 0px;
+}
+.table > tbody > tr > td .ckbox{
+    margin: 0;
+    display: inline-block;
+}
+.ckbox input[type='checkbox'] {
+    opacity: 0;
+    margin: 0 0px 0 0;
+}
+.table > tbody > tr > td .ckbox input{
+  margin-right: 0;
+}
+.ckbox span:before,
+.ckbox span:after {
+  line-height: 20px;
+  position: absolute;
+}
+.ckbox span:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #454545;
+  border-radius: 3px;
+  top: 0px;
+  left: 0;
+}
+.ckbox span:after {
+    left: 3.6px;
+    top: 0;
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    font-size: 13px;
+    color: #696c74;
+    display: none;
+}
+.ckbox input[type='checkbox']:checked + span:before {
+  border-color: #ccd1db;
+}
+.ckbox input[type='checkbox']:checked + span:after {
+  display: block;
+}
+.ckbox input[type='checkbox'][disabled] + span,
+.ckbox input[type='checkbox'][disabled] + span:before,
+.ckbox input[type='checkbox'][disabled] + span:after {
+  opacity: .75;
+}
+.ckbox-primary input[type='checkbox']:checked + span:before {
+  background-color: #454545;
+  border-color: #454545;
+}
+.ckbox-primary input[type='checkbox']:checked table tr td{
+background-color: #f2f2f2;
+}
+.ckbox-primary input[type='checkbox']:checked + span:after {
+  color: #ffffff;
+}
+.table-options > li .fa{
+  margin-right: 0px;
+}
+
+/*Mohd Rafi*/
+.media-box, .media-box-body{
+  overflow: hidden;
+  zoom:1;
+}
+.search-page .list-group-item p{
+  margin-bottom: 0px;
+}
+.media-box-heading {
+  padding-left: 75px;
+  padding-right: 70px;
+}
+.search-page .form-control{
+  box-shadow: none;
+  border-radius: 0px;
+  height: 40px;
+}
+.search-page .form-group{
+  margin-bottom: 0px;
+}
+.search-page .list-group .list-group-item:first-child{
+  overflow: hidden;
+}
+.search-page .list-group .list-group-item{
+  border-top: none;
+}
+.search-page .list-group .list-group-item > a{
+  color: #333;
+}
+.search-page .list-group .list-group-item > a:hover{
+  text-decoration: none;
+}
+.search-page .list-group .list-group-item > a > span.common-txt{
+  color: #e53935;
+}
+.search-page .list-group + .list-group{
+  padding: 40px 0px;
+}
+.search-page .list-group + .list-group .list-group-item{
+  border:none;
+}

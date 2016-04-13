@@ -1,0 +1,50 @@
+<div id="sidebar-wrapper"class="nav-style" style="overflow: auto">
+  <ul class="sidebar-nav">
+     <li>
+        <a ui-sref="home.app.view.home">
+        <span class="fa fa-fw fa-home" aria-hidden="true"></span>
+        Home
+        </a>
+     </li>
+     <li>
+        <a data-toggle="collapse" data-target="#attendanceAcc1">
+        <span class="fa fa-fw fa-cubes" aria-hidden="true"></span>
+        Attendance<i class="caret pull-right"></i>
+        </a>
+        <ul class="collapse in" id="attendanceAcc1">
+           <li><a ui-sref="home.app.view.attendanceForm" class="selected">Enter Attendance</a></li>
+           <li><a ui-sref="home.app.view.attendanceHistory">Attendance History</a></li>
+        </ul>
+     </li>
+     <li>
+        <a  data-toggle="collapse" data-target="#order-summary">
+        <span class="fa fa-fw fa-line-chart" aria-hidden="true"></span>
+        Order Summary<i class="caret pull-right"></i>
+        </a>
+        <ul class="collapse in" id="order-summary">
+           <li><a ui-sref="home.app.view.orderSummaryForm">Enter Order</a></li>
+           <li><a ui-sref="home.app.view.orderSummaryHistory">Order History</a></li>
+        </ul>
+     </li>
+     <li>
+        <a data-toggle="collapse" data-target="#offline">
+        <span class="fa fa-fw fa-users" aria-hidden="true"></span>
+        Offline<i class="caret pull-right"></i>
+        </a>
+        <ul class="collapse in" id="offline">
+           <li><a ui-sref="home.app.view.offlineEntry">Enter Offline Data</a></li>
+           <li><a ui-sref="home.app.view.offlineHistory">Offline History</a></li>
+        </ul>
+     </li>
+     <li>
+        <a data-toggle="collapse" data-target="#cancelled">
+        <span class="fa fa-fw fa-users" aria-hidden="true"></span>
+        Cancelled<i class="caret pull-right"></i>
+        </a>
+        <ul class="collapse in" id="cancelled">
+           <li><a ui-sref="home.app.view.cancelledForm">Enter Cancelled Orders</a></li>
+           <li><a ui-sref="home.app.view.cancelledHistory">Cancelled History</a></li>
+        </ul>
+     </li>
+  </ul>
+</div>

@@ -1,0 +1,139 @@
+<div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
+	<div class="panel panel-top">
+	    <h1 class="page-header">
+	       Enter Cancelled
+	    </h1>
+	</div>
+	<div class="container-fluid">
+	    <div class="row">
+	       <div class="col-md-12 col-sm-12 col-xs-12">
+	          <div style="margin-bottom: 16px">
+	          </div>
+	          <div class="panel panel-default table-invoice table-responsive">
+	          	<div ng-class="alertClass" style="text-align: center">
+                  <strong>{{alertMessage}}</strong>
+                </div>
+	             <table class="table table-bordered table-fixedheader" style="background-color: white">
+	                <thead style="width:98%;">
+	                   <tr>
+	                      <th width="6%" style="text-align: center">Date</th>
+	                      <th width="9%" style="text-align: center">Restaurant</th>
+	                      <th width="10%" style="text-align: center">Order Code</th>
+	                      <th width="7%" style="text-align: center">Source</th>
+	                      <th width="9%" style="text-align: center">Ground Pilot ID</th>
+	                      <th width="9%" style="text-align: center">Assigned Time</th>
+	                      <th width="10%" style="text-align: center">Cancellation Time</th>
+	                      <th width="10%" style="text-align: center">Cancelled By</th>
+	                      <th width="9%" style="text-align: center">Cancellation reason</th>
+	                      <th width="9%" style="text-align: center">Description</th>
+	                      <th width="8%" style="text-align: center">Final Status</th>
+	                      <th width="4%" class="text-center">&nbsp;</th>
+	                   </tr>
+	                </thead>
+	                <tbody>
+		                <tr ng-repeat="data in cancelledData">
+	                        <td width="7%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yy'}}</td>
+
+	                        <td width="8%" style="text-align: center" ng-bind="data.restaurant">
+	                        </td>
+
+	                        <td width="7%" style="text-align: center" ng-bind="data.order_code">
+	                        </td>
+
+	                        <td width="7%" style="text-align: center" ng-bind="data.source">
+	                        </td>
+
+	                        <td width="9%" style="text-align: center" ng-bind="data.fe_id">
+	                        </td>
+
+	                        <td width="9%" style="text-align: center">
+	                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+	                        </td>
+
+	                        <td width="9%" style="text-align: center">
+	                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+	                        </td>
+
+	                        <td width="11%" style="text-align: center" ng-bind="data.cancelled_by">
+	                        </td>
+
+	                        <td width="10%" style="text-align: center" ng-bind="data.cancellation_reason">
+	                        </td>
+
+	                        <td width="9%" style="text-align: center" ng-bind="data.description">
+	                        </td>
+
+	                        <td width="10%" style="text-align: center" ng-bind="data.final_status">
+	                        </td>
+
+	                        <td width="2%" style="text-align: center">
+	                           <i class="fa fa-pencil"></i>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                      <td width="6%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="date" class="form-control" ng-model="date">
+	                         </div>
+	                      </td>
+	                      <td width="9%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="0" ng-model="restaurant">
+	                         </div>
+	                      </td>
+	                      <td width="10%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="0" ng-model="order_code">
+	                         </div>
+	                      </td>
+	                      <td width="7%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="0" ng-model="source">
+	                         </div>
+	                      </td>
+	                      <td width="9%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="0" ng-model="fe_id">
+	                         </div>
+	                      </td>
+	                      <td width="9%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="datetime-local" class="form-control" placeholder="0" ng-model="assigned_at">
+	                         </div>
+	                      </td>
+	                      <td width="10%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="datetime-local" class="form-control" placeholder="0" ng-model="cancelled_at">
+	                         </div>
+	                      </td>
+	                      <td width="9%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="" ng-model="cancelled_by">
+	                         </div>
+	                      </td>
+	                      <td width="9%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="Reason" ng-model="cancellation_reason">
+	                         </div>
+	                      </td>
+	                      <td width="9%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="Description" ng-model="description">
+	                         </div>
+	                      </td>
+	                      <td width="8%" style="text-align: center">
+	                         <div class="form-group">
+	                            <input type="text" class="form-control" placeholder="18" ng-model="final_status">
+	                         </div>
+	                      </td>
+	                      <td width="4%" class="text-center">
+	                         <i class="fa fa-plus-circle" ng-click="submitCancelled()"></i>
+	                      </td>
+	                   </tr>
+	                </tbody>
+	             </table>
+	          </div>
+	       </div>
+	    </div>
+	</div>
+</div>

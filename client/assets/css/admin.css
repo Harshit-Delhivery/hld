@@ -1,0 +1,147 @@
+.admin-store #scrollbar1 .disable{
+	display: block;
+}
+.admin-store #scrollbar1 .viewport{
+	height: 280px;
+}
+.admin-store #scrollbar1{
+	margin: 0px;
+}
+.admin-store .table>thead>tr>th{
+	border-bottom: none;
+}
+.admin-store .panel-body{
+	padding: 0px;
+}
+.admin-store .table > thead > tr > th {
+    border-bottom: medium none;
+    color: #b3b3b3;
+    font-family: "robotomedium";
+    font-size: 12px;
+    font-weight: normal;
+    padding: 19px 8px;
+}
+.admin-store .table > tbody > tr > td {
+    color: #626262;
+    font-family: "robotoregular";
+    font-size: 13px;
+    padding: 15px 8px;
+    border-top: 1px solid #bcbcbc;
+}
+.admin-store .table > thead > tr > th:first-child,
+.admin-store .table > tbody > tr > td:first-child{
+	padding-left: 20px;
+}
+.admin-store table > tbody > tr > td .fa {
+    display: block;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18px;
+}
+.admin-store .panel~.panel{
+	border-radius: 0px;
+}
+.admin-store .navbar-form{
+	position: relative;
+	margin-bottom: 25px;
+}
+.admin-store .navbar-form .form-group {
+    display: block;
+}
+.admin-store .navbar-form .form-control {
+    border-radius: 4px;
+    box-shadow: initial;
+    height: 45px;
+    width: 100%;
+}
+.admin-store .navbar-form .btn-search {
+    top: 7px;
+}
+.admin-store .navbar-form .form-control:focus {
+    -webkit-animation: inherit;
+    -moz-animation: inherit;
+    -ms-animation: inherit;
+    animation: inherit;
+}
+.admin-store h4{
+	padding-left: 24px;
+	margin-bottom: 20px;
+}
+.panel-feedback table.table>tbody>tr.results tr td{
+    padding: 8px;
+    border-top: 1px solid #eaeaea;
+    background-color: #f4f4f4;
+}
+.panel-feedback table.table>thead>tr>th{
+    padding: 8px;
+}
+.panel-feedback h4{
+    margin-bottom: 0px;
+}
+.panel-feedback table.table>tbody>tr.results tr td .ckbox{
+    margin-left: 11px;
+}
+.panel-feedback table.table>tbody>tr.results tr td .fa{
+    margin: 0px;
+}
+.panel-feedback #scrollbar1 .viewport{
+    height: 320px;
+}
+.panel-feedback .ckbox span:before{
+    width: 14px;
+    height: 14px;
+    background-color: #f4f4f4;
+    border-radius: 0px;
+    border:2px solid #cdcdcd;
+}
+.panel-feedback{
+    border-radius: 0px;
+}
+.pull-direction{
+    padding-right: 50px;
+    padding-top: 15px;
+}
+.pull-direction a.fa-chevron-left{
+    margin-right: 5px;
+}
+.pull-direction a.fa-chevron-right{
+    margin-left: 5px;
+}
+/* customer css start*/
+.panel-add-customer{
+    display: inline-block;
+    min-width: 184px;
+    min-height: 48px;
+    line-height: 15px;
+    padding-left: 15px;
+    padding-top: 8px;
+    text-transform: uppercase;
+    background-color: #e53935;
+    color: #fff;
+}
+.panel-add-customer .fa{
+    font-size: 22px;
+    color: #fff;
+    margin-right: 30px;
+    float: left;
+    margin-top: 5px;
+}
+#side-menu li .nav-second-level li a {
+    padding: 10px 10px 10px 70px;
+    color: #6a6c6f;
+    text-transform: none;
+}
+#side-menu li.active .nav-second-level li a{
+    background-color: #fff;
+}
+#side-menu li.active .nav-second-level li a:hover{
+background: #a6a6a6;
+    color: #fff;
+}
+.admin-approve table.table tr td span{
+    color: #e6413d;
+}
+.admin-approve .brd-rds{
+    max-width: inherit;
+}

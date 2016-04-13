@@ -1,0 +1,146 @@
+<div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
+   <div class="panel panel-top">
+      <h1 class="page-header">
+         Attendance History
+      </h1>
+   </div>
+   <div class="container-fluid" ng-init="getAttendanceHistory()">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="margin-bottom: 16px">
+               <div class="row">
+                  <div class="col-md-4">
+                    <label class="control-label col-sm-4">From Date:</label>
+                    <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label >To Date:</label>
+                    <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" style="margin-top: 24px">
+                     <button type="submit" ng-click="getAttendanceDatewise()" class="btn btn-primary">
+                        Search
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <div class="panel panel-default table-invoice table-responsive">
+               <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                  <thead style="width:98%;">
+                     <tr>
+                        <th width="9%" style="text-align: center">Date</th>
+                        <th width="8%" style="text-align: center">Total Count</th>
+                        <th width="9%" style="text-align: center">Present morning</th>
+                        <th width="8%" style="text-align: center">Present evening</th>
+                        <th width="9%" style="text-align: center">Absent</th>
+                        <th width="8%" style="text-align: center">Weekly Off</th>
+                        <th width="9%" style="text-align: center">Express morning</th>
+                        <th width="8%" style="text-align: center">Express evening</th>
+                        <th width="9%" style="text-align: center">Part_timer (8-11)</th>
+                        <th width="8%" style="text-align: center">Part_timer (12-3)</th>
+                        <th width="9%" style="text-align: center">Part_timer (7-12)</th>
+                        <th width="3%" style="text-align: center">&nbsp;</th>
+                        <th width="3%" style="text-align: center">&nbsp;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="record in attendanceHistory">
+
+                        <td width="9%" style="text-align: center">{{record.date|dateFilter: 'dd-MM-yyyy'}}</td>
+
+                        <td width="8%" ng-show="!edit" ng-bind="record.headcount" style="text-align: center"></td>
+                        <td width="8%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.headcount" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="9%" ng-show="!edit" ng-bind="record.present_m" style="text-align: center"></td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.present_m" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="8%" ng-show="!edit" ng-bind="record.present_e" style="text-align: center"></td>
+                        <td width="8%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.present_e" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="9%" ng-show="!edit" ng-bind="record.absent" style="text-align: center"></td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.absent" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="8%" ng-show="!edit" ng-bind="record.weekoff" style="text-align: center"></td>
+                        <td width="8%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.weekoff" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="9%" ng-show="!edit" ng-bind="record.feexpress_m" style="text-align: center"></td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.feexpress_m" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="8%" ng-show="!edit" ng-bind="record.feexpress_e" style="text-align: center"></td>
+                        <td width="8%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.feexpress_e" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="9%" ng-show="!edit" ng-bind="record.parttimer1" style="text-align: center"</td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.parttimer1" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="8%" ng-show="!edit" ng-bind="record.parttimer2" style="text-align: center"></td>
+                        <td width="8%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.parttimer2" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="9%" ng-show="!edit" ng-bind="record.parttimer3" style="text-align: center"></td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.parttimer3" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="4%" ng-show="!edit" style="text-align: center">
+                          <button ng-click="edit=true" title="edit">
+                            <i class="fa fa-pencil"></i>
+                          </button>
+                        </td>
+
+                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
+                          <button ng-click="edit=false; updateAttendance(record)" title="Submit">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </td>
+
+                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
+                          <button ng-click="edit=false" title="Cancel">
+                            <span class="fa fa-remove"></span>
+                          </button>
+                        </td>
+
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

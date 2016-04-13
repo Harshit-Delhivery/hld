@@ -1,0 +1,135 @@
+<div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
+   <div class="panel panel-top">
+      <h1 class="page-header">
+         Offline History
+      </h1>
+   </div>
+   <div class="container-fluid" ng-init="getOfflineHistory()">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="margin-bottom: 16px">
+               <div class="row">
+                  <div class="col-md-4">
+                    <label class="control-label col-sm-4">From Date:</label>
+                    <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label >To Date:</label>
+                    <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" style="margin-top: 24px">
+                     <button type="submit" ng-click="getOfflineDatewise()" class="btn btn-primary">
+                        Search
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <div class="panel panel-default table-invoice table-responsive">
+               <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                  <thead style="width:98%;">
+                     <tr>
+                        <th width="9%" style="text-align: center">Date</th>
+                        <th width="9%" style="text-align: center">Merchant Id</th>
+                        <th width="11%" style="text-align: center">Merchant Name</th>
+                        <th width="11%" style="text-align: center">Client/Source</th>
+                        <th width="11%" style="text-align: center">Ground Pilot name</th>
+                        <th width="10%" style="text-align: center">Arrived at outlet time</th>
+                        <th width="10%" style="text-align: center">Drop started date</th>
+                        <th width="10%" style="text-align: center">Delivered</th>
+                        <th width="11%" style="text-align: center">Offline Reason</th>
+                        <th width="6%" style="text-align: center">&nbsp;</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr ng-repeat="data in offlineHistory">
+                        <td width="9%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yyyy'}}</td>
+
+                        <td width="9%" style="text-align: center" ng-show="!edit" ng-bind="data.merchant_id">
+                        </td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.merchant_id" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.merchant_name">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.merchant_name" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.client">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.client" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.fe_name">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.fe_name" class="form-cont>-530
+                            </div>
+                        </td>
+
+                        <td width="10%" style="text-align: center" ng-show="!edit">
+                           {{data.arrived_at|dateFilter: 'dd-MM-yyyy hh:mm Z-530'}}
+                        </td>
+                        <td width="10%" ng-show="edit" style="text-align: center" ng-show="!edit">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.arrived_at" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="10%" style="text-align: center" ng-show="!edit">
+                           {{data.drop_started_at|dateFilter: 'dd-MM-yyyy hh:mm'}}
+                        </td>
+                        <td width="10%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.drop_started_at" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="10%" style="text-align: center" ng-show="!edit">
+                           {{data.delivered_at|dateFilter: 'dd-MM-yyyy hh:mm'}}
+                        </td>
+                        <td width="10%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.delivered_at" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.offline_reason">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.offline_reason" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="6%" style="text-align: center" ng-show="!edit" ng-click="edit=true">
+                           <i class="fa fa-pencil"></i>
+                        </td>
+                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
+                          <button ng-click="edit=false; updateOffline(data)" title="Submit">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </td>
+                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
+                          <button ng-click="edit=false" title="Cancel">
+                            <span class="fa fa-remove"></span>
+                          </button>
+                        </td>
+
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
