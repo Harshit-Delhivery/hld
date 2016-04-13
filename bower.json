@@ -1,0 +1,27 @@
+{
+  "name": "hld",
+  "description": "hld",
+  "main": "server/server.js",
+  "authors": [
+    "mudit satija"
+  ],
+  "license": "MIT",
+  "homepage": "http://hld.delhivery.com",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.3",
+    "angular-growl": "~0.4.0",
+    "angular-resource": "~1.5.3",
+    "angular-ui-router": "~0.2.18",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.3"
+  }
+}
