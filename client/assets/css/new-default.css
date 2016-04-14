@@ -1522,10 +1522,10 @@ ul#attendanceAcc li{
 {
   margin-bottom:16px;
 }
-.sidebar-nav li a[aria-expanded="true"] i.caret {
+/*.sidebar-nav li a[aria-expanded="true"] i.caret {
     
     transform: rotate(90deg);
-}
+}*/
 
 .sidebar-nav li a[aria-expanded="true"], .sidebar-nav li.active > a {
     background: #454141 none repeat scroll 0 0;

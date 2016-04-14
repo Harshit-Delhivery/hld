@@ -1489,7 +1489,7 @@ ul#attendanceAcc1,ul#offline,ul#cancelled,ul#order-summary
 {
   list-style:none;
   padding-left:0px;
-  background:#d6d6d6;
+  background:#FFFFFF;
 }
 
 ul#offline-cancelled li{
@@ -1533,12 +1533,12 @@ ul#attendanceAcc li{
 
 .sidebar-nav li a[data-toggle="collapse"] i.caret {
     
-    transform: rotate(90deg);
+    transform: rotate(360deg);
 }
 
 .sidebar-nav li a[aria-expanded="false"] i.caret {
     
-    transform: rotate(360deg);
+    transform: rotate(-90deg);
     background:none;
 }
 .attendance-form label

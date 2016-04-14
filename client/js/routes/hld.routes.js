@@ -46,7 +46,8 @@ app.config(['$stateProvider', function($stateProvider) {
         controller: 'loginController'
       },
       'side-nav': {
-        templateUrl: '/views/sideNav.html'
+        templateUrl: '/views/sideNav.html',
+        controller: 'SidebarController'
       },
       'content-view': {
         templateUrl: '/views/contentView.html'

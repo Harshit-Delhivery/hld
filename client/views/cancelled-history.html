@@ -18,7 +18,7 @@
                     <input type="date" placeholder="search" ng-model="toDate" class="form-control">
                   </div>
                   <div class="col-md-3" style="margin-top: 24px">
-                     <button type="submit" ng-click="getOfflineDatewise()" class="btn btn-primary">
+                     <button type="submit" ng-click="getCancelledDatewise()" class="btn btn-primary">
                         Search
                      </button>
                   </div>
@@ -46,40 +46,100 @@
                      <tr ng-repeat="data in cancelledHistory">
                         <td width="7%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yy'}}</td>
 
-                        <td width="8%" style="text-align: center" ng-bind="data.restaurant">
+                        <td width="8%" ng-show="!edit" style="text-align: center" ng-bind="data.restaurant">
+                        </td>
+                        <td width="8%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.restaurant" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="7%" style="text-align: center" ng-bind="data.order_code">
+                        <td width="7%" ng-show="!edit" style="text-align: center" ng-bind="data.order_code">
+                        </td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.order_code" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="7%" style="text-align: center" ng-bind="data.source">
+                        <td width="7%" ng-show="!edit" style="text-align: center" ng-bind="data.source">
+                        </td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.source" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="9%" style="text-align: center" ng-bind="data.fe_id">
+                        <td width="9%" ng-show="!edit" style="text-align: center" ng-bind="data.fe_id">
+                        </td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.fe_id" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="9%" style="text-align: center">
-                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                        <td width="9%" ng-show="!edit" style="text-align: center">
+                           {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                        </td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="date" ng-model="data.assigned_at" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="9%" style="text-align: center">
-                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                        <td width="9%" ng-show="!edit" style="text-align: center">
+                           {{data.cancelled_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                        </td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="date" ng-model="data.cancelled_at" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="11%" style="text-align: center" ng-bind="data.cancelled_by">
+                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="data.cancelled_by">
+                        </td>
+                        <td width="11%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.cancelled_by" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="10%" style="text-align: center" ng-bind="data.cancellation_reason">
+                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="data.cancellation_reason">
+                        </td>
+                        <td width="10%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.cancellation_reason" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="9%" style="text-align: center" ng-bind="data.description">
+                        <td width="9%" ng-show="!edit" style="text-align: center" ng-bind="data.description">
+                        </td>
+                        <td width="9%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.description" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="10%" style="text-align: center" ng-bind="data.final_status">
+                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="data.final_status">
+                        </td>
+                        <td width="10%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="data.final_status" class="form-control">
+                            </div>
                         </td>
 
-                        <td width="2%" style="text-align: center">
+                        <td width="2%" ng-show="!edit" ng-click="edit=true" style="text-align: center">
                            <i class="fa fa-pencil"></i>
+                           <td width="2%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
+                          <button ng-click="edit=false; updateCancelled(data)" title="Submit">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </td>
+                        <td width="2%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
+                          <button ng-click="edit=false" title="Cancel">
+                            <span class="fa fa-remove"></span>
+                          </button>
+                        </td>
                         </td>
                      </tr>
                   </tbody>

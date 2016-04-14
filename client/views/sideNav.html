@@ -7,43 +7,43 @@
         </a>
      </li>
      <li>
-        <a data-toggle="collapse" data-target="#attendanceAcc1">
+        <a data-toggle="collapse" data-target="#attendanceAcc1" aria-expanded="false">
         <span class="fa fa-fw fa-cubes" aria-hidden="true"></span>
         Attendance<i class="caret pull-right"></i>
         </a>
-        <ul class="collapse in" id="attendanceAcc1">
-           <li><a ui-sref="home.app.view.attendanceForm" class="selected">Enter Attendance</a></li>
-           <li><a ui-sref="home.app.view.attendanceHistory">Attendance History</a></li>
+        <ul class="collapse" id="attendanceAcc1" aria-expanded="false">
+           <li><a ui-sref="home.app.view.attendanceForm" ng-click="highlightSidebar(1)" ng-class="{'selected': id==1}">Enter Attendance</a></li>
+           <li><a ui-sref="home.app.view.attendanceHistory" ng-click="highlightSidebar(2)" ng-class="{'selected': id==2}">Attendance History</a></li>
         </ul>
      </li>
      <li>
-        <a  data-toggle="collapse" data-target="#order-summary">
+        <a  data-toggle="collapse" data-target="#order-summary" aria-expanded="false">
         <span class="fa fa-fw fa-line-chart" aria-hidden="true"></span>
         Order Summary<i class="caret pull-right"></i>
         </a>
-        <ul class="collapse in" id="order-summary">
-           <li><a ui-sref="home.app.view.orderSummaryForm">Enter Order</a></li>
-           <li><a ui-sref="home.app.view.orderSummaryHistory">Order History</a></li>
+        <ul class="collapse" id="order-summary" aria-expanded="false">
+           <li><a ui-sref="home.app.view.orderSummaryForm" ng-click="highlightSidebar(3)" ng-class="{'selected': id==3}">Enter Order</a></li>
+           <li><a ui-sref="home.app.view.orderSummaryHistory" ng-click="highlightSidebar(4)" ng-class="{'selected': id==4}">Order History</a></li>
         </ul>
      </li>
      <li>
-        <a data-toggle="collapse" data-target="#offline">
+        <a data-toggle="collapse" data-target="#offline" aria-expanded="false">
         <span class="fa fa-fw fa-users" aria-hidden="true"></span>
         Offline<i class="caret pull-right"></i>
         </a>
-        <ul class="collapse in" id="offline">
-           <li><a ui-sref="home.app.view.offlineEntry">Enter Offline Data</a></li>
-           <li><a ui-sref="home.app.view.offlineHistory">Offline History</a></li>
+        <ul class="collapse" id="offline" aria-expanded="false">
+           <li><a ui-sref="home.app.view.offlineEntry" ng-click="highlightSidebar(5)" ng-class="{'selected': id==5}">Enter Offline Data</a></li>
+           <li><a ui-sref="home.app.view.offlineHistory" ng-click="highlightSidebar(6)" ng-class="{'selected': id==6}">Offline History</a></li>
         </ul>
      </li>
      <li>
-        <a data-toggle="collapse" data-target="#cancelled">
+        <a data-toggle="collapse" data-target="#cancelled" aria-expanded="false">
         <span class="fa fa-fw fa-users" aria-hidden="true"></span>
         Cancelled<i class="caret pull-right"></i>
         </a>
-        <ul class="collapse in" id="cancelled">
-           <li><a ui-sref="home.app.view.cancelledForm">Enter Cancelled Orders</a></li>
-           <li><a ui-sref="home.app.view.cancelledHistory">Cancelled History</a></li>
+        <ul class="collapse" id="cancelled" aria-expanded="false">
+           <li><a ui-sref="home.app.view.cancelledForm" ng-click="highlightSidebar(7)" ng-class="{'selected': id==7}">Enter Cancelled Orders</a></li>
+           <li><a ui-sref="home.app.view.cancelledHistory" ng-click="highlightSidebar(8)" ng-class="{'selected': id==8}">Cancelled History</a></li>
         </ul>
      </li>
   </ul>

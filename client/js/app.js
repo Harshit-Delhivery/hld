@@ -1,8 +1,13 @@
 var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angular-growl']);
 
 app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' , '$log' , '$location', function(LoopBackAuth, Enduser, $rootScope, $http, $state, $window, $log, $location) {
-  $rootScope._user = null;
-  console.log('app.run');
+    $rootScope._user = null;
+    console.log('app.run');
+    // if(!Enduser.isAuthenticated()) {
+    //   $state.go('home.login');
+    // } else {
+    //     $state.go('home.app.view.home');
+    // }
 
   if(Enduser.isAuthenticated()) {
     // console.log('LoopBackAuth = ', LoopBackAuth);
