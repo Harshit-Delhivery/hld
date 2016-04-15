@@ -1,4 +1,4 @@
-var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angular-growl']);
+var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angular-growl', 'ui.bootstrap.datetimepicker']);
 
 app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' , '$log' , '$location', function(LoopBackAuth, Enduser, $rootScope, $http, $state, $window, $log, $location) {
     $rootScope._user = null;

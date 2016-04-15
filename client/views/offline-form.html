@@ -53,7 +53,14 @@
                      <tr>
                         <td width="10%" class="text-center">
                            <div class="form-group">
-                              <input type="date" class="form-control" ng-model="date">
+                              <div class="dropdown">
+                                  <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                      Select Date <i class="fa fa-calendar"></i>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                      <datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
+                                  </ul>
+                              </div>
                            </div>
                         </td>
                         <td width="10%" class="text-center">
@@ -80,17 +87,38 @@
                         </td>
                         <td width="11%" class="text-center">
                            <div class="form-group">
-                              <input type="date" class="form-control" placeholder="" ng-model="arrived_at">
+                              <div class="dropdown">
+                                  <a class="dropdown-toggle" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" href="">
+                                      Select Date <i class="fa fa-calendar"></i>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
+                                      <datetimepicker data-ng-model="arrived_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel2' }"></datetimepicker>
+                                  </ul>
+                              </div>
                            </div>
                         </td>
                         <td width="11%" class="text-center">
                            <div class="form-group">
-                              <input type="date" class="form-control" ng-model="drop_started_at">
+                              <div class="dropdown">
+                                  <a class="dropdown-toggle" id="dLabel3" role="button" data-toggle="dropdown" data-target="#" href="">
+                                      Select Date <i class="fa fa-calendar"></i>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel3">
+                                      <datetimepicker data-ng-model="drop_started_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel3' }"></datetimepicker>
+                                  </ul>
+                              </div>
                            </div>
                         </td>
                         <td width="11%" class="text-center">
                            <div class="form-group">
-                              <input type="date" class="form-control" ng-model="delivered_at">
+                              <div class="dropdown">
+                                  <a class="dropdown-toggle" id="dLabel4" role="button" data-toggle="dropdown" data-target="#" href="">
+                                      Select Date <i class="fa fa-calendar"></i>
+                                  </a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel4">
+                                      <datetimepicker data-ng-model="delivered_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel4' }"></datetimepicker>
+                                  </ul>
+                              </div>
                            </div>
                         </td>
                         <td width="11%" class="text-center">

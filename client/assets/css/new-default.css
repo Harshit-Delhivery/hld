@@ -127,7 +127,7 @@ text-align: center;
 
 /*#sidebar-wrapper .sidebar-nav li a{ padding: 27px 24px;}*/
 #sidebar-wrapper .sidebar-nav li a:hover{ background:#949090; color:#fff;}
-#sidebar-wrapper .sidebar-nav li  li a:hover{color:#000; background:none;}
+#sidebar-wrapper .sidebar-nav li  li a:hover{color:#000; background:#D9D9D9;}
 
 #sidebar-wrapper .sidebar-nav li a:hover  .glyphicon-class {  color:#fff;}
 #sidebar-wrapper .sidebar-nav li a.active  .glyphicon-class {  color:#fff;}
