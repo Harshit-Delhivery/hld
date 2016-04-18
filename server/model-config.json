@@ -51,5 +51,17 @@
   "Enduser": {
     "dataSource": "localPsql",
     "public": true
+  },
+  "Restaurant": {
+    "dataSource": "localPsql",
+    "public": true
+  },
+  "Canreason": {
+    "dataSource": "localPsql",
+    "public": true
+  },
+  "Offreason": {
+    "dataSource": "localPsql",
+    "public": true
   }
 }
