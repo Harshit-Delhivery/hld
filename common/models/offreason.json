@@ -1,0 +1,26 @@
+{
+  "name": "Offreason",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "reason1": {
+      "type": "string"
+    },
+    "reason2": {
+      "type": "string"
+    },
+    "reason3": {
+      "type": "string"
+    },
+    "reason4": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
