@@ -5,8 +5,8 @@ var app = require('../server/server.js'),
 	async = require('async'),
 	extractData = [];
 
-var obj = csv(),
-	myEvent = new EventEmitter();
+var obj = csv();
+	// myEvent = new EventEmitter();
 
 function restJson(merchantName, merchantId, dcName, city) {
 	this.merchantName = merchantName;
@@ -21,12 +21,12 @@ obj.from.path('../csv_folder/Restaurants.csv').to.array(function (data) {
         extractData.push(new restJson(data[index][1], data[index][0], data[index][2], data[index][3]));
     }
     if(index == data.length) {
-    	myEvent.emit('doneProcessing');
+    	restaurantData();
     }
     // console.log('restaurant csv file = ', extractData);
 });
 
-myEvent.on('doneProcessing', function() {
+function restaurantData() {
 	async.forEach(extractData, function(item, callback) {
 		console.log('item = ', item.merchantName, item.merchantId, item.dcName, item.city);
 		app.models.Restaurant.upsert({
@@ -38,7 +38,7 @@ myEvent.on('doneProcessing', function() {
 		if(err)
 			throw err;
 	});
-});
+};
 
 // (function() {
 // 		console.log('restaurant csv file = ', extractData);
