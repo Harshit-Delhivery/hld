@@ -6,19 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "reason1": {
-      "type": "string"
-    },
-    "reason2": {
-      "type": "string"
-    },
-    "reason3": {
-      "type": "string"
-    },
-    "reason4": {
-      "type": "string"
-    },
-    "reason5": {
+    "reason": {
       "type": "string"
     }
   },

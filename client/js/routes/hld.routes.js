@@ -58,7 +58,8 @@ app.config(['$stateProvider', function($stateProvider) {
     url: 'home',
     views: {
       'inner-view': {
-        templateUrl: '/views/home.html'
+        templateUrl: '/views/home.html',
+        controller: 'homeController'
       }
     }
   })

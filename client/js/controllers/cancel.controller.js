@@ -2,7 +2,7 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Cancelled', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Cancelled) {
+app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Cancelled', 'Restaurant', 'Canreason', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Cancelled, Restaurant, Canreason) {
 	$scope.date = null;
     $scope.restaurant = null;
     $scope.order_code = null;
@@ -102,5 +102,24 @@ app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 		}, function(error) {
 			console.log(error);
 		});
+	}
+
+	$scope.getDropdownData = function() {
+		Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, 
+			function(successResponse) {
+				console.log('drop down data = ', successResponse);
+				$rootScope._restaurants = successResponse;
+			}, function(error) {
+				console.log(error);
+		});
+	};
+
+	$scope.getCancelReasons = function() {
+		Canreason.find({}, function(successResponse) {
+			console.log('getCancelReasons = ', successResponse);
+			$rootScope._cancelReasons = successResponse;
+		}, function(error) {
+			console.log('getCancelReasons = ', error);
+		})
 	}
 }]);
