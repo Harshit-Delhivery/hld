@@ -10,6 +10,10 @@
       "type": "date",
       "required": true
     },
+    "order_code": {
+      "type": "string",
+      "required": true
+    },
     "merchant_id": {
       "type": "string",
       "required": true

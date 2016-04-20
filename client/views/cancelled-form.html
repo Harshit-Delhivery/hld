@@ -4,7 +4,7 @@
 	       Enter Cancelled
 	    </h1>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid" ng-init="getCancelReasons()">
 	    <div class="row">
 	       <div class="col-md-12 col-sm-12 col-xs-12">
 	          <div style="margin-bottom: 16px">
@@ -71,8 +71,9 @@
 	                         <div class="form-group">
 	                            <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Select Date <i class="fa fa-calendar"></i>
+                                      Date <i class="fa fa-calendar"></i>
                                   </a>
+                                  <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                       <datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
                                   </ul>
@@ -81,7 +82,9 @@
 	                      </td>
 	                      <td width="9%" style="text-align: center">
 	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="0" ng-model="restaurant">
+	                            <select class="form-control" ng-model="restaurant">
+                                 <option ng-repeat="rest in _restaurants" value="rest">{{rest.merchantName}}</option>
+                              </select>
 	                         </div>
 	                      </td>
 	                      <td width="10%" style="text-align: center">
@@ -91,7 +94,9 @@
 	                      </td>
 	                      <td width="7%" style="text-align: center">
 	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="0" ng-model="source">
+	                            <select class="form-control" ng-model="source">
+                                 <option value="">Select</option>
+                              </select>
 	                         </div>
 	                      </td>
 	                      <td width="9%" style="text-align: center">
@@ -103,8 +108,9 @@
 	                         <div class="form-group">
 	                            <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Select Date <i class="fa fa-calendar"></i>
+                                      Date <i class="fa fa-calendar"></i>
                                   </a>
+                                  <div ng-show="assigned_at">{{assigned_at|dateFilter: 'hh:mm'}}</div>
                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                       <datetimepicker data-ng-model="assigned_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
                                   </ul>
@@ -115,8 +121,9 @@
 	                         <div class="form-group">
 	                            <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Select Date <i class="fa fa-calendar"></i>
+                                      Date <i class="fa fa-calendar"></i>
                                   </a>
+                                  <div ng-show="cancelled_at">{{cancelled_at|dateFilter: 'hh:mm'}}</div>
                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                       <datetimepicker data-ng-model="cancelled_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
                                   </ul>
@@ -130,17 +137,21 @@
 	                      </td>
 	                      <td width="9%" style="text-align: center">
 	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="Reason" ng-model="cancellation_reason">
+	                            <select class="form-control" ng-model="cancellation_reason">
+                                 <option ng-repeat="reason in _cancelReasons" value="{{reason.reason}}">{{reason.reason}}</option>
+                              </select>
 	                         </div>
 	                      </td>
 	                      <td width="9%" style="text-align: center">
 	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="Description" ng-model="description">
+	                            <input type="text" class="form-control" placeholder="Description" ng-disabled="cancellation_reason != 'Other'" ng-model="description">
 	                         </div>
 	                      </td>
 	                      <td width="8%" style="text-align: center">
 	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="18" ng-model="final_status">
+	                            <select class="form-control" ng-model="final_status">
+                                 <option value="">Select</option>
+                              </select>
 	                         </div>
 	                      </td>
 	                      <td width="4%" class="text-center">

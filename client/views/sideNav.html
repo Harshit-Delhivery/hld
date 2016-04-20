@@ -36,7 +36,7 @@
            <li><a ui-sref="home.app.view.offlineHistory" ng-click="highlightSidebar(6)" ng-class="{'selected': id==6}">Offline History</a></li>
         </ul>
      </li>
-     <li>
+      <li ng-if="false"> <!-- ng-if is to be removed later -->
         <a data-toggle="collapse" data-target="#cancelled" aria-expanded="false">
         <span class="fa fa-fw fa-users" aria-hidden="true"></span>
         Cancelled<i class="caret pull-right"></i>
