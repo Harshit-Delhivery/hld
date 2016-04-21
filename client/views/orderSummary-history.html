@@ -28,15 +28,16 @@
                <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
                   <thead style="width:98%;">
                      <tr>
-                        <th width="5%" style="text-align: center">Date</th>
+                        <th width="8%" style="text-align: center">Date</th>
                         <th width="11%" style="text-align: center">Online morning</th>
-                        <th width="11%" style="text-align: center">Online evening</th>
+                        <th width="10%" style="text-align: center">Online evening</th>
                         <th width="11%" style="text-align: center">Offline morning</th>
-                        <th width="11%" style="text-align: center">Offline evening</th>
-                        <th width="13%" style="text-align: center">Cancelled morning</th>
-                        <th width="13%" style="text-align: center">Cancelled evening</th>
-                        <th width="12%" style="text-align: center">Express morning</th>
-                        <th width="12%" style="text-align: center">Express evening</th>
+                        <th width="10%" style="text-align: center">Offline evening</th>
+                        <th width="11%" style="text-align: center">Cancelled morning</th>
+                        <th width="10%" style="text-align: center">Cancelled evening</th>
+                        <th width="11%" style="text-align: center">Express morning</th>
+                        <th width="11%" style="text-align: center">Express evening</th>
+                        <th width="6%" style="text-align: center">&nbsp</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -52,9 +53,9 @@
                             </div>
                         </td>
 
-                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.online_e">
+                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="order.online_e">
                         </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
+                        <td width="10%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="order.online_e" class="form-control" >
                             </div>
@@ -68,9 +69,9 @@
                             </div>
                         </td>
 
-                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.offline_e">
+                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="order.offline_e">
                         </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
+                        <td width="10%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="order.offline_e" class="form-control" >
                             </div>
@@ -84,9 +85,9 @@
                             </div>
                         </td>
 
-                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.cancel_e">
+                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="order.cancel_e">
                         </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
+                        <td width="10%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="order.cancel_e" class="form-control" >
                             </div>
@@ -108,19 +109,19 @@
                             </div>
                         </td>
 
-                        <td width="2%" ng-show="!edit" style="text-align: center">
+                        <td width="6%" ng-show="!edit" style="text-align: center">
                           <button ng-click="edit=true" title="edit">
                             <i class="fa fa-pencil"></i>
                           </button>
                         </td>
 
-                        <td width="1%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
+                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
                           <button ng-click="edit=false; updateOrder(order)" title="Submit">
                             <i class="fa fa-check"></i>
                           </button>
                         </td>
 
-                        <td width="1%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
+                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
                           <button ng-click="edit=false" title="Cancel">
                             <span class="fa fa-remove"></span>
                           </button>

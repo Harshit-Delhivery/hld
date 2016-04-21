@@ -42,6 +42,7 @@
                   </thead>
                   <tbody>
                      <tr ng-repeat="data in offlineHistory">
+                     
                         <td width="9%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yyyy'}}</td>
 
                         <td width="9%" style="text-align: center" ng-show="!edit" ng-bind="data.merchant_id">

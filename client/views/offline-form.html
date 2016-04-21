@@ -4,7 +4,7 @@
          Enter Offline 
       </h1>
   </div>
-  <div class="container-fluid" ng-init="getOfflineReasons()">
+  <div class="container-fluid">
       <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
             <div style="margin-bottom: 16px">
@@ -55,17 +55,8 @@
                      <tr>
                         <td width="9%" class="text-center">
                            <div class="form-group">
-                              <div class="dropdown">
-                                  <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Date <i class="fa fa-calendar"></i>
-                                  </a>
-                                  <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
-                                  <div class="form-group">
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                      <datetimepicker data-ng-model="date" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
-                                  </ul>
-                                  </div>
-                              </div>
+                              <input type="Date" ng-model="date" class="form-control"/>
+                              <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
                            </div>
                         </td>
                         <td width="9%" class="text-center">
@@ -81,14 +72,14 @@
                         <td width="9%" class="text-center">
                            <div class="form-group">
                               <select class="form-control" ng-model="merchant_name">
-                                 <option value="zomato">Zomato</option>
+                                <option ng-repeat="rest in _restaurants" value="rest.merchantName">{{rest.merchantName}}</option>
                               </select>
                            </div>
                         </td>
                         <td width="9%" class="text-center">
                            <div class="form-group">
                               <select class="form-control" ng-model="client">
-                                 <option ng-repeat="client in clientArray" value="client">{{client}}</option>
+                                <option ng-repeat="source in _source" value="source.name">{{source.name}}</option>
                               </select>
                            </div>
                         </td>
