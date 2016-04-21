@@ -29,81 +29,80 @@
                         <th width="4%" class="text-center">&nbsp;</th>
                      </tr>
                   </thead>
-                  <tbody>
-                     <tr ng-repeat="data in offlineData" ng-show="offlineData">
-                        <td width="9%" class="text-center">
-                        {{data.date|dateFilter: 'dd-MM-yyyy'}}</td>
-                        <td width="9%" class="text-center" ng-bind="data.orderCode">
-                        </td>
-                        <td width="9%" class="text-center" ng-bind="data.merchant_id">
-                        </td>
-                        <td width="9%" class="text-center" ng-bind="data.merchant_name">
-                        </td>
-                        <td width="9%" class="text-center" ng-bind="data.client">
-                        </td>
-                        <td width="9%" class="text-center" ng-bind="data.fe_name">
-                        </td>
-                        <td width="11%" class="text-center">{{data.arrived_at|dateFilter: 'hh:mm'}}
-                        </td>
-                        <td width="11%" class="text-center">{{data.drop_started_at|dateFilter: 'hh:mm'}}
-                        </td>
-                        <td width="11%" class="text-center">{{data.delivered_at|dateFilter: 'hh:mm'}}
-                        </td>
-                        <td width="11%" class="text-center" ng-bind="data.offline_reason">
-                        </td>
-                     </tr>
-                     <tr>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <input type="Date" ng-model="date" class="form-control"/>
-                              <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
-                           </div>
-                        </td>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="0" ng-model="order_code">
-                           </div>
-                        </td>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="0" ng-model="merchant_id">
-                           </div>
-                        </td>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <select class="form-control" ng-model="merchant_name">
-                                <option ng-repeat="rest in _restaurants" value="rest.merchantName">{{rest.merchantName}}</option>
+               </table>
+               <div ng-repeat="data in offlineData" ng-show="offlineData" style="background-color: white">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-1 text-center" style="width: 9%">
+                        {{data.date|dateFilter: 'dd-MM-yyyy'}}
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.order_code">
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.merchant_id">
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.merchant_name">
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.client">
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.fe_name">
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 10%">
+                        {{data.arrived_at|dateFilter: 'hh:mm'}}
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 9%">
+                        {{data.drop_started_at|dateFilter: 'hh:mm'}}
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 11%">
+                        {{data.delivered_at|dateFilter: 'hh:mm'}}
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 11%" ng-bind="data.offline_reason">
+                        
+                      </div>
+                      <div class="col-md-1 text-center" style="width: 4%">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <form class="attendance-form" ng-submit="submitAttendance()" style="height: 375px; margin-top: 10px">
+                    <div class="col-md-12">
+                       <div class="row">
+                         <div class="col-md-1" style="width: 9%">
+                            <input type="Date" ng-model="date" class="form-control"/>
+                            <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
+                         </div>
+                         <div class="col-md-1" style="width: 9%">
+                          <input type="text" class="form-control" placeholder="0" ng-model="order_code">
+                         </div>
+                         <div class="col-md-1" style="width: 9%">
+                         <input type="text" class="form-control" placeholder="0" ng-model="merchant_id">
+                         </div>
+                         <div class="col-md-1" style="width: 9%">
+                            <select class="form-control" ng-model="merchant_name">
+                                <option ng-repeat="rest in _restaurants" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
                               </select>
-                           </div>
-                        </td>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <select class="form-control" ng-model="client">
-                                <option ng-repeat="source in _source" value="source.name">{{source.name}}</option>
+                         </div>
+                         <div class="col-md-1" style="width: 9%">
+                         <select class="form-control" ng-model="client">
+                                <option ng-repeat="source in _source" value="{{source.name}}">{{source.name}}</option>
                               </select>
-                           </div>
-                        </td>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="xyz" ng-model="fe_name">
-                           </div>
-                        </td>
-                        <td width="10%" class="text-center">
-                           <div class="form-group">
-                              <div class="dropdown">
+                         </div>
+                         <div class="col-md-1" style="width: 9%">
+                          <input type="text" class="form-control" placeholder="xyz" ng-model="fe_name">
+                         </div>
+                         <div class="col-md-1" style="width: 10%">
+                          <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" href="">
                                       Date <i class="fa fa-calendar"></i>
                                   </a>
-                                  <div ng-show="arrived_at">{{arrived_at|dateFilter: 'hh:mm'}}</div>
                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
                                       <datetimepicker data-ng-model="arrived_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel2' }"></datetimepicker>
                                   </ul>
+                                  <div ng-show="arrived_at">{{arrived_at|dateFilter: 'hh:mm'}}</div>
                               </div>
-                           </div>
-                        </td>
-                        <td width="9%" class="text-center">
-                           <div class="form-group">
-                              <div class="dropdown">
+                         </div>
+                         <div class="col-md-1" style="width: 9%">
+                            <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel3" role="button" data-toggle="dropdown" data-target="#" href="">
                                       Date <i class="fa fa-calendar"></i>
                                   </a>
@@ -112,11 +111,9 @@
                                       <datetimepicker data-ng-model="drop_started_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel3' }"></datetimepicker>
                                   </ul>
                               </div>
-                           </div>
-                        </td>
-                        <td width="11%" class="text-center">
-                           <div class="form-group">
-                              <div class="dropdown">
+                         </div>
+                         <div class="col-md-1" style="width: 11%">
+                         <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel4" role="button" data-toggle="dropdown" data-target="#" href="">
                                       Date <i class="fa fa-calendar"></i>
                                   </a>
@@ -125,21 +122,19 @@
                                       <datetimepicker data-ng-model="delivered_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel4' }"></datetimepicker>
                                   </ul>
                               </div>
-                           </div>
-                        </td>
-                        <td width="11%" class="text-center">
-                           <div class="form-group">
-                              <select class="form-control" ng-model="offline_reason">
+                         </div>
+                         <div class="col-md-1" style="width: 11%">
+                         <select class="form-control" ng-model="offline_reason">
                                  <option ng-repeat="offline in _offlineReasons" value="{{offline.reason}}">{{offline.reason}}</option>
                               </select>
-                           </div>
-                        </td>
-                        <td width="4%" class="text-center">
+                         </div>
+                         <div class="col-md-1" style="width: 4%">
                           <i class="fa fa-plus-circle" ng-click="submitOffline()"></i>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
+                         </div>
+                       </div>
+                    </div>
+                </form>
+               <tr>
             </div>
          </div>
       </div>
