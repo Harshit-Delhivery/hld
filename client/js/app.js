@@ -1,6 +1,6 @@
 var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angular-growl', 'ui.bootstrap.datetimepicker']);
 
-app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' , '$log' , '$location', function(LoopBackAuth, Enduser, $rootScope, $http, $state, $window, $log, $location) {
+app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' , '$log' , '$location', 'Dropdownservice', function(LoopBackAuth, Enduser, $rootScope, $http, $state, $window, $log, $location, Dropdownservice) {
     $rootScope._user = null;
     console.log('app.run');
     // if(!Enduser.isAuthenticated()) {
@@ -8,6 +8,7 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
     // } else {
     //     $state.go('home.app.view.home');
     // }
+
 
   if(Enduser.isAuthenticated()) {
     // console.log('LoopBackAuth = ', LoopBackAuth);

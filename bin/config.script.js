@@ -27,8 +27,9 @@ obj.from.path('../csv_folder/Restaurants.csv').to.array(function (data) {
 });
 
 function restaurantData() {
+	var arr = [];
 	async.forEach(extractData, function(item, callback) {
-		console.log('item = ', item.merchantName, item.merchantId, item.dcName, item.city);
+		console.log(arr.push(item).length);
 		app.models.Restaurant.upsert({
 			'merchantName': item.merchantName, 
 			'merchantId': item.merchantId, 

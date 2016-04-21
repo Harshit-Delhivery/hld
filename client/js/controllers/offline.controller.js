@@ -100,12 +100,12 @@ app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'no
 		});
 	}
 
-	$scope.getOfflineReasons = function() {
-		Offreason.find({}, function(successResponse) {
-			console.log('getOfflineReasons = ', successResponse);
-			$rootScope._offlineReasons = successResponse;
-		}, function(error) {
-			console.log('getOfflineReasons = ', error);
-		})
-	}
+	// $scope.getOfflineReasons = function() {
+	// 	Offreason.find({}, function(successResponse) {
+	// 		console.log('getOfflineReasons = ', successResponse);
+	// 		$rootScope._offlineReasons = successResponse;
+	// 	}, function(error) {
+	// 		console.log('getOfflineReasons = ', error);
+	// 	})
+	// }
 }]);
