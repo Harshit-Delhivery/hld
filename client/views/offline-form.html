@@ -16,7 +16,7 @@
                <table class="table table-bordered table-fixedheader" style="background-color: white">
                   <thead style="width:98%;">
                      <tr>
-                        <th width="9%" class="text-center">Date</th>
+                        <th width="10%" class="text-center">Date</th>
                         <th width="9%" class="text-center">Order Code</th>
                         <th width="9%" class="text-center">Merchant Id</th>
                         <th width="9%" class="text-center">Merchant Name</th>
@@ -24,7 +24,7 @@
                         <th width="9%" class="text-center">Ground Pilot name</th>
                         <th width="10%" class="text-center">Arrived at outlet time</th>
                         <th width="9%" class="text-center">Drop started date</th>
-                        <th width="11%" class="text-center">Delivered Time</th>
+                        <th width="9%" class="text-center">Delivered Time</th>
                         <th width="11%" class="text-center">Offline Reason</th>
                         <th width="4%" class="text-center">&nbsp;</th>
                      </tr>
@@ -33,7 +33,7 @@
                <div ng-repeat="data in offlineData" ng-show="offlineData" style="background-color: white">
                   <div class="col-md-12">
                     <div class="row">
-                      <div class="col-md-1 text-center" style="width: 9%">
+                      <div class="col-md-1 text-center" style="width: 10%">
                         {{data.date|dateFilter: 'dd-MM-yyyy'}}
                       </div>
                       <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.order_code">
@@ -52,7 +52,7 @@
                       <div class="col-md-1 text-center" style="width: 9%">
                         {{data.drop_started_at|dateFilter: 'hh:mm'}}
                       </div>
-                      <div class="col-md-1 text-center" style="width: 11%">
+                      <div class="col-md-1 text-center" style="width: 9%">
                         {{data.delivered_at|dateFilter: 'hh:mm'}}
                       </div>
                       <div class="col-md-1 text-center" style="width: 11%" ng-bind="data.offline_reason">
@@ -67,7 +67,7 @@
                 <form class="attendance-form" ng-submit="submitAttendance()" style="height: 375px; margin-top: 10px">
                     <div class="col-md-12">
                        <div class="row">
-                         <div class="col-md-1" style="width: 9%">
+                         <div class="col-md-1" style="width: 10%">
                             <input type="Date" ng-model="date" class="form-control"/>
                             <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
                          </div>
@@ -112,7 +112,7 @@
                                   </ul>
                               </div>
                          </div>
-                         <div class="col-md-1" style="width: 11%">
+                         <div class="col-md-1" style="width: 9%">
                          <div class="dropdown">
                                   <a class="dropdown-toggle" id="dLabel4" role="button" data-toggle="dropdown" data-target="#" href="">
                                       Date <i class="fa fa-calendar"></i>

@@ -43,7 +43,7 @@
                   <tbody>
                      <tr ng-repeat="order in orderHistory">
 
-                        <td width="8%" style="text-align: center">{{order.date|dateFilter: 'dd-mm-yyyy'}}</td>
+                        <td width="8%" style="text-align: center">{{order.date|dateFilter: 'dd-MM-yyyy'}}</td>
 
                         <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="order.online_m">
                         </td>
