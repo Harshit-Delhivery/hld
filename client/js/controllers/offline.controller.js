@@ -2,7 +2,7 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Offline', 'Offreason', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Offline, Offreason) {
+app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Offline', 'Offreason', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Offline, Offreason, Restaurant) {
 	$scope.date = null;
 	$scope.order_code = null;
 	$scope.merchant_id =null;
@@ -108,4 +108,12 @@ app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	// 		console.log('getOfflineReasons = ', error);
 	// 	})
 	// }
+
+	$scope.getRestaurantList = function() {
+		Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(data) {
+		$scope.restaurants = data;
+		console.log(data.length);
+	}, function(error) {
+	});
+	}
 }]);

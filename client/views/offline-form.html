@@ -4,7 +4,7 @@
          Enter Offline 
       </h1>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" ng-init="getRestaurantList()">
       <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
             <div style="margin-bottom: 16px">
@@ -79,7 +79,7 @@
                          </div>
                          <div class="col-md-1" style="width: 9%">
                             <select class="form-control" ng-model="merchant_name">
-                                <option ng-repeat="rest in _restaurants" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
+                                <option ng-repeat="rest in restaurants|orderBy: 'merchantName'" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
                               </select>
                          </div>
                          <div class="col-md-1" style="width: 9%">

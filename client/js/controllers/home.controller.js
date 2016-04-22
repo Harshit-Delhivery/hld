@@ -14,7 +14,7 @@ app.controller('homeController', ['$scope', '$state', '$http', 'notifyService', 
 				$scope.restaurant = null;
 				console.log('home controller successResponse = ', successResponse);
 				$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
-				$scope.alertMessage = 'Attendance has been Successfully Submitted';
+				$scope.alertMessage = 'Restaurant has been Added Successfully';
 			}, function(error) {
 				console.log(error);
 				$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
