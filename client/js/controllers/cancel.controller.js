@@ -104,15 +104,15 @@ app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 		});
 	}
 
-	// $scope.getDropdownData = function() {
-	// 	Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, 
-	// 		function(successResponse) {
-	// 			console.log('drop down data = ', successResponse);
-	// 			$rootScope._restaurants = successResponse;
-	// 		}, function(error) {
-	// 			console.log(error);
-	// 	});
-	// };
+	$scope.getRestaurantList = function() {
+		Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, 
+			function(successResponse) {
+				// console.log('drop down data = ', successResponse);
+				$scope.restaurants = successResponse;
+			}, function(error) {
+				console.log(error);
+		});
+	};
 
 	// $scope.getCancelReasons = function() {
 	// 	Canreason.find({}, function(successResponse) {

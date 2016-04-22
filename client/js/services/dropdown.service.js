@@ -2,11 +2,11 @@
 
 var app = angular.module('hyperLocalDelivery').service('Dropdownservice', ['$rootScope', '$state', 'Restaurant', 'Canreason', 'Offreason', 'Source', function($rootScope, $state, Restaurant, Canreason, Offreason, Source) {
 	
-	Restaurant: Restaurant.find({}, function(data) {
-		$rootScope._restaurants = data;
-		// console.log(data);
-	}, function(error) {
-	});
+	// Restaurant: Restaurant.find({}, function(data) {
+	// 	$rootScope._restaurants = data;
+	// 	// console.log(data);
+	// }, function(error) {
+	// });
 
 	Canreason: Canreason.find({}, function(data) {
 		$rootScope._cancelReasons = data;
