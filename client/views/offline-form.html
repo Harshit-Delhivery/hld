@@ -1,10 +1,10 @@
 <div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
-  <div class="panel panel-top">
+   <div class="panel panel-top">
       <h1 class="page-header">
          Enter Offline 
       </h1>
-  </div>
-  <div class="container-fluid" ng-init="getRestaurantList()">
+   </div>
+   <div class="container-fluid" ng-init="getRestaurantList()">
       <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
             <div style="margin-bottom: 16px">
@@ -12,131 +12,131 @@
             <div class="panel panel-default table-invoice table-responsive">
                <div ng-class="alertClass" style="text-align: center">
                   <strong>{{alertMessage}}</strong>
-                </div>
+               </div>
                <table class="table table-bordered table-fixedheader" style="background-color: white">
                   <thead style="width:98%;">
                      <tr>
                         <th width="10%" class="text-center">Date</th>
                         <th width="9%" class="text-center">Order Code</th>
                         <th width="9%" class="text-center">Merchant Id</th>
-                        <th width="9%" class="text-center">Merchant Name</th>
-                        <th width="9%" class="text-center">Client /Source</th>
-                        <th width="9%" class="text-center">Ground Pilot name</th>
-                        <th width="10%" class="text-center">Arrived at outlet time</th>
-                        <th width="9%" class="text-center">Drop started date</th>
-                        <th width="9%" class="text-center">Delivered Time</th>
+                        <th width="11%" class="text-center">Merchant Name</th>
+                        <th width="10%" class="text-center">Client /Source</th>
+                        <th width="11%" class="text-center">Ground Pilot name</th>
+                        <th width="8%" class="text-center">Arrived at outlet time</th>
+                        <th width="8%" class="text-center">Drop started date</th>
+                        <th width="8%" class="text-center">Delivered Time</th>
                         <th width="11%" class="text-center">Offline Reason</th>
                         <th width="4%" class="text-center">&nbsp;</th>
                      </tr>
                   </thead>
                </table>
-               <div ng-repeat="data in offlineData" ng-show="offlineData" style="background-color: white">
+               <div ng-repeat="data in offlineData" ng-show="offlineData" style="background-color: white; margin-top: 10px">
                   <div class="col-md-12">
-                    <div class="row">
-                      <div class="col-md-1 text-center" style="width: 10%">
-                        {{data.date|dateFilter: 'dd-MM-yyyy'}}
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.order_code">
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.merchant_id">
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.merchant_name">
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.client">
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.fe_name">
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 10%">
-                        {{data.arrived_at|dateFilter: 'hh:mm'}}
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%">
-                        {{data.drop_started_at|dateFilter: 'hh:mm'}}
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 9%">
-                        {{data.delivered_at|dateFilter: 'hh:mm'}}
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 11%" ng-bind="data.offline_reason">
-                        
-                      </div>
-                      <div class="col-md-1 text-center" style="width: 4%">
-                        
-                      </div>
-                    </div>
+                     <div class="row">
+                        <div class="col-md-1 text-center" style="width: 10%">
+                           {{_date|dateFilter: dd/MM/yyyy}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.order_code">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.merchant_id">
+                        </div>
+                        <div class="col-md-1 text-center" style="width:11%" ng-bind="data.merchant_name">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 10%" ng-bind="data.client">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 11%" ng-bind="data.fe_name">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%">
+                           {{data.arrived_at|date: 'hh:mm a'}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%">
+                           {{data.drop_started_at|date: 'hh:mm a'}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%">
+                           {{data.delivered_at|date: 'hh:mm a'}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 11%" ng-bind="data.offline_reason">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 4%">
+                        </div>
+                     </div>
                   </div>
-                </div>
-                <form class="attendance-form" ng-submit="submitAttendance()" style="height: 375px; margin-top: 10px">
-                    <div class="col-md-12">
-                       <div class="row">
-                         <div class="col-md-1" style="width: 10%">
-                            <input type="Date" ng-model="date" class="form-control"/>
-                            <div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                          <input type="text" class="form-control" placeholder="0" ng-model="order_code">
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                         <input type="text" class="form-control" placeholder="0" ng-model="merchant_id">
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                            <select class="form-control" ng-model="merchant_name">
-                                <option ng-repeat="rest in restaurants|orderBy: 'merchantName'" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
-                              </select>
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                         <select class="form-control" ng-model="client">
-                                <option ng-repeat="source in _source" value="{{source.name}}">{{source.name}}</option>
-                              </select>
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                          <input type="text" class="form-control" placeholder="xyz" ng-model="fe_name">
-                         </div>
-                         <div class="col-md-1" style="width: 10%">
-                          <div class="dropdown">
-                                  <a class="dropdown-toggle" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Date <i class="fa fa-calendar"></i>
-                                  </a>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
-                                      <datetimepicker data-ng-model="arrived_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel2' }"></datetimepicker>
-                                  </ul>
-                                  <div ng-show="arrived_at">{{arrived_at|dateFilter: 'hh:mm'}}</div>
-                              </div>
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                            <div class="dropdown">
-                                  <a class="dropdown-toggle" id="dLabel3" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Date <i class="fa fa-calendar"></i>
-                                  </a>
-                                  <div ng-show="drop_started_at">{{drop_started_at|dateFilter: 'hh:mm'}}</div>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel3">
-                                      <datetimepicker data-ng-model="drop_started_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel3' }"></datetimepicker>
-                                  </ul>
-                              </div>
-                         </div>
-                         <div class="col-md-1" style="width: 9%">
-                         <div class="dropdown">
-                                  <a class="dropdown-toggle" id="dLabel4" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Date <i class="fa fa-calendar"></i>
-                                  </a>
-                                  <div ng-show="delivered_at">{{delivered_at|dateFilter: 'hh:mm'}}</div>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel4">
-                                      <datetimepicker data-ng-model="delivered_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel4' }"></datetimepicker>
-                                  </ul>
-                              </div>
-                         </div>
-                         <div class="col-md-1" style="width: 11%">
-                         <select class="form-control" ng-model="offline_reason">
-                                 <option ng-repeat="offline in _offlineReasons" value="{{offline.reason}}">{{offline.reason}}</option>
-                              </select>
-                         </div>
-                         <div class="col-md-1" style="width: 4%">
-                          <i class="fa fa-plus-circle" ng-click="submitOffline()"></i>
-                         </div>
-                       </div>
-                    </div>
-                </form>
-               <tr>
+               </div>
+               <form class="attendance-form" style="height: 375px; margin-top: 10px">
+                  <div class="col-md-12">
+                     <div class="row">
+                        <div class="col-md-1" style="width: 10%">
+                           {{_date|dateFilter: dd/MM/yyyy}}
+                        </div>
+                        <div class="col-md-1" style="width: 9%">
+                           <input type="text" class="form-control" placeholder="0" ng-model="order_code">
+                        </div>
+                        <div class="col-md-1" style="width: 9%">
+                           <input type="text" class="form-control" placeholder="0" ng-model="merchant_id">
+                        </div>
+                        <div class="col-md-1" style="width: 11%">
+                           <select class="form-control" ng-model="merchant_name">
+                              <option ng-repeat="rest in restaurants|orderBy: 'merchantName'" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-1" style="width: 10%">
+                           <select class="form-control" ng-model="client">
+                              <option ng-repeat="source in _source" value="{{source.name}}">{{source.name}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-1" style="width: 11%">
+                           <input type="text" class="form-control" placeholder="xyz" ng-model="fe_name">
+                        </div>
+                        <div class="col-md-1" style="width: 8%">
+                          <!-- <uib-timepicker ng-model="arrived_at" ></uib-timepicker> -->
+                          <ng-timepicker ng-model="arrive" ng-change="time({time: arrive, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                           <!-- <div class="dropdown">
+                              <a class="dropdown-toggle" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" href="">
+                              Date <i class="fa fa-calendar"></i>
+                              </a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
+                                 <datetimepicker data-ng-model="arrived_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel2' }"></datetimepicker>
+                              </ul>
+                              <div ng-show="arrived_at">{{arrived_at|dateFilter: 'hh:mm'}}</div>
+                           </div> -->
+                        </div>
+                        <div class="col-md-1" style="width: 8%">
+                           <ng-timepicker ng-model="drop" ng-change="time({time: drop, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                           <!-- <div class="dropdown">
+                              <a class="dropdown-toggle" id="dLabel3" role="button" data-toggle="dropdown" data-target="#" href="">
+                              Date <i class="fa fa-calendar"></i>
+                              </a>
+                              <div ng-show="drop_started_at">{{drop_started_at|dateFilter: 'hh:mm'}}</div>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel3">
+                                 <datetimepicker data-ng-model="drop_started_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel3' }"></datetimepicker>
+                              </ul>
+                           </div> -->
+                        </div>
+                        <div class="col-md-1" style="width:8%">
+                        <ng-timepicker ng-model="delivered" ng-change="time({time: delivered, id: 3})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                           <!-- <div class="dropdown">
+                              <a class="dropdown-toggle" id="dLabel4" role="button" data-toggle="dropdown" data-target="#" href="">
+                              Date <i class="fa fa-calendar"></i>
+                              </a>
+                              <div ng-show="delivered_at">{{delivered_at|dateFilter: 'hh:mm'}}</div>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel4">
+                                 <datetimepicker data-ng-model="delivered_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel4' }"></datetimepicker>
+                              </ul>
+                           </div> -->
+                        </div>
+                        <div class="col-md-1" style="width: 11%">
+                           <select class="form-control" ng-model="offline_reason">
+                              <option ng-repeat="offline in _offlineReasons" value="{{offline.reason}}">{{offline.reason}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-1" style="width: 4%">
+                           <i class="fa fa-plus-circle" ng-click="submitOffline()"></i>
+                        </div>
+                     </div>
+                  </div>
+               </form>
             </div>
          </div>
       </div>
-  </div>
+   </div>
 </div>

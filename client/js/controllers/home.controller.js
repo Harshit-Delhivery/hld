@@ -2,7 +2,7 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('homeController', ['$scope', '$state', '$http', 'notifyService', '$stateParams', '$rootScope', 'Restaurant', function($scope, $state, $http, notifyService, $stateParams, $rootScope, Restaurant) {
+app.controller('HomeController', ['$scope', '$state', '$http', 'notifyService', '$stateParams', '$rootScope', 'Restaurant', function($scope, $state, $http, notifyService, $stateParams, $rootScope, Restaurant) {
 	$scope.restaurant = null;
 	$scope.addRestaurant = function() {
 		Restaurant.create({

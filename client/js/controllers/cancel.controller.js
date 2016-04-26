@@ -2,8 +2,8 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Cancelled', 'Restaurant', 'Canreason', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Cancelled, Restaurant, Canreason) {
-	$scope.date = null;
+app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Cancelled', 'Restaurant', 'Canreason', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Cancelled, Restaurant, Canreason) {
+	
     $scope.restaurant = null;
     $scope.order_code = null;
 	$scope.source = null;
@@ -17,10 +17,26 @@ app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	$scope.cancelledData = [];
 	$scope.edit = false;
 
+	$scope.time = function(obj) {
+		var hm = obj.time.split(':'),
+			hours = hm[0],
+			mins = hm[1];
+		var date = new Date(),
+			zeroHour = date.setHours(0,0,0,0),
+			dateInMili = zeroHour + hours*3600000 + mins*600000,
+			parsedDate = new Date(dateInMili);
+		if(obj.id == 1) {
+			$scope.assigned_at = parsedDate;
+		} else {
+			$scope.cancelled_at = parsedDate;
+		}
+		// console.log('changed time = ', parsedDate);
+	};
+
 
 	$scope.submitCancelled = function() {
 		Cancelled.create({
-		  	"date": $scope.date,
+		  	"date": $rootScope._date,
 		  	"restaurant": $scope.restaurant,
 		    "order_code": $scope.order_code,
 			"source": $scope.source,
@@ -38,7 +54,6 @@ app.controller('cancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			$scope.cancelledData.push(successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Cancelled has been Successfully Submitted';
-			$scope.date = null;
 		    $scope.restaurant = null;
 		    $scope.order_code = null;
 			$scope.source = null;

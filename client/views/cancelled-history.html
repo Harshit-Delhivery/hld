@@ -79,7 +79,7 @@
                         </td>
 
                         <td width="9%" ng-show="!edit" style="text-align: center">
-                           {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                           {{data.assigned_at|dateFilter: 'hh:mm a'}}
                         </td>
                         <td width="9%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
@@ -88,7 +88,7 @@
                         </td>
 
                         <td width="9%" ng-show="!edit" style="text-align: center">
-                           {{data.cancelled_at|dateFilter: 'dd-MM-yy hh:mm'}}
+                           {{data.cancelled_at|dateFilter: 'hh:mm a'}}
                         </td>
                         <td width="9%" ng-show="edit" style="text-align: center">
                            <div class="form-group">

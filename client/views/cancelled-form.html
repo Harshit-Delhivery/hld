@@ -1,160 +1,153 @@
 <div id="attendance-wrapper" style="margin-left: 14px; margin-top: -42px">
-	<div class="panel panel-top">
-	    <h1 class="page-header">
-	       Enter Cancelled
-	    </h1>
-	</div>
-	<div class="container-fluid" ng-init="getRestaurantList()">
-	    <div class="row">
-	       <div class="col-md-12 col-sm-12 col-xs-12">
-	          <div style="margin-bottom: 16px">
-	          </div>
-	          <div class="panel panel-default table-invoice table-responsive">
-	          	<div ng-class="alertClass" style="text-align: center">
+   <div class="panel panel-top">
+      <h1 class="page-header">
+         Enter Cancelled
+      </h1>
+   </div>
+   <div class="container-fluid" ng-init="getRestaurantList()">
+      <div class="row">
+         <div class="col-md-12 col-sm-12 col-xs-12">
+            <div style="margin-bottom: 16px">
+            </div>
+            <div class="panel panel-default table-invoice table-responsive">
+               <div ng-class="alertClass" style="text-align: center">
                   <strong>{{alertMessage}}</strong>
-                </div>
-	             <table class="table table-bordered table-fixedheader" style="background-color: white">
-	                <thead style="width:98%;">
-	                   <tr>
-	                      <th width="8%" style="text-align: center">Date</th>
-	                      <th width="11%" style="text-align: center">Restaurant</th>
-	                      <th width="9%" style="text-align: center">Order Code</th>
-	                      <th width="9%" style="text-align: center">Source</th>
-	                      <th width="7%" style="text-align: center">Ground Pilot ID</th>
-	                      <th width="9%" style="text-align: center">Assigned Time</th>
-	                      <th width="9%" style="text-align: center">Cancellation Time</th>
-	                      <th width="8%" style="text-align: center">Cancelled By</th>
-	                      <th width="9%" style="text-align: center">Cancellation reason</th>
-	                      <th width="9%" style="text-align: center">Description</th>
-	                      <th width="8%" style="text-align: center">Final Status</th>
-	                      <th width="4%" class="text-center">&nbsp;</th>
-	                   </tr>
-	                </thead>
-	                <tbody>
-		                <tr ng-repeat="data in cancelledData">
-	                        <td width="8%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yy'}}</td>
+               </div>
+               <table class="table table-bordered table-fixedheader" style="background-color: white">
+                  <thead style="width:98%;">
+                     <tr>
+                        <th width="10%" style="text-align: center">Date</th>
+                        <th width="10%" style="text-align: center">Restaurant</th>
+                        <th width="9%" style="text-align: center">Order Code</th>
+                        <th width="9%" style="text-align: center">Source</th>
+                        <th width="8%" style="text-align: center">Ground Pilot ID</th>
+                        <th width="8%" style="text-align: center">Assigned Time</th>
+                        <th width="8%" style="text-align: center">Cancellation Time</th>
+                        <th width="8%" style="text-align: center">Cancelled By</th>
+                        <th width="9%" style="text-align: center">Cancellation reason</th>
+                        <th width="9%" style="text-align: center">Description</th>
+                        <th width="8%" style="text-align: center">Final Status</th>
+                        <th width="4%" class="text-center">&nbsp;</th>
+                     </tr>
+                  </thead>
+               </table>
+               <div ng-repeat="data in cancelledData" ng-show="cancelledData" style="background-color: white">
+                  <div class="col-md-12">
+                     <div class="row">
+                        <div class="col-md-1 text-center" style="width: 10%">
+                           {{_date|dateFilter: dd/MM/yyyy}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 10%" ng-bind="data.restaurant">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.order_code">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.source">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%" ng-bind="data.fe_id">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%">
+                           {{data.assigned_at|date: 'hh:mm a'}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%">
+                           {{data.assigned_at|date: 'hh:mm a'}}
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%" ng-bind="data.cancelled_by">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.cancellation_reason">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 9%" ng-bind="data.description">
+                        </div>
+                        <div class="col-md-1 text-center" style="width: 8%" ng-bind="data.final_status">
+                        </div>
+                     </div>
+                  </div>
+                  <hr>
+               </div>
 
-	                        <td width="11%" style="text-align: center" ng-bind="data.restaurant">
-	                        </td>
-
-	                        <td width="9%" style="text-align: center" ng-bind="data.order_code">
-	                        </td>
-
-	                        <td width="9%" style="text-align: center" ng-bind="data.source">
-	                        </td>
-
-	                        <td width="7%" style="text-align: center" ng-bind="data.fe_id">
-	                        </td>
-
-	                        <td width="9%" style="text-align: center">
-	                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
-	                        </td>
-
-	                        <td width="9%" style="text-align: center">
-	                        {{data.assigned_at|dateFilter: 'dd-MM-yy hh:mm'}}
-	                        </td>
-
-	                        <td width="8%" style="text-align: center" ng-bind="data.cancelled_by">
-	                        </td>
-
-	                        <td width="9%" style="text-align: center" ng-bind="data.cancellation_reason">
-	                        </td>
-
-	                        <td width="9%" style="text-align: center" ng-bind="data.description">
-	                        </td>
-
-	                        <td width="8%" style="text-align: center" ng-bind="data.final_status">
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                      <td width="8%" style="text-align: center">
-	                        <div class="form-group">
-	                        	<input type="Date" ng-model="date" class="form-control"/>
-                            	<div ng-show="date">{{date|dateFilter: 'dd-MM-yyyy'}}</div>
+               <form class="attendance-form" style="height: 375px; margin-top: 10px">
+                	<div class="col-md-12">
+                    	<div class="row">
+	                        <div class="col-md-1" style="width: 10%">
+	                           {{_date|dateFilter: dd/MM/yyyy}}
 	                        </div>
-	                      </td>
-	                      <td width="11%" style="text-align: center">
-	                         <div class="form-group">
-	                            <select class="form-control" ng-model="restaurant">
-                                	<option ng-repeat="rest in restaurants | orderBy: 'merchantName'" value="rest.merchantName">{{rest.merchantName}}</option>
-                            	</select>
-	                         </div>
-	                      </td>
-	                      <td width="9%" style="text-align: center">
-	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="0" ng-model="order_code">
-	                         </div>
-	                      </td>
-	                      <td width="9%" style="text-align: center">
-	                         <div class="form-group">
-	                            <select class="form-control" ng-model="source">
-                                	<option ng-repeat="source in _source" value="source.name">{{source.name}}</option>
-                                </select>
-	                         </div>
-	                      </td>
-	                      <td width="7%" style="text-align: center">
-	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="0" ng-model="fe_id">
-	                         </div>
-	                      </td>
-	                      <td width="9%" style="text-align: center">
-	                         <div class="form-group">
-	                            <div class="dropdown">
-                                  <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Date <i class="fa fa-calendar"></i>
-                                  </a>
-                                  <div ng-show="assigned_at">{{assigned_at|dateFilter: 'hh:mm'}}</div>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                      <datetimepicker data-ng-model="assigned_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
-                                  </ul>
-                                </div>
-	                         </div>
-	                      </td>
-	                      <td width="9%" style="text-align: center">
-	                         <div class="form-group">
-	                            <div class="dropdown">
-                                  <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                      Date <i class="fa fa-calendar"></i>
-                                  </a>
-                                  <div ng-show="cancelled_at">{{cancelled_at|dateFilter: 'hh:mm'}}</div>
-                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                      <datetimepicker data-ng-model="cancelled_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
-                                  </ul>
-                                </div>
-	                         </div>
-	                      </td>
-	                      <td width="8%" style="text-align: center">
-	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="" ng-model="cancelled_by">
-	                         </div>
-	                      </td>
-	                      <td width="9%" style="text-align: center">
-	                         <div class="form-group">
-	                            <select class="form-control" ng-model="cancellation_reason">
-                                 <option ng-repeat="reason in _cancelReasons" value="{{reason.reason}}">{{reason.reason}}</option>
-                              </select>
-	                         </div>
-	                      </td>
-	                      <td width="9%" style="text-align: center">
-	                         <div class="form-group">
-	                            <input type="text" class="form-control" placeholder="Description" ng-disabled="cancellation_reason != 'Other'" ng-model="description">
-	                         </div>
-	                      </td>
-	                      <td width="8%" style="text-align: center">
-	                         <div class="form-group">
-	                            <select class="form-control" ng-model="final_status">
-                                 <option value="">Select</option>
-                              </select>
-	                         </div>
-	                      </td>
-	                      <td width="4%" class="text-center">
-	                         <i class="fa fa-plus-circle" ng-click="submitCancelled()"></i>
-	                      </td>
-	                   </tr>
-	                </tbody>
-	             </table>
-	          </div>
-	       </div>
-	    </div>
-	</div>
+		                     
+	                        <div class="col-md-1" style="width: 10%">
+	                           <select class="form-control" ng-model="restaurant">
+	                              <option ng-repeat="rest in restaurants | orderBy: 'merchantName'" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
+	                           </select>
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 9%">
+	                           <input type="text" class="form-control" placeholder="0" ng-model="order_code">
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 9%">
+	                           <select class="form-control" ng-model="source">
+	                              <option ng-repeat="source in _source" value="{{source.name}}">{{source.name}}</option>
+	                           </select>
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 8%">
+	                           <input type="text" class="form-control" placeholder="0" ng-model="fe_id">
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 8%">
+                              <ng-timepicker ng-model="assign" ng-change="time({time: assign, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+	                           <!-- <div class="dropdown">
+	                              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+	                              Date <i class="fa fa-calendar"></i>
+	                              </a>
+	                              <div ng-show="assigned_at">{{assigned_at|dateFilter: 'hh:mm'}}</div>
+	                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+	                                 <datetimepicker data-ng-model="assigned_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
+	                              </ul>
+	                           </div> -->
+	                        </div>
+
+	                        <div class="col-md-1" style="width:8%">
+                              <ng-timepicker ng-model="cancelledAt" ng-change="time({time: cancelledAt, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+	                           <!-- <div class="dropdown">
+	                              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+	                              Date <i class="fa fa-calendar"></i>
+	                              </a>
+	                              <div ng-show="cancelled_at">{{cancelled_at|dateFilter: 'hh:mm'}}</div>
+	                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+	                                 <datetimepicker data-ng-model="cancelled_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
+	                              </ul>
+	                           </div> -->
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 8%">
+	                           <input type="text" class="form-control" placeholder="" ng-model="cancelled_by">
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 9%">
+	                           <select class="form-control" ng-model="cancellation_reason">
+	                              <option ng-repeat="reason in _cancelReasons" value="{{reason.reason}}">{{reason.reason}}</option>
+	                           </select>
+	                        </div>
+
+	                        <div class="col-md-1" style="width: 9%">
+	                           <input type="text" class="form-control" placeholder="Description" ng-disabled="cancellation_reason != 'Other'" ng-model="description">
+	                        </div>
+	                     
+	                        <div class="col-md-1" style="width: 8%">
+	                           <select class="form-control" ng-model="final_status">
+	                              <option value=""> </option>
+	                              <option value="Cancelled">Cancelled</option>
+	                              <option value="Delivered">Delivered</option>
+	                           </select>
+	                        </div>
+
+		                    <div width="4%" class="col-md-1" style="width: 4%">
+		                       <i class="fa fa-plus-circle" ng-click="submitCancelled()"></i>
+		                    </div>
+                		</div>
+                	</div>
+                </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 </div>

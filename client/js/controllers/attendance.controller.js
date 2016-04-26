@@ -2,8 +2,8 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('attendanceController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Attendance', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Attendance) {
-	$scope.date = null;
+app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Attendance', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Attendance) {
+	
 	$scope.headcount = null;
 	$scope.present_m = null;
 	$scope.present_e = null;
@@ -20,7 +20,7 @@ app.controller('attendanceController', ['$scope', '$state', '$http', 'Enduser', 
 
 	$scope.submitAttendance = function() {
 		Attendance.create({
-		  "date": $scope.date,
+		  "date": $rootScope._date,
 		  "headcount": $scope.headcount,
 		  "present_m": $scope.present_m,
 		  "present_e": $scope.present_e,
@@ -37,7 +37,6 @@ app.controller('attendanceController', ['$scope', '$state', '$http', 'Enduser', 
 			console.log('create attendance response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Attendance has been Successfully Submitted';
-			$scope.date = null;
 			$scope.headcount = null;
 			$scope.present_m = null;
 			$scope.present_e = null;

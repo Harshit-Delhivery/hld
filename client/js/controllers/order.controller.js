@@ -2,8 +2,8 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('orderController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Orders', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Orders) {
-	$scope.date = null;
+app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Orders', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Orders) {
+	
 	$scope.online_m = null;
 	$scope.online_e = null;
 	$scope.offline_m = null;
@@ -16,7 +16,7 @@ app.controller('orderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	$scope.submitOrder = function() {
 		Orders.create(
 		{
-		  "date": $scope.date,
+		  "date": $rootScope._date,
 		  "online_m": $scope.online_m,
 		  "online_e": $scope.online_e,
 		  "offline_m": $scope.offline_m,
@@ -31,7 +31,6 @@ app.controller('orderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			console.log('create order response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Order Data has been Successfully Submitted';
-			$scope.date = null;
 			$scope.online_m = null;
 			$scope.online_e = null;
 			$scope.offline_m = null;

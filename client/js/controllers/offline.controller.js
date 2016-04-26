@@ -2,8 +2,8 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Offline', 'Offreason', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Offline, Offreason, Restaurant) {
-	$scope.date = null;
+app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Offline', 'Offreason', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Offline, Offreason, Restaurant) {
+	
 	$scope.order_code = null;
 	$scope.merchant_id =null;
 	$scope.merchant_name =null;
@@ -16,9 +16,27 @@ app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	$scope.offlineData = [];
 	$scope.edit = false;
 
+	$scope.time = function(obj) {
+		var hm = obj.time.split(':'),
+			hours = hm[0],
+			mins = hm[1];
+		var date = new Date(),
+			zeroHour = date.setHours(0,0,0,0),
+			dateInMili = zeroHour + hours*3600000 + mins*600000,
+			parsedDate = new Date(dateInMili);
+		if(obj.id == 1) {
+			$scope.arrived_at = parsedDate;
+		} else if(obj.id == 2) {
+			$scope.drop_started_at = parsedDate;
+		} else {
+			$scope.delivered_at = parsedDate;
+		}
+		// console.log('changed time = ', parsedDate);
+	};
+
 	$scope.submitOffline = function() {
 		Offline.create({
-		  "date": $scope.date,
+		  "date": $rootScope._date,
 		  "order_code": $scope.order_code,
 		  "merchant_id": $scope.merchant_id,
 		  "merchant_name": $scope.merchant_name,
@@ -35,9 +53,9 @@ app.controller('offlineController', ['$scope', '$state', '$http', 'Enduser', 'no
 			$scope.offlineData.push(successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Offline Data has been Successfully Submitted';
-			$scope.date = null;
 			$scope.order_code = null;
 			$scope.merchant_id =null;
+			$scope.merchant_name =null;
 			$scope.client = null;
 			$scope.fe_name = null;
 			$scope.arrived_at = null;

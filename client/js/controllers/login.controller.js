@@ -2,7 +2,7 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('loginController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope) {
+app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope) {
 	console.log('login controller');
 	$scope.emailId = null;
 	$scope.dcName = null;;

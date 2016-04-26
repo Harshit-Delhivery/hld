@@ -9,7 +9,9 @@
 	<title>HLD Application</title>
 	<!-- Bower CSS -->
 	<link href="lib/angular-growl/build/angular-growl.min.css" rel="stylesheet">
-	<link href="lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet"/>
+	<!-- <link href="lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet"/> -->
+	<link  href="lib/ngTimepicker/src/css/ngTimepicker.css" rel="stylesheet">
+	<!-- <link src="lib/ui-bootstrap/src/timepicker/timepicker.css"/> -->
 
 	<!-- Project CSS -->
 	<link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -26,7 +28,7 @@
 	<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app = "hyperLocalDelivery">
-	<div class="container-fluid" ng-controller="hyperLocalDeliveryController">
+	<div class="container-fluid">
 		<div ui-view="app-view"></div>
 	</div>
 	<script src="lib/jquery/dist/jquery.js"></script>
@@ -36,9 +38,13 @@
     <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="assets/js/jquery.tinyscrollbar.js"></script>
     <script type="text/javascript" src="lib/moment/moment.js"></script>
-	<script type="text/javascript" src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-	<script type="text/javascript" src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script src="lib/ngTimepicker/src/js/ngTimepicker.min.js"></script>
+	<!-- <script type="text/javascript" src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+	<script type="text/javascript" src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script> -->
     <script src="lib/angular-growl/build/angular-growl.min.js"></script>
+    <!-- <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
+    <!-- <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/ui-bootstrap/src/timepicker/timepicker.js"></script> -->
 	<script type="text/javascript">
 	   $(document).ready(function()	{
 	    $('#scrollbar1').tinyscrollbar();
@@ -49,7 +55,6 @@
     <script src="js/services/lb-services.js"></script>
     <script src="js/app.js"></script>
     <script src="js/routes/hld.routes.js"></script>
-    <script src="js/controllers/main.controller.js"></script>
     <script src="js/controllers/login.controller.js"></script>
     <script src="js/controllers/attendance.controller.js"></script>
     <script src="js/controllers/offline.controller.js"></script>

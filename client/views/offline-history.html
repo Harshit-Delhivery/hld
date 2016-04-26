@@ -78,7 +78,7 @@
                         </td>
 
                         <td width="10%" style="text-align: center" ng-show="!edit">
-                           {{data.arrived_at|dateFilter: 'dd-MM-yyyy hh:mm'}}
+                           {{data.arrived_at|dateFilter: 'hh:mm a'}}
                         </td>
                         <td width="10%" ng-show="edit" style="text-align: center" ng-show="!edit">
                            <div class="form-group">
@@ -87,7 +87,7 @@
                         </td>
 
                         <td width="10%" style="text-align: center" ng-show="!edit">
-                           {{data.drop_started_at|dateFilter: 'dd-MM-yyyy hh:mm'}}
+                           {{data.drop_started_at|dateFilter: 'hh:mm a'}}
                         </td>
                         <td width="10%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
@@ -96,7 +96,7 @@
                         </td>
 
                         <td width="10%" style="text-align: center" ng-show="!edit">
-                           {{data.delivered_at|dateFilter: 'dd-MM-yyyy hh:mm'}}
+                           {{data.delivered_at|dateFilter: 'hh:mm a'}}
                         </td>
                         <td width="10%" ng-show="edit" style="text-align: center">
                            <div class="form-group">

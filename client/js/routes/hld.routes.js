@@ -17,7 +17,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'home-view': {
         templateUrl: '/views/login.html',
-        controller: 'loginController'
+        controller: 'LoginController'
       }
     }
   })
@@ -26,7 +26,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'home-view': {
         templateUrl: '/views/sign-up.html',
-        controller: 'loginController'
+        controller: 'LoginController'
       }
     }
   })
@@ -43,7 +43,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'top-nav': {
         templateUrl: '/views/topNav.html',
-        controller: 'loginController'
+        controller: 'LoginController'
       },
       'side-nav': {
         templateUrl: '/views/sideNav.html',
@@ -59,7 +59,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/home.html',
-        controller: 'homeController'
+        controller: 'HomeController'
       }
     }
   })
@@ -68,7 +68,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/attendance-form.html',
-        controller: 'attendanceController'
+        controller: 'AttendanceController'
       }
     }
   })
@@ -77,7 +77,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/attendance-history.html',
-        controller: 'attendanceController'
+        controller: 'AttendanceController'
       }
     }
   })
@@ -86,7 +86,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/orderSummary-form.html',
-        controller: 'orderController'
+        controller: 'OrderController'
       }
     }
   })
@@ -95,7 +95,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/orderSummary-history.html',
-        controller: 'orderController'
+        controller: 'OrderController'
       }
     }
   })
@@ -104,7 +104,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/offline-form.html',
-        controller: 'offlineController'
+        controller: 'OfflineController'
       }
     }
   })
@@ -113,7 +113,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/offline-history.html',
-        controller: 'offlineController'
+        controller: 'OfflineController'
       }
     }
   })
@@ -122,7 +122,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/cancelled-form.html',
-        controller: 'cancelController'
+        controller: 'CancelController'
       }
     }
   })
@@ -131,7 +131,7 @@ app.config(['$stateProvider', function($stateProvider) {
     views: {
       'inner-view': {
         templateUrl: '/views/cancelled-history.html',
-        controller: 'cancelController'
+        controller: 'CancelController'
       }
     }
   })
