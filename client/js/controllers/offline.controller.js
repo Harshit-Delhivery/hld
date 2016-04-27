@@ -22,7 +22,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 			mins = hm[1];
 		var date = new Date(),
 			zeroHour = date.setHours(0,0,0,0),
-			dateInMili = zeroHour + hours*3600000 + mins*600000,
+			dateInMili = zeroHour + hours*3600000 + mins*60000,
 			parsedDate = new Date(dateInMili);
 		if(obj.id == 1) {
 			$scope.arrived_at = parsedDate;
@@ -49,7 +49,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 		  "dcName": $rootScope._user.dc_name,
 		  "city": $rootScope._user.city
 		}, function(successResp) {
-			console.log('create offline response = ', successResp);
+			// console.log('create offline response = ', successResp);
 			$scope.offlineData.push(successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Offline Data has been Successfully Submitted';
@@ -63,7 +63,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 			$scope.delivered_at = null;
 			$scope.offline_reason = null;
 		}, function(error) {
-			console.log('create offline error = ', error);
+			// console.log('create offline error = ', error);
 			$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
 			if(error.status == 422) {
 				$scope.alertMessage = 'All fields are Mandatory';
@@ -87,10 +87,10 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	}
 
 	$scope.getOfflineDatewise = function() {
-		console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
+		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
 		Offline.find({filter: {where: {date: {between: [$scope.fromDate, $scope.toDate]}, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.offlineHistory = successResponse;
 			} else {
 				//to be handled
@@ -101,7 +101,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	}
 
 	$scope.updateOffline = function(record) {
-		console.log('record = ', record);
+		// console.log('record = ', record);
 		Offline.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}},
 			{	"merchant_id": record.merchant_id,
 				"order_code": record.order_code,
@@ -112,7 +112,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 				"drop_started_at": record.drop_started_at,
 				"delivered_at": record.delivered_at,
 				"offline_reason": record.offline_reason }, function(successResponse) {
-			console.log('update response = ', successResponse);
+			// console.log('update response = ', successResponse);
 		}, function(error) {
 			console.log(error);
 		});
@@ -130,7 +130,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	$scope.getRestaurantList = function() {
 		Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(data) {
 		$scope.restaurants = data;
-		console.log(data.length);
+		// console.log(data.length);
 	}, function(error) {
 	});
 	}

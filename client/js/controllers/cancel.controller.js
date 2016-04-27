@@ -23,12 +23,13 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			mins = hm[1];
 		var date = new Date(),
 			zeroHour = date.setHours(0,0,0,0),
-			dateInMili = zeroHour + hours*3600000 + mins*600000,
+			dateInMili = zeroHour + hours*3600000 + mins*60000,
 			parsedDate = new Date(dateInMili);
 		if(obj.id == 1) {
 			$scope.assigned_at = parsedDate;
 		} else {
 			$scope.cancelled_at = parsedDate;
+			// console.log('changed time = ', $scope.cancelled_at);
 		}
 		// console.log('changed time = ', parsedDate);
 	};
@@ -50,7 +51,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			"dcName": $rootScope._user.dc_name,
 			"city": $rootScope._user.city
 		}, function(successResp) {
-			console.log('create cancelled response = ', successResp);
+			// console.log('create cancelled response = ', successResp);
 			$scope.cancelledData.push(successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Cancelled has been Successfully Submitted';
@@ -65,7 +66,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			$scope.description = null;
 			$scope.final_status = null;
 		}, function(error) {
-			console.log('create Cancelled error = ', error);
+			// console.log('create Cancelled error = ', error);
 			$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
 			if(error.status == 422) {
 				$scope.alertMessage = 'All fields are Mandatory';
@@ -76,7 +77,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	$scope.getCancelledHistory = function() {
 		Cancelled.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.cancelledHistory = successResponse;
 			} else {
 				//to be handeled
@@ -87,10 +88,10 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	}
 
 	$scope.getCancelledDatewise = function() {
-		console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
+		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
 		Cancelled.find({filter: {where: {date: {between: [$scope.fromDate, $scope.toDate]}, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.cancelledHistory = successResponse;
 			} else {
 				//to be handled
@@ -101,7 +102,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	}
 
 	$scope.updateCancelled = function(record) {
-		console.log('record = ', record);
+		// console.log('record = ', record);
 		Cancelled.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}, {
 							  	"restaurant": $scope.restaurant,
 							    "order_code": $scope.order_code,
@@ -113,7 +114,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 								"description": $scope.description,
 								"final_status": $scope.final_status
 												}, function(successResponse) {
-			console.log('update response = ', successResponse);
+			// console.log('update response = ', successResponse);
 		}, function(error) {
 			console.log(error);
 		});
