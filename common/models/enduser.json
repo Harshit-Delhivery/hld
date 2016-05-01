@@ -7,14 +7,16 @@
   },
   "properties": {
     "dc_name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "city": {
+      "type": "string"
+    },
+    "email": {
       "type": "string",
       "required": true
     },
-    "email": {
+    "role": {
       "type": "string",
       "required": true
     }

@@ -3,7 +3,7 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Orders', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Orders) {
-	
+	$scope._date = new Date().setHours(0,0,0,0);
 	$scope.online_m = null;
 	$scope.online_e = null;
 	$scope.offline_m = null;
@@ -16,7 +16,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	$scope.submitOrder = function() {
 		Orders.create(
 		{
-		  "date": $rootScope._date,
+		  "date": $scope._date,
 		  "online_m": $scope.online_m,
 		  "online_e": $scope.online_e,
 		  "offline_m": $scope.offline_m,
@@ -25,8 +25,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		  "cancel_e": $scope.cancel_e,
 		  "express_m": $scope.express_m,
 		  "express_e": $scope.express_e,
-		  "dcName": $rootScope._user.dc_name,
-		  "city": $rootScope._user.city
+		  "hub": $rootScope._hub
 		}, function(successResp) {
 			console.log('create order response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
@@ -48,22 +47,32 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		});
 	}
 
-	$scope.getOrderHistory = function() {
-		Orders.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
-			if(successResponse) {
-				console.log(successResponse);
-				$scope.orderHistory = successResponse;
-			} else {
-				//to be handeled
-			}
-		}, function(error) {
-			console.log(error);
-		});
-	}
+	// $scope.getOrderHistory = function() {
+	// 	Orders.find({filter: {where: {hub: $rootScope._hub}}}, function(successResponse) {
+	// 		if(successResponse) {
+	// 			console.log(successResponse);
+	// 			$scope.orderHistory = successResponse;
+	// 		} else {
+	// 			//to be handeled
+	// 		}
+	// 	}, function(error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	$scope.getOrderDatewise = function() {
-		console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		Orders.find({filter: {where: {date: {between: [$scope.fromDate, $scope.toDate]}, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
+		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
+		var query = {};
+		if($rootScope._user.role == 'operator') {
+			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+		} else {
+			query['date'] = $scope.selectedDate;
+			query['hub'] = $scope.hub;
+			query['dcName'] = $scope.dc;
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+		}
+		console.log(query);
+		Orders.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
 				console.log(successResponse);
 				$scope.orderHistory = successResponse;
@@ -77,7 +86,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 
 	$scope.updateOrder = function(record) {
 		console.log('record = ', record);
-		Orders.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}},
+		Orders.updateAll({where: {id: record.id, hub: $rootScope._hub}},
 			{
 				"online_m": record.online_m,
 				"online_e": record.online_e,

@@ -1496,6 +1496,10 @@ font-size:14px !important;
     margin-top:9px;
 }
 
+ul#edit {
+  padding-left:0px;
+}
+
 ul#attendanceAcc
 {
   list-style:none;

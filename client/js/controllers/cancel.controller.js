@@ -3,7 +3,7 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Cancelled', 'Restaurant', 'Canreason', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Cancelled, Restaurant, Canreason) {
-	
+	$scope._date = new Date().setHours(0,0,0,0);
     $scope.restaurant = null;
     $scope.order_code = null;
 	$scope.source = null;
@@ -37,7 +37,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 
 	$scope.submitCancelled = function() {
 		Cancelled.create({
-		  	"date": $rootScope._date,
+		  	"date": $scope._date,
 		  	"restaurant": $scope.restaurant,
 		    "order_code": $scope.order_code,
 			"source": $scope.source,
@@ -48,8 +48,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			"cancellation_reason": $scope.cancellation_reason,
 			"description": $scope.description,
 			"final_status": $scope.final_status,
-			"dcName": $rootScope._user.dc_name,
-			"city": $rootScope._user.city
+			"hub": $rootScope._hub
 		}, function(successResp) {
 			// console.log('create cancelled response = ', successResp);
 			$scope.cancelledData.push(successResp);
@@ -74,22 +73,32 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 		});
 	}
 
-	$scope.getCancelledHistory = function() {
-		Cancelled.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
-			if(successResponse) {
-				// console.log(successResponse);
-				$scope.cancelledHistory = successResponse;
-			} else {
-				//to be handeled
-			}
-		}, function(error) {
-			console.log(error);
-		});
-	}
+	// $scope.getCancelledHistory = function() {
+	// 	Cancelled.find({filter: {where: {hub: $rootScope._hub}}}, function(successResponse) {
+	// 		if(successResponse) {
+	// 			// console.log(successResponse);
+	// 			$scope.cancelledHistory = successResponse;
+	// 		} else {
+	// 			//to be handeled
+	// 		}
+	// 	}, function(error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	$scope.getCancelledDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		Cancelled.find({filter: {where: {date: {between: [$scope.fromDate, $scope.toDate]}, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
+		var query = {};
+		if($rootScope._user.role == 'operator') {
+			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+		} else {
+			query['date'] = $scope.selectedDate;
+			query['hub'] = $scope.hub;
+			query['dcName'] = $scope.dc;
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+		}
+		console.log(query);
+		Cancelled.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
 				// console.log(successResponse);
 				$scope.cancelledHistory = successResponse;
@@ -103,16 +112,16 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 
 	$scope.updateCancelled = function(record) {
 		// console.log('record = ', record);
-		Cancelled.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}, {
-							  	"restaurant": $scope.restaurant,
-							    "order_code": $scope.order_code,
-								"source": $scope.source,
-								"fe_id": $scope.fe_id,
-								"assigned_at": $scope.assigned_at,
-								"cancelled_at": $scope.cancelled_at,
-								"cancellation_reason": $scope.cancellation_reason,
-								"description": $scope.description,
-								"final_status": $scope.final_status
+		Cancelled.updateAll({where: {id: record.id, hub: $rootScope._hub}}, {
+							  	"restaurant": record.restaurant,
+							    "order_code": record.order_code,
+								"source": record.source,
+								"fe_id": record.fe_id,
+								"assigned_at": record.assigned_at,
+								"cancelled_at": record.cancelled_at,
+								"cancellation_reason": record.cancellation_reason,
+								"description": record.description,
+								"final_status": record.final_status
 												}, function(successResponse) {
 			// console.log('update response = ', successResponse);
 		}, function(error) {
@@ -120,15 +129,15 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 		});
 	}
 
-	$scope.getRestaurantList = function() {
-		Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, 
-			function(successResponse) {
-				// console.log('drop down data = ', successResponse);
-				$scope.restaurants = successResponse;
-			}, function(error) {
-				console.log(error);
-		});
-	};
+	// $scope.getRestaurantList = function() {
+	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, 
+	// 		function(successResponse) {
+	// 			// console.log('drop down data = ', successResponse);
+	// 			$scope.restaurants = successResponse;
+	// 		}, function(error) {
+	// 			console.log(error);
+	// 	});
+	// };
 
 	// $scope.getCancelReasons = function() {
 	// 	Canreason.find({}, function(successResponse) {

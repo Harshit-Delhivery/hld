@@ -3,7 +3,7 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Offline', 'Offreason', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Offline, Offreason, Restaurant) {
-	
+	$scope._date = new Date().setHours(0,0,0,0);
 	$scope.order_code = null;
 	$scope.merchant_id =null;
 	$scope.merchant_name =null;
@@ -36,7 +36,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 
 	$scope.submitOffline = function() {
 		Offline.create({
-		  "date": $rootScope._date,
+		  "date": $scope._date,
 		  "order_code": $scope.order_code,
 		  "merchant_id": $scope.merchant_id,
 		  "merchant_name": $scope.merchant_name,
@@ -46,8 +46,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 		  "drop_started_at": $scope.drop_started_at,
 		  "delivered_at": $scope.delivered_at,
 		  "offline_reason": $scope.offline_reason,
-		  "dcName": $rootScope._user.dc_name,
-		  "city": $rootScope._user.city
+		  "hub": $rootScope._hub
 		}, function(successResp) {
 			// console.log('create offline response = ', successResp);
 			$scope.offlineData.push(successResp);
@@ -73,22 +72,32 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 		})
 	}
 
-	$scope.getOfflineHistory = function() {
-		Offline.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
-			if(successResponse) {
-				console.log(successResponse);
-				$scope.offlineHistory = successResponse;
-			} else {
-				//to be handeled
-			}
-		}, function(error) {
-			console.log(error);
-		});
-	}
+	// $scope.getOfflineHistory = function() {
+	// 	Offline.find({filter: {where: {hub: $rootScope._hub}}}, function(successResponse) {
+	// 		if(successResponse) {
+	// 			console.log(successResponse);
+	// 			$scope.offlineHistory = successResponse;
+	// 		} else {
+	// 			//to be handeled
+	// 		}
+	// 	}, function(error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	$scope.getOfflineDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		Offline.find({filter: {where: {date: {between: [$scope.fromDate, $scope.toDate]}, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(successResponse) {
+		var query = {};
+		if($rootScope._user.role == 'operator') {
+			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+		} else {
+			query['date'] = $scope.selectedDate;
+			query['hub'] = $scope.hub;
+			query['dcName'] = $scope.dc;
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+		}
+		console.log(query);
+		Offline.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
 				// console.log(successResponse);
 				$scope.offlineHistory = successResponse;
@@ -102,7 +111,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 
 	$scope.updateOffline = function(record) {
 		// console.log('record = ', record);
-		Offline.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name, city: $rootScope._user.city}},
+		Offline.updateAll({where: {id: record.id, hub: $rootScope._hub}},
 			{	"merchant_id": record.merchant_id,
 				"order_code": record.order_code,
 				"merchant_name": record.merchant_name,
@@ -127,11 +136,12 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	// 	})
 	// }
 
-	$scope.getRestaurantList = function() {
-		Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name, city: $rootScope._user.city}}}, function(data) {
-		$scope.restaurants = data;
-		// console.log(data.length);
-	}, function(error) {
-	});
-	}
+	// $scope.getRestaurantList = function() {
+	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, 
+	// 	function(data) {
+	// 		$rootScope._restaurants = data;
+	// 		// console.log(data.length);
+	// 	}, function(error) {
+	// 	});
+	// }
 }]);

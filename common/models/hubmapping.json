@@ -1,23 +1,31 @@
 {
-  "name": "Restaurant",
+  "name": "Hubmapping",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "merchantName": {
+    "city": {
       "type": "string",
       "required": true
-    },
-    "merchantId": {
-      "type": "number"
     },
     "hub": {
       "type": "string",
       "required": true
     },
-    "city": {
+    "dcName": {
+      "type": "string",
+      "required": true
+    },
+    "dcEmail": {
+      "type": "string",
+      "required": true
+    },
+    "clmName": {
+      "type": "string"
+    },
+    "clmEmail": {
       "type": "string",
       "required": true
     }

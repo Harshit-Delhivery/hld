@@ -28,6 +28,7 @@
     "ui-bootstrap": "~1.3.2",
     "angular-bootstrap": "~1.3.2",
     "angular-animate": "~1.5.5",
-    "ngTimepicker": "https://github.com/muditsatija5/ngTimepicker.git"
+    "ngTimepicker": "https://github.com/muditsatija5/ngTimepicker.git",
+    "angular-cookies": "~1.5.5"
   }
 }

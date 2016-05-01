@@ -21,6 +21,15 @@ app.config(['$stateProvider', function($stateProvider) {
       }
     }
   })
+  .state('home.selectHub' , {
+    url:'selectHub/',
+    views: {
+      'home-view': {
+        templateUrl: '/views/select-hub.html',
+        controller: 'LoginController'
+      }
+    }
+  })
   .state('home.signUp' , {
     url:'signUp/',
     views: {

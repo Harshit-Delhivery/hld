@@ -4,11 +4,11 @@
          Attendance History
       </h1>
    </div>
-   <div class="container-fluid" ng-init="getAttendanceHistory()">
+   <div class="container-fluid">
       <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
             <div style="margin-bottom: 16px">
-               <div class="row">
+               <!-- <div class="row">
                   <div class="col-md-4">
                     <label class="control-label col-sm-4">From Date:</label>
                     <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
@@ -17,6 +17,37 @@
                     <label >To Date:</label>
                     <input type="date" placeholder="search" ng-model="toDate" class="form-control">
                   </div>
+                  <div class="col-md-3" style="margin-top: 24px">
+                     <button type="submit" ng-click="getAttendanceDatewise()" class="btn btn-primary">
+                        Search
+                     </button>
+                  </div>
+               </div> -->
+               <div class="row">
+                  <div class="col-md-3" ng-show="_user.role == 'operator'">
+                    <label >From Date:</label>
+                    <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" ng-show="_user.role == 'operator'">
+                    <label >To Date:</label>
+                    <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" ng-show="_user.role == 'clm'">
+                    <label >Select Date:</label>
+                    <input type="date" placeholder="search" ng-model="selectedDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" ng-show="_user.role == 'clm'">
+                    <label >Select Hub:</label>
+                    <select class="form-control" ng-model="hub">
+                        <option ng-repeat="hub in _user.hub" value="{{hub}}">{{hub}}</option>
+                     </select>
+                  </div>
+                  <!-- <div class="col-md-3" ng-show="_user.role == 'clm'">
+                    <label >Select DC:</label>
+                    <select class="form-control" ng-model="dc">
+                        <option ng-repeat="dc in _user.dcName" value="{{dc}}">{{dc}}</option>
+                     </select>
+                  </div> -->
                   <div class="col-md-3" style="margin-top: 24px">
                      <button type="submit" ng-click="getAttendanceDatewise()" class="btn btn-primary">
                         Search
@@ -118,7 +149,7 @@
                             </div>
                         </td>
 
-                        <td width="4%" ng-show="!edit" style="text-align: center">
+                        <td width="4%" ng-show="!edit && _user.role == 'clm'" style="text-align: center">
                           <button ng-click="edit=true" title="edit">
                             <i class="fa fa-pencil"></i>
                           </button>

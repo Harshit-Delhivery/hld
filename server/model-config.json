@@ -67,5 +67,9 @@
   "Source": {
     "dataSource": "localPsql",
     "public": true
+  },
+  "Hubmapping": {
+    "dataSource": "localPsql",
+    "public": true
   }
 }

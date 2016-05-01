@@ -4,19 +4,35 @@
          Offline History
       </h1>
    </div>
-   <div class="container-fluid" ng-init="getOfflineHistory()">
+   <div class="container-fluid">
       <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
             <div style="margin-bottom: 16px">
                <div class="row">
-                  <div class="col-md-4">
-                    <label class="control-label col-sm-4">From Date:</label>
+                  <div class="col-md-3" ng-show="_user.role == 'operator'">
+                    <label >From Date:</label>
                     <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3" ng-show="_user.role == 'operator'">
                     <label >To Date:</label>
                     <input type="date" placeholder="search" ng-model="toDate" class="form-control">
                   </div>
+                  <div class="col-md-3" ng-show="_user.role == 'clm'">
+                    <label >Select Date:</label>
+                    <input type="date" placeholder="search" ng-model="selectedDate" class="form-control">
+                  </div>
+                  <div class="col-md-3" ng-show="_user.role == 'clm'">
+                    <label >Select Hub:</label>
+                    <select class="form-control" ng-model="hub">
+                        <option ng-repeat="hub in _user.hub" value="{{hub}}">{{hub}}</option>
+                     </select>
+                  </div>
+                  <!-- <div class="col-md-3" ng-show="_user.role == 'clm'">
+                    <label >Select DC:</label>
+                    <select class="form-control" ng-model="dc">
+                        <option ng-repeat="dc in _user.dcName" value="{{dc}}">{{dc}}</option>
+                     </select>
+                  </div> -->
                   <div class="col-md-3" style="margin-top: 24px">
                      <button type="submit" ng-click="getOfflineDatewise()" class="btn btn-primary">
                         Search
@@ -28,22 +44,23 @@
                <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
                   <thead style="width:98%;">
                      <tr>
-                        <th width="9%" style="text-align: center">Date</th>
-                        <th width="9%" style="text-align: center">Merchant Id</th>
-                        <th width="11%" style="text-align: center">Merchant Name</th>
-                        <th width="11%" style="text-align: center">Client/Source</th>
-                        <th width="11%" style="text-align: center">Ground Pilot name</th>
-                        <th width="10%" style="text-align: center">Arrived at outlet time</th>
-                        <th width="10%" style="text-align: center">Drop started date</th>
-                        <th width="10%" style="text-align: center">Delivered</th>
-                        <th width="11%" style="text-align: center">Offline Reason</th>
-                        <th width="6%" style="text-align: center">&nbsp;</th>
+                        <th width="10%" class="text-center">Date</th>
+                        <th width="8%" class="text-center">Order Code</th>
+                        <th width="9%" class="text-center">Merchant Id</th>
+                        <th width="11%" class="text-center">Merchant Name</th>
+                        <th width="10%" class="text-center">Client /Source</th>
+                        <th width="11%" class="text-center">Ground Pilot name</th>
+                        <th width="8%" class="text-center">Arrived at outlet time</th>
+                        <th width="8%" class="text-center">Drop started date</th>
+                        <th width="8%" class="text-center">Delivered Time</th>
+                        <th width="11%" class="text-center">Offline Reason</th>
+                        <th width="6%" class="text-center">&nbsp;</th>
                      </tr>
                   </thead>
-                  <tbody>
+                  <!-- <tbody>
                      <tr ng-repeat="data in offlineHistory">
                      
-                        <td width="9%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yyyy'}}</td>
+                        <td width="9%" style="text-align: center">{{data.date|dateFilter: 'dd-MM-yyyy'}}{{data.order_code}}</td>
 
                         <td width="9%" style="text-align: center" ng-show="!edit" ng-bind="data.merchant_id">
                         </td>
@@ -112,7 +129,7 @@
                             </div>
                         </td>
 
-                        <td width="6%" style="text-align: center" ng-show="!edit" ng-click="edit=true">
+                        <td width="6%" style="text-align: center" ng-show="!edit && _user.role == 'clm'" ng-click="edit=true">
                            <i class="fa fa-pencil"></i>
                         </td>
                         <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
@@ -127,8 +144,94 @@
                         </td>
 
                      </tr>
-                  </tbody>
+                  </tbody> -->
                </table>
+
+               <form class="attendance-form" style="height: 375px; margin-top: 10px">
+                  <div class="col-md-12" ng-repeat="data in offlineHistory">
+                     <div class="row">
+                        <div class="col-md-1" style="width: 10%">
+                           {{_date|dateFilter: dd/MM/yyyy}}
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 8%">
+                           <input type="text" class="form-control" placeholder="0" ng-model="data.order_code">
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%" ng-bind="data.order_code">
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 9%">
+                           <input type="text" class="form-control" placeholder="0" ng-model="data.merchant_id">
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 9%" ng-bind="data.merchant_id">
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 11%">
+                          <input type="text" class="form-control" placeholder="0" ng-model="data.merchant_name">
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width:11%" ng-bind="data.merchant_name">
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 10%">
+                           <select class="form-control" ng-model="data.client">
+                              <option ng-repeat="source in _source" value="{{source.name}}">{{source.name}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 10%" ng-bind="data.client">
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 11%">
+                           <input type="text" class="form-control" placeholder="xyz" ng-model="data.fe_name">
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 11%" ng-bind="data.fe_name">
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 8%">
+                          <ng-timepicker ng-model="arrive" ng-change="time({time: arrive, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%">
+                           {{data.arrived_at|date: 'hh:mm a'}}
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 8%">
+                           <ng-timepicker ng-model="drop" ng-change="time({time: drop, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%">
+                           {{data.drop_started_at|date: 'hh:mm a'}}
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width:8%">
+                          <ng-timepicker ng-model="delivered" ng-change="time({time: delivered, id: 3})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%">
+                           {{data.delivered_at|date: 'hh:mm a'}}
+                        </div>
+
+                        <div class="col-md-1" ng-show="edit" style="width: 11%">
+                           <select class="form-control" ng-model="data.offline_reason">
+                              <option ng-repeat="offline in _offlineReasons" value="{{offline.reason}}">{{offline.reason}}</option>
+                           </select>
+                        </div>
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 11%" ng-bind="data.offline_reason">
+                        </div>
+
+                        <div style="width: 6%" class="col-md-1" ng-show="!edit && _user.role == 'clm'" ng-click="edit=true">
+                           <i class="fa fa-pencil"></i>
+                        </div>
+                        <div class="col-md-1" ng-show="edit" style="width: 3%; text-align: center">
+                          <button ng-click="edit=false; updateOffline(data)" title="Submit">
+                            <i class="fa fa-check"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-1" ng-show="edit" style="width: 3%; text-align: center">
+                          <button ng-click="edit=false" title="Cancel">
+                            <span class="fa fa-remove"></span>
+                          </button>
+                        </div>
+
+                     </div>
+                  </div>
+               </form>
             </div>
          </div>
       </div>

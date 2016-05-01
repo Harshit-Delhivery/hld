@@ -1500,6 +1500,10 @@ ul#attendanceAcc li{
   padding-left:34px;
 }
 
+ul#edit {
+  padding-left:0px;
+}
+
 
 .attendance-form input[type=text]
 {

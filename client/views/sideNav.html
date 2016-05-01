@@ -1,11 +1,7 @@
 <div id="sidebar-wrapper"class="nav-style" style="overflow: auto">
-  <ul class="sidebar-nav">
-     <li>
-        <a ui-sref="home.app.view.home">
-        <span class="fa fa-fw fa-home" aria-hidden="true"></span>
-        Home
-        </a>
-     </li>
+
+<!-- Operator Sidebar -->
+  <ul class="sidebar-nav" ng-show="_user.role == 'operator'">
      <li>
         <a data-toggle="collapse" data-target="#attendanceAcc1" aria-expanded="false">
         <span class="fa fa-fw fa-cubes" aria-hidden="true"></span>
@@ -47,4 +43,40 @@
         </ul>
      </li>
   </ul>
+
+<!-- CLM Sidebar -->
+  <ul class="sidebar-nav" ng-show="_user.role == 'clm'">
+     <li>
+        <a ui-sref="home.app.view.home">
+        <span class="fa fa-fw fa-home" aria-hidden="true"></span>
+        Home
+        </a>
+     </li>
+     <li>
+        <a data-toggle="collapse" data-target="#edit" aria-expanded="false">
+        <span class="fa fa-fw fa-pencil" aria-hidden="true"></span>
+        Edit<i class="caret pull-right"></i>
+        </a>
+
+        <ul class="collapse" id="edit" aria-expanded="false">
+          <li>
+            <a ui-sref="home.app.view.attendanceHistory" ng-click="highlightSidebar(2)" ng-class="{'selected': id==2}">
+            Attendance History</a>
+          </li>
+          <li>
+            <a ui-sref="home.app.view.orderSummaryHistory" ng-click="highlightSidebar(4)" ng-class="{'selected': id==4}">
+            Order History</a>
+         </li>
+          <li>
+            <a ui-sref="home.app.view.offlineHistory" ng-click="highlightSidebar(6)" ng-class="{'selected': id==6}">Offline History</a>
+          </li>
+          <li>
+            <a ui-sref="home.app.view.cancelledHistory" ng-click="highlightSidebar(8)" ng-class="{'selected': id==8}">Cancelled History</a>
+          </li>
+        </ul>
+        
+     </li>
+  </ul>
+
+  <!-- Admin Sidebar -->
 </div>

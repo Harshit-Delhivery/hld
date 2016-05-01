@@ -7,10 +7,21 @@
       <img src="../assets/images/logo.png" alt="logo" width="160px">
       <h3 class="text-primary">Sign Up</h3>
       <form ng-submit="signUp()">
+
         <div class="form-group">
+           <label class="control-label">Role</label>
+           <!-- <input type="text" class="form-control" id="" ng-model="city" placeholder="City"> -->
+           <select class="form-control" ng-model="role">
+              <option value="operator">Operator</option>
+              <option value="clm">clm</option>
+              <option value="admin">admin</option>
+          </select>
+        </div>
+
+        <!-- <div class="form-group">
            <label class="control-label">Dc Name</label>
            <input type="text" class="form-control" id="" ng-model="dcName" placeholder="Dc Name">
-        </div>
+        </div> -->
 
         <div class="form-group">
            <label class="control-label">City</label>

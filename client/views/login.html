@@ -11,15 +11,28 @@
                     <br>
                     <h3 class="text-primary">Log In</h3><br>
                     <form class="" ng-submit="login()">
+
+                        <!-- <div class="form-group">
+                           <label class="control-label">Login As</label>
+                           <select class="form-control" ng-model="role">
+                              <option value="operator">Operator</option>
+                              <option value="clm">clm</option>
+                              <option value="admin">admin</option>
+                          </select>
+                        </div> -->
+
                         <div class="form-group form-group-lg">
                             <input type="email" ng-model="loginEmail" class="form-control bg-primary" id="exampleInputEmail1" placeholder="Email">
                         </div>
+
                         <div class="form-group form-group-lg">
                             <input type="password" ng-model="loginPassword" class="form-control" id="exampleInputPassword1" placeholder="Password">
                         </div>
+
                         <br>
                         <button type="submit" class="btn btn-primary btn-secondary btn-block btn-lg" value="submit">LOGIN</button>
                         <br>
+
                         <a href="#" class="text-uppercase">Forgot Password?</a>
                         <a  ui-sref="home.signUp" class="text-uppercase" style="float: right">Create Account</a>
                         <br>

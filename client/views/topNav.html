@@ -10,7 +10,10 @@
   </div>
  <ul class="nav navbar-nav navbar-right">
   <li class="dc_name">
-    {{_user.dc_name}}/{{_user.city}}
+    {{_hub}}
+  </li>
+  <li class="dc_name" ng-show="_user.role != 'operator'">
+    {{_user.email}}
   </li>
   <li class="dropdown">
    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
