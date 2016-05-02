@@ -15,7 +15,8 @@
   },
   "prod": {
     "port": 3306,
-    "url": "hld-data-entry-db.cz3sq5x0ps8m.ap-southeast-1.rds.amazonaws.com",
+    "host": "hld-data-entry-db.cz3sq5x0ps8m.ap-southeast-1.rds.amazonaws.com",
+    "url": "",
     "database": "hld",
     "password": "5dPK)Cynx4",
     "name": "prod",
