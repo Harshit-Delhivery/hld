@@ -23,7 +23,7 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 				if($rootScope._user.role == 'operator') {
 		            $state.go('home.selectHub');
 		        } else {
-		        	$state.go('home.app.view'); // will be changed to 'home.app.view.home' untill the productivity tab
+		        	$state.go('home.app.view');
 		        }
 				notifyService.successMessage('Successfully Logged In!!!!!!!!', 5000);
 			}
