@@ -14,62 +14,62 @@
     ]
   },
   "User": {
-    "dataSource": "localPsql"
+    "dataSource": "prod"
   },
   "AccessToken": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "ACL": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": false
   },
   "Role": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": false
   },
   "Offline": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Attendance": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Orders": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Cancelled": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Enduser": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Restaurant": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Canreason": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Offreason": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Source": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   },
   "Hubmapping": {
-    "dataSource": "localPsql",
+    "dataSource": "prod",
     "public": true
   }
 }
