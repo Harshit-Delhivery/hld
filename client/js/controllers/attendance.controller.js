@@ -31,7 +31,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		  "parttimer1": $scope.parttimer1,
 		  "parttimer2": $scope.parttimer2,
 		  "parttimer3": $scope.parttimer3,
-		  "hub": $rootScope._hub
+		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
 			console.log('create attendance response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
@@ -56,7 +56,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	}
 
 	$scope.getAttendanceHistory = function() {
-		Attendance.find({filter: {where: {hub: $rootScope._hub}}}, function(successResponse) {
+		Attendance.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(successResponse) {
 			if(successResponse) {
 				console.log(successResponse);
 				$scope.attendanceHistory = successResponse;
@@ -75,9 +75,8 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
 		} else {
 			query['date'] = $scope.selectedDate;
-			query['hub'] = $scope.hub;
 			query['dcName'] = $scope.dc;
-			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);
 		Attendance.find({filter: {where: query}}, function(successResponse) {
@@ -94,7 +93,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 
 	$scope.updateAttendance = function(record) {
 		console.log('record = ', record);
-		Attendance.updateAll({where: {id: record.id, hub: $rootScope._hub}}, {
+		Attendance.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}}, {
 												  "headcount": record.headcount,
 												  "present_m": record.present_m,
 												  "present_e": record.present_e,

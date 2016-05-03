@@ -9,8 +9,8 @@
    </button>
   </div>
  <ul class="nav navbar-nav navbar-right">
-  <li class="dc_name">
-    {{_hub}}
+  <li class="dc_name" ng-show="_user.role == 'operator'">
+    {{_user.dc_name}}
   </li>
   <li class="dc_name" ng-show="_user.role != 'operator'">
     {{_user.email}}
