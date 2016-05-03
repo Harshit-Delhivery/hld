@@ -4900,7 +4900,7 @@ module.factory(
                 response.data.user['dcName'] = [];
                 s.map(function(item) {
                     console.log(item.hub);
-                    response.data.user.hub.push(item.hub);
+                    // response.data.user.hub.push(item.hub);
                     if(response.data.user.dcName.indexOf(item.dcName) == -1) {
                         response.data.user.dcName.push(item.dcName);
                     }
