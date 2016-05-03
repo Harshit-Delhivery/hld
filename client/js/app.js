@@ -43,8 +43,9 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
 
     function getRestaurants() {
         console.log('_hub = ', $rootScope._hub);
+        $rootScope._user.restaurants = [];
         Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
-            $rootScope._restaurants = data;
+            $rootScope._user.restaurants = data;
             // console.log(data.length);
         }, function(error) {
         });
