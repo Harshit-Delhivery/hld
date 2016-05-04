@@ -17,6 +17,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	$scope.toDate = null;
 	$scope.fromDate = null;
 	$scope.edit = false;
+	$scope.dc;
 
 	$scope.submitAttendance = function() {
 		Attendance.create({
@@ -55,27 +56,28 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		});
 	}
 
-	$scope.getAttendanceHistory = function() {
-		Attendance.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(successResponse) {
-			if(successResponse) {
-				console.log(successResponse);
-				$scope.attendanceHistory = successResponse;
-			} else {
-				//to be handeled
-			}
-		}, function(error) {
-			console.log(error);
-		});
-	}
+	// $scope.getAttendanceHistory = function() {
+	// 	Attendance.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(successResponse) {
+	// 		if(successResponse) {
+	// 			console.log(successResponse);
+	// 			$scope.attendanceHistory = successResponse;
+	// 		} else {
+	// 			//to be handeled
+	// 		}
+	// 	}, function(error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	$scope.getAttendanceDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		var query = {};
+		var query = {'and': []};
 		if($rootScope._user.role == 'operator') {
-			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+			query.and.push({'date': {between: [$scope.fromDate, $scope.toDate]}});
+			query.and.push({'dcName': $rootScope._user.dc_name});
 		} else {
-			query['date'] = $scope.selectedDate;
-			query['dcName'] = $scope.dc;
+			query.and.push({'date': $scope.selectedDate});
+			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);

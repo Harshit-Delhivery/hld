@@ -16,6 +16,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	$scope.final_status = null;
 	$scope.cancelledData = [];
 	$scope.edit = false;
+	$scope.dc;
 
 	$scope.time = function(obj) {
 		var hm = obj.time.split(':'),
@@ -48,7 +49,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			"cancellation_reason": $scope.cancellation_reason,
 			"description": $scope.description,
 			"final_status": $scope.final_status,
-			"hub": $rootScope._hub
+		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
 			// console.log('create cancelled response = ', successResp);
 			$scope.cancelledData.push(successResp);
@@ -88,14 +89,14 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 
 	$scope.getCancelledDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		var query = {};
+		var query = {'and': []};
 		if($rootScope._user.role == 'operator') {
-			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+			query.and.push({'date': {between: [$scope.fromDate, $scope.toDate]}});
+			query.and.push({'dcName': $rootScope._user.dc_name});
 		} else {
-			query['date'] = $scope.selectedDate;
-			query['hub'] = $scope.hub;
-			query['dcName'] = $scope.dc;
-			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+			query.and.push({'date': $scope.selectedDate});
+			query.and.push({'dcName': $scope.dc});
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);
 		Cancelled.find({filter: {where: query}}, function(successResponse) {
@@ -112,7 +113,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 
 	$scope.updateCancelled = function(record) {
 		// console.log('record = ', record);
-		Cancelled.updateAll({where: {id: record.id, hub: $rootScope._hub}}, {
+		Cancelled.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}}, {
 							  	"restaurant": record.restaurant,
 							    "order_code": record.order_code,
 								"source": record.source,

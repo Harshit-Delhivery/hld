@@ -90,7 +90,7 @@
 		                     
 	                        <div class="col-md-1" style="width: 10%">
 	                           <select class="form-control" ng-model="restaurant">
-	                              <option ng-repeat="rest in _restaurants | orderBy: 'merchantName'" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
+	                              <option ng-repeat="rest in _user.restaurants | orderBy: 'merchantName'" value="{{rest.merchantName}}">{{rest.merchantName}}</option>
 	                           </select>
 	                        </div>
 

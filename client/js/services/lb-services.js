@@ -4886,36 +4886,30 @@ module.factory(
             response: function(response) {
                 console.log('inside login interceptor = ', response.data.user.role);
                 response.data.user.restaurants = [];
-                getRestaurants();
-                var where = {};
-                if(response.data.user.role == 'operator') {
-                    where['dcEmail'] = response.data.user.email;
-                    $rootScope._hub = $cookies.get("selectedHub");
+                if(response.data.user.role != 'operator') {
+                    Hubmapping.find({filter: {where: {'email': response.data.user.email}}}, function(s) {
+                        console.log(s);
+                        response.data.user['dcArray'] = [];
+                        s.map(function(item) {
+                            console.log(item.dcName);
+                            if(response.data.user.dcArray.indexOf(item.dcName) == -1) {
+                                response.data.user.dcArray.push(item.dcName);
+                            }
+                        });
+                    }, function(e) {
+                        console.log(e);
+                    });
                 } else {
-                    where['clmEmail'] = response.data.user.email;
+                    getRestaurants();
                 }
-                Hubmapping.find({filter: {where: where}}, function(s) {
-                console.log(s);
-                response.data.user['hub'] = [];
-                response.data.user['dcName'] = [];
-                s.map(function(item) {
-                    console.log(item.hub);
-                    response.data.user.hub.push(item.hub);
-                    if(response.data.user.dcName.indexOf(item.dcName) == -1) {
-                        response.data.user.dcName.push(item.dcName);
-                    }
-                });
-              }, function(e) {
-                console.log(e);
-              });
-              function getRestaurants() {
-                
-                Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
-                    response.data.user.restaurants = data;
-                    // console.log(data.length);
-                }, function(error) {
-                });
-            }
+
+                function getRestaurants() {
+                    Restaurant.find({filter: {where: {dcName: response.data.user.dc_name}}}, function(data) {
+                        response.data.user.restaurants = data;
+                        // console.log(data.length);
+                    }, function(error) {
+                    });
+                }
               var accessToken = response.data;
               LoopBackAuth.setUser(accessToken.id, accessToken.userId, accessToken.user);
               LoopBackAuth.rememberMe = response.config.params.rememberMe !== false;

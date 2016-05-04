@@ -39,7 +39,7 @@
                   <div class="col-md-3" ng-show="_user.role == 'clm'">
                     <label >Select DC:</label>
                     <select class="form-control" ng-model="dc">
-                        <option ng-repeat="dc in _user.dcName" value="{{dc}}">{{dc}}</option>
+                        <option ng-repeat="dc in _user.dcArray" value="{{dc}}">{{dc}}</option>
                      </select>
                   </div>
                   <!-- <div class="col-md-3" ng-show="_user.role == 'clm'">

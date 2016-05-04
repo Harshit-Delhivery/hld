@@ -13,7 +13,7 @@
     "merchantId": {
       "type": "number"
     },
-    "hub": {
+    "dcName": {
       "type": "string",
       "required": true
     },

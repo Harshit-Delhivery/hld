@@ -37,9 +37,9 @@
                     <input type="date" placeholder="search" ng-model="selectedDate" class="form-control">
                   </div>
                   <div class="col-md-3" ng-show="_user.role == 'clm'">
-                    <label >Select Hub:</label>
-                    <select class="form-control" ng-model="hub">
-                        <option ng-repeat="hub in _user.hub" value="{{hub}}">{{hub}}</option>
+                    <label >Select DC:</label>
+                    <select class="form-control" ng-model="dc">
+                        <option ng-repeat="dc in _user.dcArray" value="{{dc}}">{{dc}}</option>
                      </select>
                   </div>
                   <!-- <div class="col-md-3" ng-show="_user.role == 'clm'">
