@@ -8,7 +8,7 @@ app.controller('HomeController', ['$scope', '$state', '$http', 'notifyService', 
 		Restaurant.create({
 			'merchantName': $scope.restaurant,
 			'merchantId': 0, 
-			"dcName": $rootScope.dc_name,
+			"dcName": $rootScope._user.dc_name,
 			"city": $rootScope._user.city },
 			function(successResponse) {
 				$rootScope._restaurants.push({merchantName: $scope.restaurant});
