@@ -19,12 +19,8 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			if(successResponse.user) {
 				// console.log('login response = ', successResponse);
 				$rootScope._user = successResponse.user;
-        		console.log('$rootScope._user = ', $rootScope._user.role);
-				if($rootScope._user.role == 'operator') {
-		            $state.go('home.selectHub');
-		        } else {
-		        	$state.go('home.app.view');
-		        }
+        		console.log('$rootScope._user = ', $rootScope._user.role);				
+		        $state.go('home.app.view');
 				notifyService.successMessage('Successfully Logged In!!!!!!!!', 5000);
 			}
 		}, function(error) {
@@ -33,17 +29,17 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		})
 	}
 
-	$scope.selectHub = function() {
-		$cookies.put("selectedHub", $scope.hub);
-		$rootScope._hub = $scope.hub;
-		$rootScope._user.restaurants = [];
-		Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
-            $rootScope._user.restaurants = data;
-            // console.log(data.length);
-            $state.go('home.app.view.attendanceForm');
-        }, function(error) {
-        });
-	}
+	// $scope.selectHub = function() {
+	// 	$cookies.put("selectedHub", $scope.hub);
+	// 	$rootScope._hub = $scope.hub;
+	// 	$rootScope._user.restaurants = [];
+	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
+ //            $rootScope._user.restaurants = data;
+ //            // console.log(data.length);
+ //            $state.go('home.app.view.attendanceForm');
+ //        }, function(error) {
+ //        });
+	// }
 
 	$scope.signUp = function() {
 		// console.log('signUp = ', {"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName});

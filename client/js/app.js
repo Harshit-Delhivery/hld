@@ -13,40 +13,35 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
   if(Enduser.isAuthenticated()) {
     Enduser.findById({'id': LoopBackAuth.currentUserId},
         function(successResp) {
-            console.log('successResp = ', successResp.role);
-            var where = {};
-            if(successResp.role == 'operator') {
-                where['dcEmail'] = successResp.email;
-                $rootScope._hub = $cookies.get("selectedHub");
-                getRestaurants();
-            } else if(successResp.role == 'clm') {
-                where['clmEmail'] = successResp.email;
-            }
-            Hubmapping.find({filter: {where: where}}, function(s) {
-            console.log(s);
-            successResp['hub'] = [];
-            successResp['dcName'] = [];
-            s.map(function(item) {
-                console.log(item);
-                successResp.hub.push(item.hub);
-                if(successResp.dcName.indexOf(item.dcName) == -1)
-                successResp.dcName.push(item.dcName);
-            });
+            // console.log('successResp = ', successResp.role);
+            if(successResp.role != 'operator') {
+                Hubmapping.find({filter: {where: {'email': successResp.email}}}, function(s) {
+                    console.log('dcs = ', s);
+                    successResp.dcArray = [];
+                    s.map(function(item) {
+                        console.log(item);
+                        if(successResp.dcArray.indexOf(item.dcName) == -1)
+                            successResp.dcArray.push(item.dcName);
+                    });
+                    $rootScope._user = successResp;
+                }, function(e) {
+                    console.log(e);
+                });
+            } else {
                 $rootScope._user = successResp;
-            }, function(e) {
-                console.log(e);
-            });
+                getRestaurants();
+            }
         }, function(errorMessage) {
                 console.log(errorMessage);
         });
   }
 
     function getRestaurants() {
-        console.log('_hub = ', $rootScope._hub);
-        $rootScope._user.restaurants = [];
-        Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
+
+        // console.log('_hub = ', $rootScope._hub);
+        Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(data) {
             $rootScope._user.restaurants = data;
-            // console.log(data.length);
+            console.log('restaurant\'s length = ', data.length);
         }, function(error) {
         });
     }

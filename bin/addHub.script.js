@@ -6,19 +6,19 @@ var app = require('../server/server.js'),
 
 var obj = csv();
 
-function toJsonObj(city, hub, dcName, dcEmail, clmName, clmEmail) {
+function toJsonObj(city, dcName, email, clmName) {
 	this.city = city;
-	this.hub = hub;
 	this.dcName = dcName;
-	this.dcEmail = dcEmail;
+	this.email = email;
 	this.clmName = clmName;
-	this.clmEmail = clmEmail;
 };
 
 obj.from.path('../csv_folder/dcmapping.csv').to.array(function (data) {
 	async.forEach(data, function(item, callback) {
 		// console.log(item.length);
-		extractData.push(new toJsonObj(item[0], item[1], item[2], item[3], item[4], item[5]));
+		// City,Hub,DC,DC_email_ID,CLM name,CLM_email_ID
+		extractData.push(new toJsonObj(item[0], item[2], item[3], item[4]));
+		extractData.push(new toJsonObj(item[0], item[2], item[5], item[4]));
 		callback();
 	}, function(err) {
 		if(err) {
@@ -35,11 +35,9 @@ function insertMapping() {
 	async.forEach(extractData, function(item, callback) {
 		app.models.Hubmapping.upsert({
 			'city': item.city,
-			'hub': item.hub,
 			'dcName': item.dcName,
-			'dcEmail': item.dcEmail,
-			'clmName': item.clmName,
-			'clmEmail': item.clmEmail }, callback);
+			'email': item.email,
+			'clmName': item.clmName }, callback);
 			}, function(err) {
 		if(err) {
 			throw err;

@@ -17,6 +17,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	$scope.toDate = null;
 	$scope.fromDate = null;
 	$scope.edit = false;
+	$scope.dc;
 
 	$scope.submitAttendance = function() {
 		Attendance.create({
@@ -31,7 +32,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		  "parttimer1": $scope.parttimer1,
 		  "parttimer2": $scope.parttimer2,
 		  "parttimer3": $scope.parttimer3,
-		  "hub": $rootScope._hub
+		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
 			console.log('create attendance response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
@@ -55,29 +56,29 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		});
 	}
 
-	$scope.getAttendanceHistory = function() {
-		Attendance.find({filter: {where: {hub: $rootScope._hub}}}, function(successResponse) {
-			if(successResponse) {
-				console.log(successResponse);
-				$scope.attendanceHistory = successResponse;
-			} else {
-				//to be handeled
-			}
-		}, function(error) {
-			console.log(error);
-		});
-	}
+	// $scope.getAttendanceHistory = function() {
+	// 	Attendance.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(successResponse) {
+	// 		if(successResponse) {
+	// 			console.log(successResponse);
+	// 			$scope.attendanceHistory = successResponse;
+	// 		} else {
+	// 			//to be handeled
+	// 		}
+	// 	}, function(error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	$scope.getAttendanceDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		var query = {};
+		var query = {'and': []};
 		if($rootScope._user.role == 'operator') {
-			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+			query.and.push({'date': {between: [$scope.fromDate, $scope.toDate]}});
+			query.and.push({'dcName': $rootScope._user.dc_name});
 		} else {
-			query['date'] = $scope.selectedDate;
-			query['hub'] = $scope.hub;
-			query['dcName'] = $scope.dc;
-			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+			query.and.push({'date': $scope.selectedDate});
+			query.and.push({'dcName': $scope.dc});
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);
 		Attendance.find({filter: {where: query}}, function(successResponse) {
@@ -94,7 +95,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 
 	$scope.updateAttendance = function(record) {
 		console.log('record = ', record);
-		Attendance.updateAll({where: {id: record.id, hub: $rootScope._hub}}, {
+		Attendance.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}}, {
 												  "headcount": record.headcount,
 												  "present_m": record.present_m,
 												  "present_e": record.present_e,

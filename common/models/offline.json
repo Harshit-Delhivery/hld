@@ -47,14 +47,11 @@
       "required": true
     },
     "dcName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "city": {
       "type": "string"
-    },
-    "hub": {
-      "type": "string",
-      "required": true
     }
   },
   "validations": [],

@@ -6,17 +6,17 @@ var app = require('../server/server.js'),
 
 var obj = csv();
 
-function restJson(merchantName, merchantId, hub, city) {
+function restJson(merchantName, merchantId, dcName, city) {
 	this.merchantName = merchantName;
 	this.merchantId = merchantId;
-	this.hub = hub;
+	this.dcName = dcName;
 	this.city = city;
 };
 
-obj.from.path('../csv_folder/Restaurants.csv').to.array(function (data) {
+obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 
 	async.forEach(data, function(item, callback) {
-		extractData.push(new restJson(item[1], item[0], item[2], item[3]));
+		extractData.push(new restJson(item[1], item[0], item[4], item[2]));
 		callback();
 	}, function(err) {
 		if(err) {
@@ -32,7 +32,7 @@ function restaurantData() {
 		app.models.Restaurant.upsert({
 			'merchantName': item.merchantName, 
 			'merchantId': item.merchantId, 
-			'hub': item.hub,
+			'dcName': item.dcName,
 			'city': item.city }, callback);
 	}, function(err) {
 		if(err) {

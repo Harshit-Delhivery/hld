@@ -25,7 +25,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		  "cancel_e": $scope.cancel_e,
 		  "express_m": $scope.express_m,
 		  "express_e": $scope.express_e,
-		  "hub": $rootScope._hub
+		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
 			console.log('create order response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
@@ -62,14 +62,14 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 
 	$scope.getOrderDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		var query = {};
+		var query = {'and': []};
 		if($rootScope._user.role == 'operator') {
-			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+			query.and.push({'date': {between: [$scope.fromDate, $scope.toDate]}});
+			query.and.push({'dcName': $rootScope._user.dc_name});
 		} else {
-			query['date'] = $scope.selectedDate;
-			query['hub'] = $scope.hub;
-			query['dcName'] = $scope.dc;
-			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+			query.and.push({'date': $scope.selectedDate});
+			query.and.push({'dcName': $scope.dc});
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);
 		Orders.find({filter: {where: query}}, function(successResponse) {
@@ -86,7 +86,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 
 	$scope.updateOrder = function(record) {
 		console.log('record = ', record);
-		Orders.updateAll({where: {id: record.id, hub: $rootScope._hub}},
+		Orders.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}},
 			{
 				"online_m": record.online_m,
 				"online_e": record.online_e,

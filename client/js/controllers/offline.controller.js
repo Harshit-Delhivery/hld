@@ -15,6 +15,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	$scope.offline_reason = null;
 	$scope.offlineData = [];
 	$scope.edit = false;
+	$scope.dc;
 
 	$scope.time = function(obj) {
 		var hm = obj.time.split(':'),
@@ -46,7 +47,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 		  "drop_started_at": $scope.drop_started_at,
 		  "delivered_at": $scope.delivered_at,
 		  "offline_reason": $scope.offline_reason,
-		  "hub": $rootScope._hub
+		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
 			// console.log('create offline response = ', successResp);
 			$scope.offlineData.push(successResp);
@@ -87,14 +88,14 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 
 	$scope.getOfflineDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
-		var query = {};
+		var query = {'and': []};
 		if($rootScope._user.role == 'operator') {
-			query['date'] = {between: [$scope.fromDate, $scope.toDate]};
+			query.and.push({'date': {between: [$scope.fromDate, $scope.toDate]}});
+			query.and.push({'dcName': $rootScope._user.dc_name});
 		} else {
-			query['date'] = $scope.selectedDate;
-			query['hub'] = $scope.hub;
-			query['dcName'] = $scope.dc;
-			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._hub, dcName: $scope.dcName}
+			query.and.push({'date': $scope.selectedDate});
+			query.and.push({'dcName': $scope.dc});
+			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);
 		Offline.find({filter: {where: query}}, function(successResponse) {
@@ -111,7 +112,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 
 	$scope.updateOffline = function(record) {
 		// console.log('record = ', record);
-		Offline.updateAll({where: {id: record.id, hub: $rootScope._hub}},
+		Offline.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}},
 			{	"merchant_id": record.merchant_id,
 				"order_code": record.order_code,
 				"merchant_name": record.merchant_name,
