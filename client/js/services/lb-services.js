@@ -4910,31 +4910,7 @@ module.factory(
                     }, function(error) {
                     });
                 }
-<<<<<<< HEAD
-                Hubmapping.find({filter: {where: where}}, function(s) {
-                console.log(s);
-                response.data.user['hub'] = [];
-                response.data.user['dcName'] = [];
-                s.map(function(item) {
-                    console.log(item.hub);
-                    // response.data.user.hub.push(item.hub);
-                    if(response.data.user.dcName.indexOf(item.dcName) == -1) {
-                        response.data.user.dcName.push(item.dcName);
-                    }
-                });
-              }, function(e) {
-                console.log(e);
-              });
-              function getRestaurants() {
-                
-                Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
-                    response.data.user.restaurants = data;
-                    // console.log(data.length);
-                }, function(error) {
-                });
-            }
-=======
->>>>>>> f42a4a9757430b2a0ffdcfe2497bcfd19e3355c5
+
               var accessToken = response.data;
               LoopBackAuth.setUser(accessToken.id, accessToken.userId, accessToken.user);
               LoopBackAuth.rememberMe = response.config.params.rememberMe !== false;
