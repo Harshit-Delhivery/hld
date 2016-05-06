@@ -28,12 +28,12 @@ obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 });
 
 function restaurantData() {
-	async.forEach(extractData, function(item, callback) {
-		app.models.Restaurant.upsert({
+	async.forEach(extractData, function(item, cb) {
+		app.models.Restaurant.create({
 			'merchantName': item.merchantName, 
 			'merchantId': item.merchantId, 
 			'dcName': item.dcName,
-			'city': item.city }, callback);
+			'city': item.city }, cb);
 	}, function(err) {
 		if(err) {
 			throw err;
