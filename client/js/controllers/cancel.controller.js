@@ -130,15 +130,27 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 		});
 	}
 
-	// $scope.getRestaurantList = function() {
-	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, 
-	// 		function(successResponse) {
-	// 			// console.log('drop down data = ', successResponse);
-	// 			$scope.restaurants = successResponse;
-	// 		}, function(error) {
-	// 			console.log(error);
-	// 	});
-	// };
+	$scope.restaurant = null;
+	$scope.addRestaurant = function() {
+		Restaurant.create({
+			'merchantName': $scope.restaurant,
+			'merchantId': 0, 
+			"dcName": $rootScope._user.dc_name,
+			"city": $rootScope._user.city },
+			function(successResponse) {
+				$rootScope._user.restaurants.push({merchantName: $scope.restaurant});
+				$scope.restaurant = null;
+				// console.log('home controller successResponse = ', successResponse);
+				$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
+				$scope.alertMessage = 'Restaurant has been Added Successfully';
+			}, function(error) {
+				console.log(error);
+				$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
+				if(error.status == 422) {
+					$scope.alertMessage = 'Please fill in the Restaurant Name';
+				}
+			});
+	};
 
 	// $scope.getCancelReasons = function() {
 	// 	Canreason.find({}, function(successResponse) {

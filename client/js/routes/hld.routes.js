@@ -13,7 +13,7 @@ app.config(['$stateProvider', function($stateProvider) {
     }
   })
   .state('home.login' , {
-    url:'login/',
+    url:'login',
     views: {
       'home-view': {
         templateUrl: '/views/login.html',
@@ -21,17 +21,8 @@ app.config(['$stateProvider', function($stateProvider) {
       }
     }
   })
-  .state('home.selectHub' , {
-    url:'selectHub/',
-    views: {
-      'home-view': {
-        templateUrl: '/views/select-hub.html',
-        controller: 'LoginController'
-      }
-    }
-  })
   .state('home.signUp' , {
-    url:'signUp/',
+    url:'signUp',
     views: {
       'home-view': {
         templateUrl: '/views/sign-up.html',
@@ -64,7 +55,7 @@ app.config(['$stateProvider', function($stateProvider) {
     }
   })
   .state('home.app.view.home', {
-    url: 'home',
+    url: 'summaries',
     views: {
       'inner-view': {
         templateUrl: '/views/home.html',
