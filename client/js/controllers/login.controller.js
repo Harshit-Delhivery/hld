@@ -43,7 +43,7 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 
 	$scope.signUp = function() {
 		// console.log('signUp = ', {"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName});
-		Enduser.create({"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role}, 
+		Enduser.create({"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName}, 
 			function(successResponse) {
         	console.log('success response = ', successResponse);
         	$state.go('home.login');
