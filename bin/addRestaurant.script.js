@@ -29,7 +29,7 @@ obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 
 function restaurantData() {
 	async.forEach(extractData, function(item, cb) {
-		app.models.Restaurant.create({
+		app.models.Restaurant.upsert({
 			'merchantName': item.merchantName, 
 			'merchantId': item.merchantId, 
 			'dcName': item.dcName,
