@@ -207,25 +207,28 @@
                            <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
                               <thead style="width:98%;">
                                  <tr>
-                                    <th width="20%" style="text-align: center">HL Morning</th>
-                                    <th width="20%" style="text-align: center">HL Evening</th>
-                                    <th width="20%" style="text-align: center">HL Overall</th>
-                                    <th width="20%" style="text-align: center">Express</th>
-                                    <th width="20%" style="text-align: center">Overall</th>
+                                    <th width="16%" style="text-align: center">Date</th>
+                                    <th width="16%" style="text-align: center">HL Morning</th>
+                                    <th width="16%" style="text-align: center">HL Evening</th>
+                                    <th width="16%" style="text-align: center">HL Overall</th>
+                                    <th width="16%" style="text-align: center">Express</th>
+                                    <th width="16%" style="text-align: center">Overall</th>
                                  </tr>
                               </thead>
                               <tbody>
-                                 <tr ng-repeat="summary in productivity">
+                                 <tr ng-repeat="record in productivity">
 
-                                    <td width="20%" ng-bind="record.dcName" style="text-align: center"></td>
+                                    <td width="16%" style="text-align: center">{{record.date|date: 'dd-MM-yyyy'}}</td>
 
-                                    <td width="20%" style="text-align: center">{{record.date|date: 'dd-MM-yyyy'}}</td>
+                                    <td width="16%" ng-bind="record.hlMorning" style="text-align: center"></td>
 
-                                    <td width="20%" ng-bind="record.headcount" style="text-align: center"></td>
+                                    <td width="16%" ng-bind="record.hlEvening" style="text-align: center"></td>
                                     
-                                    <td width="20%" ng-bind="record.present_m" style="text-align: center"></td>
+                                    <td width="16%" ng-bind="record.hlOverall" style="text-align: center"></td>
+
+                                    <td width="16%" ng-bind="record.express" style="text-align: center"></td>
                                     
-                                    <td width="20%" ng-bind="record.present_e" style="text-align: center"></td>
+                                    <td width="16%" ng-bind="record.overall" style="text-align: center"></td>
                                     
                                  </tr>
                               </tbody>

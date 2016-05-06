@@ -38,6 +38,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	$scope.submitOffline = function() {
 		Offline.create({
 		  "date": $scope._date,
+		  "city": $rootScope._user.city,
 		  "order_code": $scope.order_code,
 		  "merchant_id": $scope.merchant_id,
 		  "merchant_name": $scope.merchant_name,

@@ -39,6 +39,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	$scope.submitCancelled = function() {
 		Cancelled.create({
 		  	"date": $scope._date,
+		  	"city": $rootScope._user.city,
 		  	"restaurant": $scope.restaurant,
 		    "order_code": $scope.order_code,
 			"source": $scope.source,
@@ -49,7 +50,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			"cancellation_reason": $scope.cancellation_reason,
 			"description": $scope.description,
 			"final_status": $scope.final_status,
-		  "dcName": $rootScope._user.dc_name
+		 	"dcName": $rootScope._user.dc_name
 		}, function(successResp) {
 			// console.log('create cancelled response = ', successResp);
 			$scope.cancelledData.push(successResp);
