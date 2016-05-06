@@ -2,7 +2,7 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('HomeController', ['$scope', '$state', '$http', 'notifyService', '$stateParams', '$rootScope', 'Restaurant', 'Orders', 'Attendance', '_', function($scope, $state, $http, notifyService, $stateParams, $rootScope, Restaurant, Orders, Attendance, _) {
+app.controller('HomeController', ['$scope', '$state', '$q', '$http', 'notifyService', '$stateParams', '$rootScope', 'Restaurant', 'Orders', 'Attendance', '_', function($scope, $state, $q, $http, notifyService, $stateParams, $rootScope, Restaurant, Orders, Attendance, _) {
 	$scope.getOrderDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
 		var query = {'and': []};
@@ -50,6 +50,31 @@ app.controller('HomeController', ['$scope', '$state', '$http', 'notifyService', 
 			console.log(error);
 		});
 	}
+
+	$scope.getProductivityDatewise = function() {
+		
+		
+		function getAttendance() {
+			var deferred = $q.defer()
+			try {
+			 	$scope.getAttendanceDatewise();
+			 	deferred.resolve();
+			 } catch(e) {
+			 	deferred.reject(e);
+			 }
+			return deferred.promise;
+		}
+
+		getAttendance().then(function() {
+			console.log('then = ', $scope.attendanceHistory);
+		});
+	}
+
+	// function productivity() {
+	// 	console.log('productivity = ', $scope.)
+	// }
+
+
 
 	var arr = [1,2,3,4,5,6,7,8,9];
 	console.log('max = ', _.max(arr));
