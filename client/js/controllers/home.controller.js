@@ -11,7 +11,7 @@ app.controller('HomeController', ['$scope', '$state', '$http', 'notifyService', 
 			"dcName": $rootScope._user.dc_name,
 			"city": $rootScope._user.city },
 			function(successResponse) {
-				$rootScope._restaurants.push({merchantName: $scope.restaurant});
+				$rootScope._user.restaurants.push({merchantName: $scope.restaurant});
 				$scope.restaurant = null;
 				// console.log('home controller successResponse = ', successResponse);
 				$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
