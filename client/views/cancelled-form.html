@@ -4,7 +4,7 @@
          Enter Cancelled
       </h1>
    </div>
-   <form class="attendance-form" ng-controller="HomeController">
+   <form class="attendance-form">
      <div class="col-md-12">
         <div class="row">
            <div class="col-md-6">
@@ -37,7 +37,7 @@
                         <th width="10%" style="text-align: center">Restaurant</th>
                         <th width="9%" style="text-align: center">Order Code</th>
                         <th width="9%" style="text-align: center">Source</th>
-                        <th width="8%" style="text-align: center">Ground Pilot ID</th>
+                        <th width="8%" style="text-align: center">Ground Pilot Name</th>
                         <th width="8%" style="text-align: center">Assigned Time</th>
                         <th width="8%" style="text-align: center">Cancellation Time</th>
                         <th width="8%" style="text-align: center">Cancelled By</th>
@@ -52,7 +52,7 @@
                   <div class="col-md-12">
                      <div class="row">
                         <div class="col-md-1 text-center" style="width: 10%">
-                           {{_date|dateFilter: dd/MM/yyyy}}
+                           {{_date|date: dd/MM/yyyy}}
                         </div>
                         <div class="col-md-1 text-center" style="width: 10%" ng-bind="data.restaurant">
                         </div>
@@ -85,7 +85,7 @@
                 	<div class="col-md-12">
                     	<div class="row">
 	                        <div class="col-md-1" style="width: 10%">
-	                           {{_date|dateFilter: dd/MM/yyyy}}
+	                           {{_date|date: dd/MM/yyyy}}
 	                        </div>
 		                     
 	                        <div class="col-md-1" style="width: 10%">
@@ -114,7 +114,7 @@
 	                              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
 	                              Date <i class="fa fa-calendar"></i>
 	                              </a>
-	                              <div ng-show="assigned_at">{{assigned_at|dateFilter: 'hh:mm'}}</div>
+	                              <div ng-show="assigned_at">{{assigned_at|date: 'hh:mm'}}</div>
 	                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 	                                 <datetimepicker data-ng-model="assigned_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
 	                              </ul>
@@ -127,7 +127,7 @@
 	                              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
 	                              Date <i class="fa fa-calendar"></i>
 	                              </a>
-	                              <div ng-show="cancelled_at">{{cancelled_at|dateFilter: 'hh:mm'}}</div>
+	                              <div ng-show="cancelled_at">{{cancelled_at|date: 'hh:mm'}}</div>
 	                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 	                                 <datetimepicker data-ng-model="cancelled_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
 	                              </ul>

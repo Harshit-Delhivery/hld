@@ -1,4 +1,4 @@
-var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angular-growl', 'jkuri.timepicker', 'ngCookies']);
+var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angular-growl', 'jkuri.timepicker', 'ngCookies', 'underscore']);
 
 app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' , '$log' , '$location', 'Dropdownservice', 'Hubmapping', '$cookies', 'Restaurant', function(LoopBackAuth, Enduser, $rootScope, $http, $state, $window, $log, $location, Dropdownservice, Hubmapping, $cookies, Restaurant) {
     $rootScope._user = null;
@@ -84,13 +84,9 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
 	    };
 	    
 	    return notifyService;
-	}])
-.filter('dateFilter', [
-    '$filter', function($filter) {
-        return function(input, format) {
-            // var temp = input.split(':000Z'),
-            // input = temp[0] + '-530Z';
-            return $filter('date')(new Date(input), format);
-        };
-    }
-]);;
+
+	}]);
+
+angular.module('underscore', []).constant('_',
+    window._
+);

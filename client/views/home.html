@@ -7,240 +7,237 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-md-12 col-sm-12">
-            <strong style="font-weight:normal;margin-bottom:15px;display:block;font-size:16px;">Cancelled Order</strong>
+            <strong style="font-weight:normal;margin-bottom:15px;display:block;font-size:16px;">Summaries</strong>
             <div class="panel panel-default table-invoice">
                <div class="panel-body">
                   <ul class="nav nav-tabs">
-                     <li class="active"><a data-toggle="tab" href="#home">Orders</a></li>
-                     <li><a data-toggle="tab" href="#menu1">Attendance</a></li>
-                     <li><a data-toggle="tab" href="#menu2">Productivity</a></li>
+                     <li class="active"><a data-toggle="tab" href="#order" id="homeTab">Orders</a></li>
+                     <li><a data-toggle="tab" href="#attendance" id="attendanceTab">Attendance</a></li>
+                     <li><a data-toggle="tab" href="#productivity" id="productivityTab">Productivity</a></li>
                   </ul>
                   <div class="tab-content">
-                     <div id="home" class="tab-pane fade in active">
-                        <table class="table table-bordered table-fixedheader" style="background-color: white">
-                           <thead style="width:98%;">
-                              <tr>
-                                 <th width="8%" style="text-align: center">Date</th>
-                                 <th width="8%" style="text-align: center">Restaurant</th>
-                                 <th width="10%" style="text-align: center">Order Code</th>
-                                 <th width="9%" style="text-align: center">Source</th>
-                                 <th width="9%" style="text-align: center">Ground Pilot ID</th>
-                                 <th width="9%" style="text-align: center">Assigned Time</th>
-                                 <th width="9%" style="text-align: center">Cancellation Time</th>
-                                 <th width="10%" style="text-align: center">Cancelled By</th>
-                                 <th width="9%" style="text-align: center">Cancellation reason</th>
-                                 <th width="9%" style="text-align: center">Description</th>
-                                 <th width="9%" style="text-align: center">Final Status</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td width="8%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="date" class="form-control" placeholder="">
-                                    </div>
-                                 </td>
-                                 <td width="8%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="10%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
+                     <div id="order" class="tab-pane fade in active">
+                        <div style="margin-bottom: 16px; margin-top: 10px">
+                           <div class="row">
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >From Date:</label>
+                                <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >To Date:</label>
+                                <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'admin'">
+                                <label >Select Date:</label>
+                                <input type="date" placeholder="search" ng-model="selectedDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >Select DC:</label>
+                                <select class="form-control" ng-model="dc">
+                                    <option ng-repeat="dc in _user.dcArray" value="{{dc}}">{{dc}}</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-3" style="margin-top: 24px">
+                                 <button type="submit" ng-click="getOrderDatewise()" class="btn btn-primary">
+                                    Search
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default table-invoice table-responsive">
+                           <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                              <thead style="width:98%;">
+                                 <tr>
+                                    <th width="9%" style="text-align: center">DC</th>
+                                    <th width="10%" style="text-align: center">Date</th>
+                                    <th width="10%" style="text-align: center">Online morning</th>
+                                    <th width="10%" style="text-align: center">Online evening</th>
+                                    <th width="10%" style="text-align: center">Offline morning</th>
+                                    <th width="10%" style="text-align: center">Offline evening</th>
+                                    <th width="10%" style="text-align: center">Cancelled morning</th>
+                                    <th width="10%" style="text-align: center">Cancelled evening</th>
+                                    <th width="10%" style="text-align: center">Express morning</th>
+                                    <th width="10%" style="text-align: center">Express evening</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr ng-repeat="order in orderHistory">
+
+                                    <td width="10%" style="text-align: center" ng-bind="order.dcName">
+                                    </td>
+
+                                    <td width="9%" style="text-align: center">{{order.date|date: 'dd-MM-yyyy'}}</td>
+
+                                    <td width="10%" style="text-align: center" ng-bind="order.online_m">
+                                    </td>
+
+                                    <td width="10%" style="text-align: center" ng-bind="order.online_e">
+                                    </td>
+                                    
+                                    <td width="10%" style="text-align: center" ng-bind="order.offline_m">
+                                    </td>
+                                    
+                                    <td width="10%" style="text-align: center" ng-bind="order.offline_e">
+                                    </td>
+                                    
+                                    <td width="10%" style="text-align: center" ng-bind="order.cancel_m">
+                                    </td>
+                                    
+                                    <td width="10%" style="text-align: center" ng-bind="order.cancel_e">
+                                    </td>
+                                    
+                                    <td width="10%" style="text-align: center" ng-bind="order.express_m">
+                                    </td>
+                                    
+                                    <td width="10%" style="text-align: center" ng-bind="order.express_e">
+                                    </td>
+                                    
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
                      </div>
-                     <div id="menu1" class="tab-pane fade">
-                        <table class="table table-bordered table-fixedheader" style="background-color: white">
-                           <thead style="width:98%;">
-                              <tr>
-                                 <th width="11%" class="text-center">Date</th>
-                                 <th width="11%" class="text-center">Merchant Id</th>
-                                 <th width="11%" class="text-center">Merchant Name</th>
-                                 <th width="11%" class="text-center">Client/Source</th>
-                                 <th width="11%" class="text-center">Ground Pilot name</th>
-                                 <th width="11%" class="text-center">Arrived at outlet time</th>
-                                 <th width="11%" class="text-center">Drop started date</th>
-                                 <th width="11%" class="text-center">Delivered</th>
-                                 <th width="11%" class="text-center">Offline Reason</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="date" class="form-control">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="11%" class="text-center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
+                     <div id="attendance" class="tab-pane fade">
+                        <div style="margin-bottom: 16px; margin-top: 10px">
+                           <div class="row">
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >From Date:</label>
+                                <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >To Date:</label>
+                                <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'admin'">
+                                <label >Select Date:</label>
+                                <input type="date" placeholder="search" ng-model="selectedDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >Select DC:</label>
+                                <select class="form-control" ng-model="dc">
+                                    <option ng-repeat="dc in _user.dcArray" value="{{dc}}">{{dc}}</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-3" style="margin-top: 24px">
+                                 <button type="submit" ng-click="getAttendanceDatewise()" class="btn btn-primary">
+                                    Search
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default table-invoice table-responsive">
+                           <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                              <thead style="width:98%;">
+                                 <tr>
+                                    <th width="10%" style="text-align: center">DC</th>
+                                    <th width="9%" style="text-align: center">Date</th>
+                                    <th width="8%" style="text-align: center">Total Count</th>
+                                    <th width="9%" style="text-align: center">Present morning</th>
+                                    <th width="8%" style="text-align: center">Present evening</th>
+                                    <th width="8%" style="text-align: center">Absent</th>
+                                    <th width="8%" style="text-align: center">Weekly Off</th>
+                                    <th width="8%" style="text-align: center">Express morning</th>
+                                    <th width="8%" style="text-align: center">Express evening</th>
+                                    <th width="8%" style="text-align: center">Part_timer (8-11)</th>
+                                    <th width="8%" style="text-align: center">Part_timer (12-3)</th>
+                                    <th width="8%" style="text-align: center">Part_timer (7-12)</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr ng-repeat="record in attendanceHistory">
+
+                                    <td width="10%" ng-bind="record.dcName" style="text-align: center"></td>
+
+                                    <td width="9%" style="text-align: center">{{record.date|date: 'dd-MM-yyyy'}}</td>
+
+                                    <td width="8%"  ng-bind="record.headcount" style="text-align: center"></td>
+                                    
+                                    <td width="9%"  ng-bind="record.present_m" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.present_e" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.absent" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.weekoff" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.feexpress_m" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.feexpress_e" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.parttimer1" style="text-align: center"</td>
+                                    
+                                    <td width="8%"  ng-bind="record.parttimer2" style="text-align: center"></td>
+                                    
+                                    <td width="8%"  ng-bind="record.parttimer3" style="text-align: center"></td>
+                                    
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
                      </div>
-                     <div id="menu2" class="tab-pane fade">
-                        <table class="table table-bordered table-fixedheader" style="background-color: white">
-                           <thead style="width:98%;">
-                              <tr>
-                                 <th width="8%" style="text-align: center">Date</th>
-                                 <th width="8%" style="text-align: center">Restaurant</th>
-                                 <th width="10%" style="text-align: center">Order Code</th>
-                                 <th width="9%" style="text-align: center">Source</th>
-                                 <th width="9%" style="text-align: center">Ground Pilot ID</th>
-                                 <th width="9%" style="text-align: center">Assigned Time</th>
-                                 <th width="9%" style="text-align: center">Cancellation Time</th>
-                                 <th width="10%" style="text-align: center">Cancelled By</th>
-                                 <th width="9%" style="text-align: center">Cancellation reason</th>
-                                 <th width="9%" style="text-align: center">Description</th>
-                                 <th width="9%" style="text-align: center">Final Status</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr>
-                                 <td width="8%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="date" class="form-control" placeholder="">
-                                    </div>
-                                 </td>
-                                 <td width="8%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="10%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                                 <td width="9%" style="text-align: center">
-                                    <div class="form-group">
-                                       <input type="text" class="form-control" placeholder="18">
-                                    </div>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
+                     <div id="productivity" class="tab-pane fade">
+                        <div style="margin-bottom: 16px; margin-top: 10px">
+                           <div class="row">
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >From Date:</label>
+                                <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >To Date:</label>
+                                <input type="date" placeholder="search" ng-model="toDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'admin'">
+                                <label >Select Date:</label>
+                                <input type="date" placeholder="search" ng-model="selectedDate" class="form-control">
+                              </div>
+                              <div class="col-md-3" ng-show="_user.role == 'clm'">
+                                <label >Select DC:</label>
+                                <select class="form-control" ng-model="dc">
+                                    <option ng-repeat="dc in _user.dcArray" value="{{dc}}">{{dc}}</option>
+                                 </select>
+                              </div>
+                              <div class="col-md-3" style="margin-top: 24px">
+                                 <button type="submit" ng-click="getProductivityDatewise()" class="btn btn-primary">
+                                    Search
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default table-invoice table-responsive">
+                           <table class="table table-bordered table-fixedheader table-striped" style="background-color: white">
+                              <thead style="width:98%;">
+                                 <tr>
+                                    <th width="16%" style="text-align: center">Date</th>
+                                    <th width="16%" style="text-align: center">HL Morning</th>
+                                    <th width="16%" style="text-align: center">HL Evening</th>
+                                    <th width="16%" style="text-align: center">HL Overall</th>
+                                    <th width="16%" style="text-align: center">Express</th>
+                                    <th width="16%" style="text-align: center">Overall</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr ng-repeat="record in productivity">
+
+                                    <td width="16%" style="text-align: center">{{record.date|date: 'dd-MM-yyyy'}}</td>
+
+                                    <td width="16%" ng-bind="record.hlMorning" style="text-align: center"></td>
+
+                                    <td width="16%" ng-bind="record.hlEvening" style="text-align: center"></td>
+                                    
+                                    <td width="16%" ng-bind="record.hlOverall" style="text-align: center"></td>
+
+                                    <td width="16%" ng-bind="record.express" style="text-align: center"></td>
+                                    
+                                    <td width="16%" ng-bind="record.overall" style="text-align: center"></td>
+                                    
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
                      </div>
                   </div>
                </div>
-               <div class="panel-footer">
+               <!-- <div class="panel-footer">
                   <div class="row">
                      <div class="col-md-1">
                         <div class="form-group">
@@ -248,9 +245,20 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
             </div>
          </div>
       </div>
    </div>
+   <script type="text/javascript">
+      $("#homeTab").click(function (e) {
+          e.preventDefault();
+      });
+      $("#attendanceTab").click(function (e) {
+          e.preventDefault();
+      });
+      $("#productivityTab").click(function (e) {
+          e.preventDefault();
+      });
+   </script>
 </div>

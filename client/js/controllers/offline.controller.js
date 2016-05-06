@@ -38,6 +38,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 	$scope.submitOffline = function() {
 		Offline.create({
 		  "date": $scope._date,
+		  "city": $rootScope._user.city,
 		  "order_code": $scope.order_code,
 		  "merchant_id": $scope.merchant_id,
 		  "merchant_name": $scope.merchant_name,
@@ -128,14 +129,27 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 		});
 	}
 
-	// $scope.getOfflineReasons = function() {
-	// 	Offreason.find({}, function(successResponse) {
-	// 		console.log('getOfflineReasons = ', successResponse);
-	// 		$rootScope._offlineReasons = successResponse;
-	// 	}, function(error) {
-	// 		console.log('getOfflineReasons = ', error);
-	// 	})
-	// }
+	$scope.restaurant = null;
+	$scope.addRestaurant = function() {
+		Restaurant.create({
+			'merchantName': $scope.restaurant,
+			'merchantId': 0, 
+			"dcName": $rootScope._user.dc_name,
+			"city": $rootScope._user.city },
+			function(successResponse) {
+				$rootScope._user.restaurants.push({merchantName: $scope.restaurant});
+				$scope.restaurant = null;
+				// console.log('home controller successResponse = ', successResponse);
+				$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
+				$scope.alertMessage = 'Restaurant has been Added Successfully';
+			}, function(error) {
+				console.log(error);
+				$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
+				if(error.status == 422) {
+					$scope.alertMessage = 'Please fill in the Restaurant Name';
+				}
+			});
+	};
 
 	// $scope.getRestaurantList = function() {
 	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, 

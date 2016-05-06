@@ -17,6 +17,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		Orders.create(
 		{
 		  "date": $scope._date,
+		  "city": $rootScope._user.city,
 		  "online_m": $scope.online_m,
 		  "online_e": $scope.online_e,
 		  "offline_m": $scope.offline_m,

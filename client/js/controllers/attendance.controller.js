@@ -22,6 +22,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	$scope.submitAttendance = function() {
 		Attendance.create({
 		  "date": $scope._date,
+		  "city": $rootScope._user.city,
 		  "headcount": $scope.headcount,
 		  "present_m": $scope.present_m,
 		  "present_e": $scope.present_e,
