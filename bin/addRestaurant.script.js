@@ -3,6 +3,7 @@ var app = require('../server/server.js'),
 	csv = require('csv'),
 	async = require('async'),
 	extractData = [];
+	extractData2 = [];
 
 var obj = csv();
 
@@ -38,7 +39,29 @@ function restaurantData() {
 		if(err) {
 			throw err;
 		} else {
+			for(var i = 0; i<extractData.length/2; i++) {
+				extractData2.push(extractData[i]);
+				extractData.splice(0, i);
+
+			}
 			console.log('inserted  ', extractData.length, ' restaurants');
+			addRemaining();
 		}
 	});
 };
+
+function addRemaining() {
+	async.forEach(extractData2, function(item, cb) {
+		app.models.Restaurant.upsert({
+			'merchantName': item.merchantName, 
+			'merchantId': item.merchantId, 
+			'dcName': item.dcName,
+			'city': item.city }, cb);
+	}, function(err) {
+		if(err) {
+			throw err;
+		} else {
+			console.log('inserted remaining ', extractData.length, ' restaurants');
+		}
+	});
+}
