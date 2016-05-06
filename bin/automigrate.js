@@ -1,6 +1,6 @@
 var server = require('../server/server.js');
 
-var ds = server.dataSources.localPsql;
+var ds = server.dataSources.prod;
 var lbTables = ['Hubmapping'];
 ds.automigrate(lbTables, function(er) {
   if (er) throw er;
