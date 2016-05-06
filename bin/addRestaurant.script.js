@@ -23,6 +23,10 @@ obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 		if(err) {
 			throw err;
 		} else {
+			for(var i = 0; i<extractData.length/2; i++) {
+				extractData2.push(extractData[i]);
+				extractData.splice(0, i);
+			}
 			restaurantData();
 		}
 	});
@@ -30,6 +34,7 @@ obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 
 function restaurantData() {
 	async.forEach(extractData, function(item, cb) {
+		console.log('extractedDate = ', extractedData.length);
 		app.models.Restaurant.upsert({
 			'merchantName': item.merchantName, 
 			'merchantId': item.merchantId, 
@@ -39,11 +44,6 @@ function restaurantData() {
 		if(err) {
 			throw err;
 		} else {
-			for(var i = 0; i<extractData.length/2; i++) {
-				extractData2.push(extractData[i]);
-				extractData.splice(0, i);
-
-			}
 			console.log('inserted  ', extractData.length, ' restaurants');
 			addRemaining();
 		}
