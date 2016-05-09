@@ -15,10 +15,10 @@ app.controller('HomeController', ['$scope', '$state', '$q', '$http', 'notifyServ
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log('1 = ', query);
+		// console.log('1 = ', query);
 		Orders.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.orderHistory = successResponse;
 			} else {
 				//to be handled
@@ -39,10 +39,10 @@ app.controller('HomeController', ['$scope', '$state', '$q', '$http', 'notifyServ
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log(query);
+		// console.log(query);
 		Attendance.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.attendanceHistory = successResponse;
 			} else {
 				//to be handled
@@ -63,14 +63,14 @@ app.controller('HomeController', ['$scope', '$state', '$q', '$http', 'notifyServ
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log('3 = ', query);
+		// console.log('3 = ', query);
 		Orders.find({filter: {where: query}}, function(orders) {
 			if(orders) {
-				console.log(orders);
+				// console.log(orders);
 
 				Attendance.find({filter: {where: query}}, function(attendance) {
 					if(attendance) {
-						console.log(attendance);
+						// console.log(attendance);
 						$scope.productivity = [];
 						attendance.map(function(atten) {
 							var order = _.find(orders, function(item) { return item.date == atten.date;});

@@ -16,10 +16,10 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
             // console.log('successResp = ', successResp.role);
             if(successResp.role != 'operator') {
                 Hubmapping.find({filter: {where: {'email': successResp.email}}}, function(s) {
-                    console.log('dcs = ', s);
+                    // console.log('dcs = ', s);
                     successResp.dcArray = [];
                     s.map(function(item) {
-                        console.log(item);
+                        // console.log(item);
                         if(successResp.dcArray.indexOf(item.dcName) == -1)
                             successResp.dcArray.push(item.dcName);
                     });
@@ -41,7 +41,7 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
         // console.log('_hub = ', $rootScope._hub);
         Restaurant.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(data) {
             $rootScope._user.restaurants = data;
-            console.log('restaurant\'s length = ', data.length);
+            // console.log('restaurant\'s length = ', data.length);
         }, function(error) {
         });
     }
@@ -51,18 +51,18 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
     // if(toState.name !== 'home.login') {
     //   $state.go("home.login");
     // }
-    console.log('isAuthenticated = ', Enduser.isAuthenticated(), 'toState = ', toState.name); 
+    // console.log('isAuthenticated = ', Enduser.isAuthenticated(), 'toState = ', toState.name);
 
     if(toState.name != 'home.login') {
-    	console.log('1');
+    	// console.log('1');
     	if(!Enduser.isAuthenticated()) {
-    		console.log('to login');
+    		// console.log('to login');
     		$state.go('home.login');
     	} else {
     		return;
     	}
     } else {
-    	console.log('2');
+    	// console.log('2');
     	return;
     }
 

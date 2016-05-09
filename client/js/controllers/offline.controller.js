@@ -98,7 +98,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log(query);
+		//console.log(query);
 		Offline.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
 				// console.log(successResponse);
@@ -150,13 +150,4 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 				}
 			});
 	};
-
-	// $scope.getRestaurantList = function() {
-	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, 
-	// 	function(data) {
-	// 		$rootScope._restaurants = data;
-	// 		// console.log(data.length);
-	// 	}, function(error) {
-	// 	});
-	// }
 }]);

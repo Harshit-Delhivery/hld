@@ -99,7 +99,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log(query);
+		// console.log(query);
 		Cancelled.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
 				// console.log(successResponse);

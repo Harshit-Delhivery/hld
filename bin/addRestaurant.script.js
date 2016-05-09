@@ -23,19 +23,13 @@ obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 		if(err) {
 			throw err;
 		} else {
-			// console.log('extractData = ', extractData.length);
-			// var arrLen = extractData.length/2;
-			// for(var i = 0; i<arrLen; i++) {
-			// 	extractData2.push(extractData[i]);
-			// 	extractData.splice(0, 1);
-			// }
 			restaurantData();
 		}
 	});
 });
 
 function restaurantData() {
-	console.log('extractData = ', extractData.length, extractData2.length);
+	// console.log('extractData = ', extractData.length, extractData2.length);
 	async.forEach(extractData, function(item, cb) {
 		process.nextTick(function() { 
 			app.models.Restaurant.upsert({
@@ -49,24 +43,6 @@ function restaurantData() {
 			throw err;
 		} else {
 			console.log('inserted  ', extractData.length, ' restaurants');
-			// addRemaining();
 		}
 	});
 };
-
-// function addRemaining() {
-// 	console.log('extractData2 = ', extractData2.length);
-// 	async.forEach(extractData2, function(item, cb) {
-// 		app.models.Restaurant.upsert({
-// 			'merchantName': item.merchantName, 
-// 			'merchantId': item.merchantId, 
-// 			'dcName': item.dcName,
-// 			'city': item.city }, cb);
-// 	}, function(err) {
-// 		if(err) {
-// 			throw err;
-// 		} else {
-// 			console.log('inserted remaining ', extractData.length, ' restaurants');
-// 		}
-// 	});
-// }

@@ -4884,14 +4884,14 @@ module.factory(
           },
           interceptor: {
             response: function(response) {
-                console.log('inside login interceptor = ', response.data.user.role);
+                //console.log('inside login interceptor = ', response.data.user.role);
                 response.data.user.restaurants = [];
                 if(response.data.user.role != 'operator') {
                     Hubmapping.find({filter: {where: {'email': response.data.user.email}}}, function(s) {
-                        console.log(s);
+                        //console.log(s);
                         response.data.user['dcArray'] = [];
                         s.map(function(item) {
-                            console.log(item.dcName);
+                            //console.log(item.dcName);
                             if(response.data.user.dcArray.indexOf(item.dcName) == -1) {
                                 response.data.user.dcArray.push(item.dcName);
                             }

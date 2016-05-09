@@ -28,7 +28,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		  "express_e": $scope.express_e,
 		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
-			console.log('create order response = ', successResp);
+			//console.log('create order response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Order Data has been Successfully Submitted';
 			$scope.online_m = null;
@@ -72,10 +72,10 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log(query);
+		//console.log(query);
 		Orders.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.orderHistory = successResponse;
 			} else {
 				//to be handled
@@ -86,7 +86,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	}
 
 	$scope.updateOrder = function(record) {
-		console.log('record = ', record);
+		//console.log('record = ', record);
 		Orders.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}},
 			{
 				"online_m": record.online_m,
@@ -97,7 +97,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 				"cancel_e": record.cancel_e,
 				"express_m": record.express_m,
 				"express_e": record.express_e }, function(successResponse) {
-			console.log('update response = ', successResponse);
+			//console.log('update response = ', successResponse);
 		}, function(error) {
 			console.log(error);
 		});

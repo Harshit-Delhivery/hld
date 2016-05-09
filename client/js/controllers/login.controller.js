@@ -3,7 +3,7 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', '$cookies', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, $cookies, Restaurant) {
-	console.log('login controller');
+	//console.log('login controller');
 	$scope.emailId = null;
 	$scope.role = null;
 	$scope.hub = null;
@@ -19,7 +19,7 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			if(successResponse.user) {
 				// console.log('login response = ', successResponse);
 				$rootScope._user = successResponse.user;
-        		console.log('$rootScope._user = ', $rootScope._user.role);				
+        		//console.log('$rootScope._user = ', $rootScope._user.role);				
 		        $state.go('home.app.view');
 				notifyService.successMessage('Successfully Logged In!!!!!!!!', 5000);
 			}
@@ -45,7 +45,7 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		// console.log('signUp = ', {"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName});
 		Enduser.create({"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName}, 
 			function(successResponse) {
-        	console.log('success response = ', successResponse);
+        	//console.log('success response = ', successResponse);
         	$state.go('home.login');
         	notifyService.infoMessage('Your Account Has Been Created......', 5000);
         }, function(error) {
@@ -57,7 +57,7 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
     $scope.logOut = function() {
     	$cookies.remove('selectedHub');
     	Enduser.logout();
-    	console.log('authentication = ', Enduser.isAuthenticated());
+    	//console.log('authentication = ', Enduser.isAuthenticated());
     	$state.go('home.login');
     	notifyService.infoMessage('You Have Been Logged Out Successfully......', 5000);
     }

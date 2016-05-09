@@ -35,7 +35,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		  "parttimer3": $scope.parttimer3,
 		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
-			console.log('create attendance response = ', successResp);
+			// console.log('create attendance response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Attendance has been Successfully Submitted';
 			$scope.headcount = null;
@@ -81,10 +81,10 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log(query);
+		// console.log(query);
 		Attendance.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.attendanceHistory = successResponse;
 			} else {
 				//to be handled
@@ -95,7 +95,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	}
 
 	$scope.updateAttendance = function(record) {
-		console.log('record = ', record);
+		// console.log('record = ', record);
 		Attendance.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}}, {
 												  "headcount": record.headcount,
 												  "present_m": record.present_m,
@@ -108,7 +108,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 												  "parttimer2": record.parttimer2,
 												  "parttimer3": record.parttimer3
 												}, function(successResponse) {
-			console.log('update response = ', successResponse);
+			// console.log('update response = ', successResponse);
 		}, function(error) {
 			console.log(error);
 		});
