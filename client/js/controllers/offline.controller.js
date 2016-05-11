@@ -113,7 +113,7 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 
 	$scope.updateOffline = function(record) {
 		// console.log('record = ', record);
-		Offline.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}},
+		Offline.updateAll({where: {id: record.id, dcName: $scope.dc}},
 			{	"merchant_id": record.merchant_id,
 				"order_code": record.order_code,
 				"merchant_name": record.merchant_name,
