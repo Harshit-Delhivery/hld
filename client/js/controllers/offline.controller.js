@@ -3,7 +3,9 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Offline', 'Offreason', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Offline, Offreason, Restaurant) {
-	$scope._date = new Date().setHours(0,0,0,0);
+	var nowDate = new Date() - 7200000,
+		lagSeconds = new Date(nowDate).setHours(0,0,0,0);
+		$scope._date = new Date(lagSeconds);
 	$scope.order_code = null;
 	$scope.merchant_id =null;
 	$scope.merchant_name =null;

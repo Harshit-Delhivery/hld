@@ -3,7 +3,9 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Attendance', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Attendance) {
-	$scope._date = new Date().setHours(0,0,0,0);
+	var nowDate = new Date() - 7200000,
+		lagSeconds = new Date(nowDate).setHours(0,0,0,0);
+		$scope._date = new Date(lagSeconds);
 	$scope.headcount = null;
 	$scope.present_m = null;
 	$scope.present_e = null;
