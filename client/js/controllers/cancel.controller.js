@@ -3,7 +3,9 @@
 var app = angular.module('hyperLocalDelivery');
 
 app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Cancelled', 'Restaurant', 'Canreason', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Cancelled, Restaurant, Canreason) {
-	$scope._date = new Date().setHours(0,0,0,0);
+	var nowDate = new Date() - 7200000,
+		lagSeconds = new Date(nowDate).setHours(0,0,0,0);
+		$scope._date = new Date(lagSeconds);
     $scope.restaurant = null;
     $scope.order_code = null;
 	$scope.source = null;
