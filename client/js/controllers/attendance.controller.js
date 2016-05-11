@@ -95,8 +95,8 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	}
 
 	$scope.updateAttendance = function(record) {
-		console.log('record = ', record);
-		Attendance.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}}, {
+		console.log('record = ', record.id, $scope.dc);
+		Attendance.updateAll({where: {id: record.id, dcName: $scope.dc}}, {
 												  "headcount": record.headcount,
 												  "present_m": record.present_m,
 												  "present_e": record.present_e,

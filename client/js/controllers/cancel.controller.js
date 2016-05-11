@@ -114,7 +114,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 
 	$scope.updateCancelled = function(record) {
 		// console.log('record = ', record);
-		Cancelled.updateAll({where: {id: record.id, dcName: $rootScope._user.dc_name}}, {
+		Cancelled.updateAll({where: {id: record.id, dcName: $scope.dc}}, {
 							  	"restaurant": record.restaurant,
 							    "order_code": record.order_code,
 								"source": record.source,
