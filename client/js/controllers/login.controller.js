@@ -2,8 +2,8 @@
 
 var app = angular.module('hyperLocalDelivery');
 
-app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', '$cookies', 'Restaurant', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, $cookies, Restaurant) {
-	console.log('login controller');
+app.controller('LoginController', ['$q', '$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', '$cookies', 'Restaurant', function($q, $scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, $cookies, Restaurant) {
+	// console.log('login controller');
 	$scope.emailId = null;
 	$scope.role = null;
 	$scope.hub = null;
@@ -26,20 +26,8 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		}, function(error) {
 			console.log('error = ', error);
 			notifyService.warnMessage(error.data.error.message, 5000);
-		})
+		});
 	}
-
-	// $scope.selectHub = function() {
-	// 	$cookies.put("selectedHub", $scope.hub);
-	// 	$rootScope._hub = $scope.hub;
-	// 	$rootScope._user.restaurants = [];
-	// 	Restaurant.find({filter: {where: {hub: $rootScope._hub}}}, function(data) {
- //            $rootScope._user.restaurants = data;
- //            // console.log(data.length);
- //            $state.go('home.app.view.attendanceForm');
- //        }, function(error) {
- //        });
-	// }
 
 	$scope.signUp = function() {
 		// console.log('signUp = ', {"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName});
@@ -55,10 +43,13 @@ app.controller('LoginController', ['$scope', '$state', '$http', 'Enduser', 'noti
     }
 
     $scope.logOut = function() {
+    	var deffered = $q.deffer;
     	$cookies.remove('selectedHub');
-    	Enduser.logout();
-    	console.log('authentication = ', Enduser.isAuthenticated());
-    	$state.go('home.login');
-    	notifyService.infoMessage('You Have Been Logged Out Successfully......', 5000);
+    	Enduser.logout().$promise.then(function() {
+			console.log('authentication = ', Enduser.isAuthenticated());
+			$state.go('home.login');
+			delete $rootScope._user;
+    		notifyService.infoMessage('You Have Been Logged Out Successfully......', 5000);
+    	});
     }
 }]);
