@@ -3,16 +3,6 @@
     "name": "db",
     "connector": "memory"
   },
-  "localPsql": {
-    "host": "127.0.0.1",
-    "port": 3306,
-    "url": "",
-    "database": "hld",
-    "password": "root",
-    "name": "localPsql",
-    "connector": "mysql",
-    "user": "root"
-  },
   "prod": {
     "port": 3306,
     "host": "hld-data-entry-db.cz3sq5x0ps8m.ap-southeast-1.rds.amazonaws.com",
