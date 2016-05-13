@@ -88,7 +88,6 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	}
 
 	$scope.updateOrder = function(record) {
-		//console.log('record = ', record);
 		Orders.updateAll({where: {id: record.id, dcName: $scope.dc}},
 			{
 				"online_m": record.online_m,
