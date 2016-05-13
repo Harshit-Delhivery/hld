@@ -7,48 +7,37 @@
   },
   "properties": {
     "date": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "order_code": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "merchant_id": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "merchant_name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "client": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "fe_name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "arrived_at": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "drop_started_at": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "delivered_at": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "offline_reason": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "dcName": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "city": {
       "type": "string"
