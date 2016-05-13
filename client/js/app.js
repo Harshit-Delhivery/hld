@@ -2,12 +2,15 @@ var app = angular.module('hyperLocalDelivery', ['lbServices', 'ui.router', 'angu
 
 app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' , '$log' , '$location', 'Dropdownservice', 'Hubmapping', '$cookies', 'Restaurant', function(LoopBackAuth, Enduser, $rootScope, $http, $state, $window, $log, $location, Dropdownservice, Hubmapping, $cookies, Restaurant) {
     $rootScope._user = null;
-    // $rootScope._date = new Date();
-    console.log('app.run');
+    console.log('app.run = ', $state);
 
-    // if(!Enduser.isAuthenticated()) {
-    //   $state.go('home.login');
-    // }
+    if(!Enduser.isAuthenticated()) {
+        console.log('app run condition');
+      $state.go('home.login');
+    } else {
+        console.log('app run condition 2');
+        $state.go('home.app.view');
+    }
 
 
   if(Enduser.isAuthenticated()) {
@@ -46,7 +49,7 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
         });
     }
 
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, notifyService) {
+$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, notifyService) {
     // console.log(fromState, toState);
     // if(toState.name !== 'home.login') {
     //   $state.go("home.login");
@@ -54,18 +57,19 @@ app.run(['LoopBackAuth', 'Enduser', '$rootScope', '$http', '$state', '$window' ,
     // console.log('isAuthenticated = ', Enduser.isAuthenticated(), 'toState = ', toState.name);
 
     if(toState.name != 'home.login') {
-    	// console.log('1');
     	if(!Enduser.isAuthenticated()) {
-    		// console.log('to login');
+            event.preventDefault();
     		$state.go('home.login');
     	} else {
-    		return;
-    	}
+            return;
+        }
     } else {
-    	// console.log('2');
-    	return;
+    	if(!Enduser.isAuthenticated()) {
+           return;
+        } else {
+            event.preventDefault();
+        }
     }
-
   });
 }])
 .factory('notifyService' , ['$rootScope', '$state' , 'growl', function ($rootScope, $state , growl) {
