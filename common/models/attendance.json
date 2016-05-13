@@ -7,52 +7,40 @@
   },
   "properties": {
     "date": {
-      "type": "date",
-      "required": true
+      "type": "date" 
     },
     "headcount": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "present_m": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "present_e": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "absent": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "weekoff": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "feexpress_m": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "feexpress_e": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "parttimer1": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "parttimer2": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "parttimer3": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "dcName": {
-      "type": "string",
-      "required": true
+      "type": "string" 
     },
     "city": {
       "type": "string"
