@@ -60,16 +60,18 @@
                   <thead style="width:98%;">
                      <tr>
                         <th width="9%" style="text-align: center">Date</th>
-                        <th width="8%" style="text-align: center">Total Count</th>
-                        <th width="9%" style="text-align: center">Present morning</th>
-                        <th width="8%" style="text-align: center">Present evening</th>
-                        <th width="9%" style="text-align: center">Absent</th>
-                        <th width="8%" style="text-align: center">Weekly Off</th>
-                        <th width="9%" style="text-align: center">Express morning</th>
-                        <th width="8%" style="text-align: center">Express evening</th>
-                        <th width="9%" style="text-align: center">Part_timer (8-11)</th>
-                        <th width="8%" style="text-align: center">Part_timer (12-3)</th>
-                        <th width="9%" style="text-align: center">Part_timer (7-12)</th>
+                        <th width="7%" style="text-align: center">Total Count (M)</th>
+                        <th width="7%" style="text-align: center">Present (M)</th>
+                        <th width="7%" style="text-align: center">Present (E)</th>
+                        <th width="7%" style="text-align: center">Absent (M)</th>
+                        <th width="7%" style="text-align: center">Absent (E)</th>
+                        <th width="7%" style="text-align: center">Weekly Off (M)</th>
+                        <th width="7%" style="text-align: center">Weekly Off (E)</th>
+                        <th width="7%" style="text-align: center">Express (M)</th>
+                        <th width="7%" style="text-align: center">Express (E)</th>
+                        <th width="7%" style="text-align: center">Part timer (08-11)</th>
+                        <th width="7%" style="text-align: center">Part timer (12-3)</th>
+                        <th width="7%" style="text-align: center">Part timer (07-12)</th>
                         <th width="3%" style="text-align: center">&nbsp;</th>
                         <th width="3%" style="text-align: center">&nbsp;</th>
                      </tr>
@@ -79,71 +81,92 @@
 
                         <td width="9%" style="text-align: center">{{record.date|date: 'dd-MM-yyyy'}}</td>
 
-                        <td width="8%" ng-show="!edit" ng-bind="record.headcount" style="text-align: center"></td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.headcount_m" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
-                               <input type="text" ng-model="record.headcount" class="form-control" >
+                               <input type="text" ng-model="record.headcount_m" class="form-control" >
                             </div>
                         </td>
 
-                        <td width="9%" ng-show="!edit" ng-bind="record.present_m" style="text-align: center"></td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.headcount_e" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.headcount_e" class="form-control" >
+                            </div>
+                        </td>
+
+                        <td width="7%" ng-show="!edit" ng-bind="record.present_m" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.present_m" class="form-control">
                             </div>
                         </td>
 
-                        <td width="8%" ng-show="!edit" ng-bind="record.present_e" style="text-align: center"></td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.present_e" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.present_e" class="form-control">
                             </div>
                         </td>
 
-                        <td width="9%" ng-show="!edit" ng-bind="record.absent" style="text-align: center"></td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.absent_m" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
-                               <input type="text" ng-model="record.absent" class="form-control">
+                               <input type="text" ng-model="record.absent_m" class="form-control">
                             </div>
                         </td>
 
-                        <td width="8%" ng-show="!edit" ng-bind="record.weekoff" style="text-align: center"></td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.absent_e" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
-                               <input type="text" ng-model="record.weekoff" class="form-control">
+                               <input type="text" ng-model="record.absent_e" class="form-control">
                             </div>
                         </td>
 
-                        <td width="9%" ng-show="!edit" ng-bind="record.feexpress_m" style="text-align: center"></td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.weekoff_m" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.weekoff_m" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="7%" ng-show="!edit" ng-bind="record.weekoff_e" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
+                           <div class="form-group">
+                               <input type="text" ng-model="record.weekoff_e" class="form-control">
+                            </div>
+                        </td>
+
+                        <td width="7%" ng-show="!edit" ng-bind="record.feexpress_m" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.feexpress_m" class="form-control">
                             </div>
                         </td>
 
-                        <td width="8%" ng-show="!edit" ng-bind="record.feexpress_e" style="text-align: center"></td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.feexpress_e" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.feexpress_e" class="form-control">
                             </div>
                         </td>
 
-                        <td width="9%" ng-show="!edit" ng-bind="record.parttimer1" style="text-align: center"</td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.parttimer1" style="text-align: center"</td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.parttimer1" class="form-control">
                             </div>
                         </td>
 
-                        <td width="8%" ng-show="!edit" ng-bind="record.parttimer2" style="text-align: center"></td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.parttimer2" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.parttimer2" class="form-control">
                             </div>
                         </td>
 
-                        <td width="9%" ng-show="!edit" ng-bind="record.parttimer3" style="text-align: center"></td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
+                        <td width="7%" ng-show="!edit" ng-bind="record.parttimer3" style="text-align: center"></td>
+                        <td width="7%" ng-show="edit" style="text-align: center">
                            <div class="form-group">
                                <input type="text" ng-model="record.parttimer3" class="form-control">
                             </div>

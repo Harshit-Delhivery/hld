@@ -9,7 +9,10 @@
     "date": {
       "type": "date" 
     },
-    "headcount": {
+    "headcount_m": {
+      "type": "number"
+    },
+    "headcount_e": {
       "type": "number"
     },
     "present_m": {
@@ -18,10 +21,16 @@
     "present_e": {
       "type": "number" 
     },
-    "absent": {
+    "absent_m": {
       "type": "number" 
     },
-    "weekoff": {
+    "absent_e": {
+      "type": "number" 
+    },
+    "weekoff_m": {
+      "type": "number" 
+    },
+    "weekoff_e": {
       "type": "number" 
     },
     "feexpress_m": {
