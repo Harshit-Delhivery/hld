@@ -7,11 +7,14 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		lagSeconds = new Date(nowDate).setHours(0,0,0,0);
 		$scope._date = new Date(lagSeconds);
 	// console.log($scope._date);
-	$scope.headcount = null;
+	$scope.headcount_m = null;
+	$scope.headcount_e = null;
 	$scope.present_m = null;
 	$scope.present_e = null;
-	$scope.absent = null;
-	$scope.weekoff = null;
+	$scope.absent_m = null;
+	$scope.absent_e = null;
+	$scope.weekoff_m = null;
+	$scope.weekoff_e = null;
 	$scope.feexpress_m = null;
 	$scope.feexpress_e = null;
 	$scope.parttimer1 = null;
@@ -26,11 +29,14 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		Attendance.create({
 		  "date": $scope._date,
 		  "city": $rootScope._user.city,
-		  "headcount": $scope.headcount,
+		  "headcount_m": $scope.headcount_m,
+		  "headcount_e": $scope.headcount_e,
 		  "present_m": $scope.present_m,
 		  "present_e": $scope.present_e,
-		  "absent": $scope.absent,
-		  "weekoff": $scope.weekoff,
+		  "absent_m": $scope.absent_m,
+		  "absent_e": $scope.absent_e,
+		  "weekoff_m": $scope.weekoff_m,
+		  "weekoff_e": $scope.weekoff_e,
 		  "feexpress_m": $scope.feexpress_m,
 		  "feexpress_e": $scope.feexpress_e,
 		  "parttimer1": $scope.parttimer1,
@@ -41,11 +47,14 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 			console.log('create attendance response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Attendance has been Successfully Submitted';
-			$scope.headcount = null;
+			$scope.headcount_m = null;
+			$scope.headcount_e = null;
 			$scope.present_m = null;
 			$scope.present_e = null;
-			$scope.absent = null;
-			$scope.weekoff = null;
+			$scope.absent_m = null;
+			$scope.absent_e = null;
+			$scope.weekoff_m = null;
+			$scope.weekoff_e = null;
 			$scope.feexpress_m = null;
 			$scope.feexpress_e = null;
 			$scope.parttimer1 = null;
@@ -60,18 +69,18 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		});
 	}
 
-	// $scope.getAttendanceHistory = function() {
-	// 	Attendance.find({filter: {where: {dcName: $rootScope._user.dc_name}}}, function(successResponse) {
-	// 		if(successResponse) {
-	// 			console.log(successResponse);
-	// 			$scope.attendanceHistory = successResponse;
-	// 		} else {
-	// 			//to be handeled
-	// 		}
-	// 	}, function(error) {
-	// 		console.log(error);
-	// 	});
-	// }
+	$scope.isFilled = function() {
+		Attendance.find({filter: {where: {dcName: $rootScope._user.dc_name, date: $scope._date}}}, function(successResponse) {
+			if(successResponse.length > 0) {
+				console.log('successResponse = ', successResponse);
+				$scope.attendanceDone = true;
+			} else {
+				$scope.attendanceDone = false;
+			}
+		}, function(error) {
+			console.log(error);
+		});
+	}
 
 	$scope.getAttendanceDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
@@ -99,21 +108,41 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 
 	$scope.updateAttendance = function(record) {
 		console.log('record = ', record.id, $scope.dc);
-		Attendance.updateAll({where: {id: record.id, dcName: $scope.dc}}, {
-												  "headcount": record.headcount,
-												  "present_m": record.present_m,
-												  "present_e": record.present_e,
-												  "absent": record.absent,
-												  "weekoff": record.weekoff,
-												  "feexpress_m": record.feexpress_m,
-												  "feexpress_e": record.feexpress_e,
-												  "parttimer1": record.parttimer1,
-												  "parttimer2": record.parttimer2,
-												  "parttimer3": record.parttimer3
-												}, function(successResponse) {
+		Attendance.updateAll({where: {id: record.id, dcName: $scope.dc}}, 
+		{
+		  "headcount_m": record.headcount_m,
+		  "headcount_e": record.headcount_e,
+		  "present_m": record.present_m,
+		  "present_e": record.present_e,
+		  "absent_m": record.absent_m,
+		  "absent_e": record.absent_e,
+		  "weekoff_m": record.weekoff_m,
+		  "weekoff_e": record.weekoff_e,
+		  "feexpress_m": record.feexpress_m,
+		  "feexpress_e": record.feexpress_e,
+		  "parttimer1": record.parttimer1,
+		  "parttimer2": record.parttimer2,
+		  "parttimer3": record.parttimer3
+		}, function(successResponse) {
 			console.log('update response = ', successResponse);
 		}, function(error) {
 			console.log(error);
 		});
 	}
+
+	$scope.addEveningAttendance = function() {
+		Attendance.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
+		{
+		  "headcount_e": record.headcount_e,
+		  "present_e": record.present_e,
+		  "absent_e": record.absent_e,
+		  "weekoff_e": record.weekoff_e,
+		  "feexpress_e": record.feexpress_e,
+		  "parttimer3": record.parttimer3
+		}, function(successResponse) {
+			console.log('update response = ', successResponse);
+		}, function(error) {
+			console.log(error);
+		});
+	};
 }]);
