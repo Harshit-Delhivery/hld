@@ -5,7 +5,7 @@ var app = angular.module('hyperLocalDelivery');
 app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'notifyService', '$stateParams', '$rootScope', 'Orders', function($scope, $state, $http, Enduser,  notifyService, $stateParams, $rootScope, Orders) {
 	var nowDate = new Date() - 7200000,
 		lagSeconds = new Date(nowDate).setHours(0,0,0,0);
-		$scope._date = new Date(lagSeconds);
+	$scope._date = new Date(lagSeconds);
 	$scope.online_m = null;
 	$scope.online_e = null;
 	$scope.offline_m = null;
@@ -41,7 +41,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			$scope.cancel_e = null;
 			$scope.express_m = null;
 			$scope.express_e = null;
-			orderSubmited = true;
+			$scope.orderSubmited = true;
 		}, function(error) {
 			console.log('create Order error = ', error);
 			$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
