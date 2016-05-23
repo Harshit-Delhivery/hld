@@ -60,6 +60,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 			$scope.parttimer1 = null;
 			$scope.parttimer2 = null;
 			$scope.parttimer3 = null;
+			$scope.attendanceDone = true;
 		}, function(error) {
 			console.log('create Attendance error = ', error);
 			$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
@@ -141,6 +142,8 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		  "parttimer3": record.parttimer3
 		}, function(successResponse) {
 			console.log('update response = ', successResponse);
+			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
+			$scope.alertMessage = 'Attendance has been Successfully Submitted';
 		}, function(error) {
 			console.log(error);
 		});

@@ -41,6 +41,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			$scope.cancel_e = null;
 			$scope.express_m = null;
 			$scope.express_e = null;
+			orderSubmited = true;
 		}, function(error) {
 			console.log('create Order error = ', error);
 			$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
@@ -50,18 +51,20 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		});
 	}
 
-	// $scope.getOrderHistory = function() {
-	// 	Orders.find({filter: {where: {hub: $rootScope._hub}}}, function(successResponse) {
-	// 		if(successResponse) {
-	// 			console.log(successResponse);
-	// 			$scope.orderHistory = successResponse;
-	// 		} else {
-	// 			//to be handeled
-	// 		}
-	// 	}, function(error) {
-	// 		console.log(error);
-	// 	});
-	// }
+	$scope.isFilled = function() {
+		Orders.find({filter: {where: {dcName: $rootScope._user.dc_name, date: $scope._date}}}, function(successResponse) {
+			if(successResponse.length > 0) {
+				console.log('successResponse = ', successResponse);
+				$scope.orderSubmited = true;
+			} else {
+				$scope.orderSubmited = false;
+			}
+		}, function(error) {
+			console.log(error);
+		});
+	}
+
+	// console.log('isFilled = ', $scope.isFilled);
 
 	$scope.getOrderDatewise = function() {
 		// console.log('fromDate = ', $scope.fromDate, 'toDate = ', $scope.toDate);
@@ -72,7 +75,6 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		} else {
 			query.and.push({'date': $scope.selectedDate});
 			query.and.push({'dcName': $scope.dc});
-			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
 		console.log(query);
 		Orders.find({filter: {where: query}}, function(successResponse) {
@@ -104,4 +106,20 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			console.log(error);
 		});
 	}
+	
+	$scope.addEveningOrders = function() {
+		Attendance.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
+		{
+		  "online_e": record.online_e,
+		  "offline_e": record.offline_e,
+		  "cancel_e": record.cancel_e,
+		  "express_e": record.express_e
+		}, function(successResponse) {
+			console.log('update response = ', successResponse);
+			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
+			$scope.alertMessage = 'Order Data has been Successfully Submitted';
+		}, function(error) {
+			console.log(error);
+		});
+	};
 }]);

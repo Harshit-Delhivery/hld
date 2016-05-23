@@ -11,40 +11,31 @@
       "required": true
     },
     "online_m": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "online_e": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "offline_m": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "offline_e": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "cancel_m": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "cancel_e": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "express_m": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "express_e": {
-      "type": "number",
-      "required": true
+      "type": "number" 
     },
     "dcName": {
-      "type": "string",
-      "required": true
+      "type": "string" 
     },
     "city": {
       "type": "string"
