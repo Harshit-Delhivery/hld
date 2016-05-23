@@ -139,6 +139,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		  "absent_e": $scope.absent_e,
 		  "weekoff_e": $scope.weekoff_e,
 		  "feexpress_e": $scope.feexpress_e,
+		  "parttimer1": $scope.parttimer1,
 		  "parttimer3": $scope.parttimer3
 		}, function(successResponse) {
 			console.log('update response = ', successResponse);
@@ -149,6 +150,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 			$scope.absent_e = null;
 			$scope.weekoff_e = null;
 			$scope.feexpress_e = null;
+			$scope.parttimer1 = null;
 			$scope.parttimer3 = null;
 		}, function(error) {
 			console.log(error);
