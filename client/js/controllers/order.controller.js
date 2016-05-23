@@ -108,7 +108,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	}
 	
 	$scope.addEveningOrders = function() {
-		Attendance.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
+		Orders.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
 		{
 		  "online_e": $scope.online_e,
 		  "offline_e": $scope.offline_e,
