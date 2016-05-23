@@ -134,16 +134,22 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	$scope.addEveningAttendance = function() {
 		Attendance.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
 		{
-		  "headcount_e": record.headcount_e,
-		  "present_e": record.present_e,
-		  "absent_e": record.absent_e,
-		  "weekoff_e": record.weekoff_e,
-		  "feexpress_e": record.feexpress_e,
-		  "parttimer3": record.parttimer3
+		  "headcount_e": $scope.headcount_e,
+		  "present_e": $scope.present_e,
+		  "absent_e": $scope.absent_e,
+		  "weekoff_e": $scope.weekoff_e,
+		  "feexpress_e": $scope.feexpress_e,
+		  "parttimer3": $scope.parttimer3
 		}, function(successResponse) {
 			console.log('update response = ', successResponse);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Attendance has been Successfully Submitted';
+			$scope.headcount_e = null;
+			$scope.present_e = null;
+			$scope.absent_e = null;
+			$scope.weekoff_e = null;
+			$scope.feexpress_e = null;
+			$scope.parttimer3 = null;
 		}, function(error) {
 			console.log(error);
 		});

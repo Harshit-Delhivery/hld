@@ -110,14 +110,18 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	$scope.addEveningOrders = function() {
 		Attendance.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
 		{
-		  "online_e": record.online_e,
-		  "offline_e": record.offline_e,
-		  "cancel_e": record.cancel_e,
-		  "express_e": record.express_e
+		  "online_e": $scope.online_e,
+		  "offline_e": $scope.offline_e,
+		  "cancel_e": $scope.cancel_e,
+		  "express_e": $scope.express_e
 		}, function(successResponse) {
 			console.log('update response = ', successResponse);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Order Data has been Successfully Submitted';
+			$scope.online_e = null;
+			$scope.offline_e = null;
+			$scope.cancel_e = null;
+			$scope.express_e = null;
 		}, function(error) {
 			console.log(error);
 		});
