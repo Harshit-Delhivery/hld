@@ -57,94 +57,6 @@
                         <th width="6%" class="text-center">&nbsp;</th>
                      </tr>
                   </thead>
-                  <!-- <tbody>
-                     <tr ng-repeat="data in offlineHistory">
-                     
-                        <td width="9%" style="text-align: center">{{data.date|date: 'dd-MM-yyyy'}}{{data.order_code}}</td>
-
-                        <td width="9%" style="text-align: center" ng-show="!edit" ng-bind="data.merchant_id">
-                        </td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.merchant_id" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.merchant_name">
-                        </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.merchant_name" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.client">
-                        </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.client" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.fe_name">
-                        </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.fe_name" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="10%" style="text-align: center" ng-show="!edit">
-                           {{data.arrived_at|date: 'hh:mm a'}}
-                        </td>
-                        <td width="10%" ng-show="edit" style="text-align: center" ng-show="!edit">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.arrived_at" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="10%" style="text-align: center" ng-show="!edit">
-                           {{data.drop_started_at|date: 'hh:mm a'}}
-                        </td>
-                        <td width="10%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.drop_started_at" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="10%" style="text-align: center" ng-show="!edit">
-                           {{data.delivered_at|date: 'hh:mm a'}}
-                        </td>
-                        <td width="10%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.delivered_at" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="11%" style="text-align: center" ng-show="!edit" ng-bind="data.offline_reason">
-                        </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.offline_reason" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="6%" style="text-align: center" ng-show="!edit && _user.role == 'clm'" ng-click="edit=true">
-                           <i class="fa fa-pencil"></i>
-                        </td>
-                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
-                          <button ng-click="edit=false; updateOffline(data)" title="Submit">
-                            <i class="fa fa-check"></i>
-                          </button>
-                        </td>
-                        <td width="3%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
-                          <button ng-click="edit=false" title="Cancel">
-                            <span class="fa fa-remove"></span>
-                          </button>
-                        </td>
-
-                     </tr>
-                  </tbody> -->
                </table>
 
                <form class="attendance-form" style="height: 375px; margin-top: 10px">
@@ -155,13 +67,13 @@
                         </div>
 
                         <div class="col-md-1" ng-show="edit" style="width: 8%">
-                           <input type="text" class="form-control" placeholder="0" ng-model="data.order_code">
+                           <input type="text" class="form-control" placeholder="0" ng-model="data.order_code" valid-int>
                         </div>
                         <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%" ng-bind="data.order_code">
                         </div>
 
                         <div class="col-md-1" ng-show="edit" style="width: 9%">
-                           <input type="text" class="form-control" placeholder="0" ng-model="data.merchant_id">
+                           <input type="text" class="form-control" placeholder="0" ng-model="data.merchant_id" valid-int>
                         </div>
                         <div class="col-md-1 text-center" ng-show="!edit" style="width: 9%" ng-bind="data.merchant_id">
                         </div>

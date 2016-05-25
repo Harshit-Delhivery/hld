@@ -95,7 +95,7 @@
 	                        </div>
 
 	                        <div class="col-md-1" style="width: 9%">
-	                           <input type="text" class="form-control" placeholder="0" ng-model="order_code">
+	                           <input type="text" class="form-control" placeholder="0" ng-model="order_code" valid-int>
 	                        </div>
 
 	                        <div class="col-md-1" style="width: 9%">
@@ -105,33 +105,15 @@
 	                        </div>
 
 	                        <div class="col-md-1" style="width: 8%">
-	                           <input type="text" class="form-control" placeholder="0" ng-model="fe_id">
+	                           <input type="text" class="form-control" placeholder="0" ng-model="fe_id" valid-int>
 	                        </div>
 
 	                        <div class="col-md-1" style="width: 8%">
                               <ng-timepicker ng-model="assign" ng-change="time({time: assign, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-	                           <!-- <div class="dropdown">
-	                              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-	                              Date <i class="fa fa-calendar"></i>
-	                              </a>
-	                              <div ng-show="assigned_at">{{assigned_at|date: 'hh:mm'}}</div>
-	                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-	                                 <datetimepicker data-ng-model="assigned_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
-	                              </ul>
-	                           </div> -->
 	                        </div>
 
 	                        <div class="col-md-1" style="width:8%">
                               <ng-timepicker ng-model="cancelledAt" ng-change="time({time: cancelledAt, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-	                           <!-- <div class="dropdown">
-	                              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-	                              Date <i class="fa fa-calendar"></i>
-	                              </a>
-	                              <div ng-show="cancelled_at">{{cancelled_at|date: 'hh:mm'}}</div>
-	                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-	                                 <datetimepicker data-ng-model="cancelled_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel' }"></datetimepicker>
-	                              </ul>
-	                           </div> -->
 	                        </div>
 
 	                        <div class="col-md-1" style="width: 8%">
