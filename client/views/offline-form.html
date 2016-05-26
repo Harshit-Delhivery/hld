@@ -86,10 +86,10 @@
                            {{_date|date: dd/MM/yyyy}}
                         </div>
                         <div class="col-md-1" style="width: 9%">
-                           <input type="text" class="form-control" placeholder="0" ng-model="order_code">
+                           <input type="text" class="form-control" placeholder="0" ng-model="order_code" valid-int>
                         </div>
                         <div class="col-md-1" style="width: 9%">
-                           <input type="text" class="form-control" placeholder="0" ng-model="merchant_id">
+                           <input type="text" class="form-control" placeholder="0" ng-model="merchant_id" valid-int>
                         </div>
                         <div class="col-md-1" style="width: 11%">
                            <select class="form-control" ng-model="merchant_name">
@@ -107,39 +107,12 @@
                         <div class="col-md-1" style="width: 8%">
                           <!-- <uib-timepicker ng-model="arrived_at" ></uib-timepicker> -->
                           <ng-timepicker ng-model="arrive" ng-change="time({time: arrive, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-                           <!-- <div class="dropdown">
-                              <a class="dropdown-toggle" id="dLabel2" role="button" data-toggle="dropdown" data-target="#" href="">
-                              Date <i class="fa fa-calendar"></i>
-                              </a>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel2">
-                                 <datetimepicker data-ng-model="arrived_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel2' }"></datetimepicker>
-                              </ul>
-                              <div ng-show="arrived_at">{{arrived_at|date: 'hh:mm'}}</div>
-                           </div> -->
                         </div>
                         <div class="col-md-1" style="width: 8%">
                            <ng-timepicker ng-model="drop" ng-change="time({time: drop, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-                           <!-- <div class="dropdown">
-                              <a class="dropdown-toggle" id="dLabel3" role="button" data-toggle="dropdown" data-target="#" href="">
-                              Date <i class="fa fa-calendar"></i>
-                              </a>
-                              <div ng-show="drop_started_at">{{drop_started_at|date: 'hh:mm'}}</div>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel3">
-                                 <datetimepicker data-ng-model="drop_started_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel3' }"></datetimepicker>
-                              </ul>
-                           </div> -->
                         </div>
                         <div class="col-md-1" style="width:8%">
                         <ng-timepicker ng-model="delivered" ng-change="time({time: delivered, id: 3})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-                           <!-- <div class="dropdown">
-                              <a class="dropdown-toggle" id="dLabel4" role="button" data-toggle="dropdown" data-target="#" href="">
-                              Date <i class="fa fa-calendar"></i>
-                              </a>
-                              <div ng-show="delivered_at">{{delivered_at|date: 'hh:mm'}}</div>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel4">
-                                 <datetimepicker data-ng-model="delivered_at" data-datetimepicker-config="{ dropdownSelector: '#dLabel4' }"></datetimepicker>
-                              </ul>
-                           </div> -->
                         </div>
                         <div class="col-md-1" style="width: 11%">
                            <select class="form-control" ng-model="offline_reason">

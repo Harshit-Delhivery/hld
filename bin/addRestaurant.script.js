@@ -29,7 +29,6 @@ obj.from.path('../csv_folder/Restaurants_Dc.csv').to.array(function (data) {
 });
 
 function restaurantData() {
-	// console.log('extractData = ', extractData.length, extractData2.length);
 	async.forEach(extractData, function(item, cb) {
 		process.nextTick(function() { 
 			app.models.Restaurant.upsert({

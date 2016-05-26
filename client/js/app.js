@@ -88,8 +88,28 @@ $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromStat
 	    };
 	    
 	    return notifyService;
+	}])
+.directive('validInt', function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function(val) {
+                    var clean = val.replace(/[^0-9\.]/g, '');
+                    if (val !== clean) {
+                        ngModel.$setViewValue(clean);
+                        ngModel.$render();
+                    }
+                    return clean;
+                });
 
-	}]);
+                element.bind('keypress', function(event) {
+                    if (event.keyCode === 32) {
+                        event.preventDefault();
+                    }
+                });
+            }
+        };
+    });
 
 angular.module('underscore', []).constant('_',
     window._

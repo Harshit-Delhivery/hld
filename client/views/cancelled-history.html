@@ -8,21 +8,6 @@
       <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
             <div style="margin-bottom: 16px">
-               <!-- <div class="row">
-                  <div class="col-md-4">
-                    <label class="control-label col-sm-4">From Date:</label>
-                    <input type="date" placeholder="search" ng-model="fromDate" class="form-control">
-                  </div>
-                  <div class="col-md-4">
-                    <label >To Date:</label>
-                    <input type="date" placeholder="search" ng-model="toDate" class="form-control">
-                  </div>
-                  <div class="col-md-3" style="margin-top: 24px">
-                     <button type="submit" ng-click="getCancelledDatewise()" class="btn btn-primary">
-                        Search
-                     </button>
-                  </div>
-               </div> -->
                <div class="row">
                   <div class="col-md-3" ng-show="_user.role == 'operator'">
                     <label >From Date:</label>
@@ -42,12 +27,6 @@
                         <option ng-repeat="dc in _user.dcArray" value="{{dc}}">{{dc}}</option>
                      </select>
                   </div>
-                  <!-- <div class="col-md-3" ng-show="_user.role == 'clm'">
-                    <label >Select DC:</label>
-                    <select class="form-control" ng-model="dc">
-                        <option ng-repeat="dc in _user.dcName" value="{{dc}}">{{dc}}</option>
-                     </select>
-                  </div> -->
                   <div class="col-md-3" style="margin-top: 24px">
                      <button type="submit" ng-click="getCancelledDatewise()" class="btn btn-primary">
                         Search
@@ -73,108 +52,6 @@
                         <th width="4%" style="text-align: center">&nbsp;</th>
                      </tr>
                   </thead>
-                  <!-- <tbody>
-                     <tr ng-repeat="data in cancelledHistory">
-                        <td width="7%" style="text-align: center">{{data.date|date: 'dd-MM-yy'}}</td>
-
-                        <td width="8%" ng-show="!edit" style="text-align: center" ng-bind="data.restaurant">
-                        </td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.restaurant" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="7%" ng-show="!edit" style="text-align: center" ng-bind="data.order_code">
-                        </td>
-                        <td width="7%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.order_code" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="7%" ng-show="!edit" style="text-align: center" ng-bind="data.source">
-                        </td>
-                        <td width="7%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.source" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="9%" ng-show="!edit" style="text-align: center" ng-bind="data.fe_id">
-                        </td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.fe_id" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="8%" ng-show="!edit" style="text-align: center">
-                           {{data.assigned_at|date: 'hh:mm a'}}
-                        </td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
-                           
-                               <ng-timepicker ng-model="assign" ng-change="time({time: assign, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-                            
-                        </td>
-
-                        <td width="8%" ng-show="!edit" style="text-align: center">
-                           {{data.cancelled_at|date: 'hh:mm a'}}
-                        </td>
-                        <td width="8%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <ng-timepicker ng-model="cancelledAt" ng-change="time({time: cancelledAt, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-                            </div>
-                        </td>
-
-                        <td width="11%" ng-show="!edit" style="text-align: center" ng-bind="data.cancelled_by">
-                        </td>
-                        <td width="11%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.cancelled_by" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="data.cancellation_reason">
-                        </td>
-                        <td width="10%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.cancellation_reason" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="9%" ng-show="!edit" style="text-align: center" ng-bind="data.description">
-                        </td>
-                        <td width="9%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.description" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="10%" ng-show="!edit" style="text-align: center" ng-bind="data.final_status">
-                        </td>
-                        <td width="10%" ng-show="edit" style="text-align: center">
-                           <div class="form-group">
-                               <input type="text" ng-model="data.final_status" class="form-control">
-                            </div>
-                        </td>
-
-                        <td width="2%" ng-show="!edit && _user.role == 'clm'" ng-click="edit=true" style="text-align: center">
-                           <i class="fa fa-pencil"></i>
-                        </td>
-                        <td width="2%" ng-show="edit" style="padding: 13px 0px 0px 0px; text-align: center">
-                          <button ng-click="edit=false; updateCancelled(data)" title="Submit">
-                            <i class="fa fa-check"></i>
-                          </button>
-                        </td>
-                        <td width="2%" ng-show="edit" style="padding: 13px 0px 0px 4px; text-align: center">
-                          <button ng-click="edit=false" title="Cancel">
-                            <span class="fa fa-remove"></span>
-                          </button>
-                        </td>
-                        </td>
-                     </tr>
-                  </tbody> -->
                </table>
                <form class="attendance-form" style="height: 375px; margin-top: 10px">
                   <div class="col-md-12" ng-repeat="data in cancelledHistory">
@@ -184,7 +61,7 @@
                         </div>
 
                         <div class="col-md-1" ng-show="edit" style="width: 8%">
-                           <input type="text" class="form-control" placeholder="0" ng-model="data.restaurant">
+                           <input type="text" class="form-control" placeholder="0" ng-model="data.restaurant" valid-int>
                         </div>
                         <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%" ng-bind="data.restaurant">
                         </div>
@@ -192,24 +69,20 @@
                         <div class="col-md-1" ng-show="edit" style="width: 7%">
                            <input type="text" class="form-control" placeholder="0" ng-model="data.order_code">
                         </div>
-                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 7%" ng-bind="data.order_code">
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width: 7%" ng-bind="data.order_code" valid-int>
                         </div>
 
                         <div class="col-md-1" ng-show="edit" style="width: 9%">
-                           <input type="text" class="form-control" placeholder="xyz" ng-model="data.source">
+                           <input type="text" class="form-control" placeholder="source" ng-model="data.source">
                         </div>
-                        <div class="col-md-1 text-center" ng-show="!edit" style="width:9%" ng-bind="data.merchant_name">
+                        <div class="col-md-1 text-center" ng-show="!edit" style="width:9%" ng-bind="data.source">
                         </div>
-
-
-
-
 
                         <div class="col-md-1" ng-show="!edit" style="width: 9%" ng-bind="data.fe_id">
                         </div>
                         <div class="col-md-1" ng-show="edit" style="width: 9%">
                            <div class="form-group">
-                               <input type="text" ng-model="data.fe_id" class="form-control">
+                               <input type="text" ng-model="data.fe_id" class="form-control" valid-int>
                             </div>
                         </div>
 
@@ -278,8 +151,6 @@
                         </div>
                         </div>
                         <hr>
-
-
                      </div>
                   </div>
                </form>
