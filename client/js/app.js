@@ -56,7 +56,7 @@ $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromStat
     // }
     // console.log('isAuthenticated = ', Enduser.isAuthenticated(), 'toState = ', toState.name);
 
-    if(toState.name != 'home.login') {
+    if(toState.name != 'home.login' && toState.name != 'home.signUp') {
     	if(!Enduser.isAuthenticated()) {
             event.preventDefault();
     		$state.go('home.login');

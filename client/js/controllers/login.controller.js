@@ -13,6 +13,7 @@ app.controller('LoginController', ['$q', '$scope', '$state', '$http', 'Enduser',
 	$scope.password = null;
 	$scope.loginEmail = null;
 	$scope.loginPassword = null;
+	$scope.username = null;
 
 	$scope.login = function () {
 		Enduser.login({"role": $scope.role, "email": $scope.loginEmail, "city": $scope.city, "password": $scope.loginPassword}, 
@@ -32,7 +33,8 @@ app.controller('LoginController', ['$q', '$scope', '$state', '$http', 'Enduser',
 
 	$scope.signUp = function() {
 		// console.log('signUp = ', {"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName});
-		Enduser.create({"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName}, 
+
+		Enduser.create({"email": $scope.emailId, "city": $scope.city, "password": $scope.password, "role": $scope.role, "dc_name": $scope.dcName, "username": $scope.username}, 
 			function(successResponse) {
         	//console.log('success response = ', successResponse);
         	$state.go('home.login');
