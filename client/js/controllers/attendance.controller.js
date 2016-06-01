@@ -126,7 +126,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 	}
 
 	$scope.addEveningAttendance = function() {
-		Attendance.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
+		Attendance.updateAll({where: {date: $scope._date, dcName: $rootScope._user.dc_name}}, 
 		{
 		  "headcount_e": $scope.headcount_e,
 		  "present_e": $scope.present_e,
@@ -136,7 +136,7 @@ app.controller('AttendanceController', ['$scope', '$state', '$http', 'Enduser', 
 		  "parttimer1": $scope.parttimer1,
 		  "parttimer3": $scope.parttimer3
 		}, function(successResponse) {
-			console.log('update response = ', successResponse);
+			// console.log('update response = ', successResponse);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Attendance has been Successfully Submitted';
 			$scope.headcount_e = null;

@@ -26,7 +26,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 		  "express_m": $scope.express_m,
 		  "dcName": $rootScope._user.dc_name
 		}, function(successResp) {
-			console.log('create order response = ', successResp);
+			// console.log('create order response = ', successResp);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Order Data has been Successfully Submitted';
 			$scope.online_m = null;
@@ -36,7 +36,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			$scope.morningOrder = true;
 			$scope.eveningOrder = false;
 		}, function(error) {
-			console.log('create Order error = ', error);
+			// console.log('create Order error = ', error);
 			$scope.alertClass = 'alert alert-danger alert-dismissible fade-in';
 			if(error.status == 422) {
 				$scope.alertMessage = 'All fields are Mandatory';
@@ -76,10 +76,10 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 			query.and.push({'date': $scope.selectedDate});
 			query.and.push({'dcName': $scope.dc});
 		}
-		console.log(query);
+		// console.log(query);
 		Orders.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
-				console.log(successResponse);
+				// console.log(successResponse);
 				$scope.orderHistory = successResponse;
 			} else {
 				//to be handled
@@ -90,7 +90,7 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 	}
 
 	$scope.updateOrder = function(record) {
-		console.log('record = ', record);
+		// console.log('record = ', $scope.dc);
 		Orders.updateAll({where: {id: record.id, dcName: $scope.dc}},
 			{
 				"online_m": record.online_m,
@@ -101,21 +101,21 @@ app.controller('OrderController', ['$scope', '$state', '$http', 'Enduser', 'noti
 				"cancel_e": record.cancel_e,
 				"express_m": record.express_m,
 				"express_e": record.express_e }, function(successResponse) {
-			console.log('update response = ', successResponse);
+			// console.log('update response = ', successResponse);
 		}, function(error) {
 			console.log(error);
 		});
 	}
 	
 	$scope.addEveningOrders = function() {
-		Orders.updateAll({where: {date: $scope._date, dcName: $scope.dc}}, 
+		Orders.updateAll({where: {date: $scope._date, dcName: $rootScope._user.dc_name}}, 
 		{
 		  "online_e": $scope.online_e,
 		  "offline_e": $scope.offline_e,
 		  "cancel_e": $scope.cancel_e,
 		  "express_e": $scope.express_e
 		}, function(successResponse) {
-			console.log('update response = ', successResponse);
+			// console.log('update response = ', successResponse);
 			$scope.alertClass = 'alert alert-success alert-dismissible fade-in';
 			$scope.alertMessage = 'Order Data has been Successfully Submitted';
 			$scope.online_e = null;
