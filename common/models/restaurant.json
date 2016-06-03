@@ -20,6 +20,10 @@
     "city": {
       "type": "string",
       "required": true
+    },
+    "createdAt": {
+      "type": "date",
+      "default": "$now"
     }
   },
   "validations": [],
