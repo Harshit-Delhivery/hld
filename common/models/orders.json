@@ -39,6 +39,10 @@
     },
     "city": {
       "type": "string"
+    },
+    "createdAt": {
+      "type": "date",
+      "default": "$now"
     }
   },
   "validations": [],
