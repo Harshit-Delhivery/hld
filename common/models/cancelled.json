@@ -11,20 +11,16 @@
       "required": true
     },
     "restaurant": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "order_code": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "source": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "fe_id": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "assigned_at": {
       "type": "date",
