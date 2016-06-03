@@ -61,9 +61,6 @@ app.controller('OfflineController', ['$scope', '$state', '$http', 'Enduser', 'no
 			$scope.merchant_name =null;
 			$scope.client = null;
 			$scope.fe_name = null;
-			$scope.arrived_at = null;
-			$scope.drop_started_at = null;
-			$scope.delivered_at = null;
 			$scope.offline_reason = null;
 		}, function(error) {
 			// console.log('create offline error = ', error);
