@@ -62,8 +62,6 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 		    $scope.order_code = null;
 			$scope.source = null;
 			$scope.fe_id = null;
-			$scope.assigned_at = null;
-			$scope.cancelled_at = null;
 			$scope.cancelled_by = null;
 			$scope.cancellation_reason = null;
 			$scope.description = null;
