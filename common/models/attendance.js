@@ -1,3 +1,3 @@
 module.exports = function(Attendance) {
-	Attendance.validatesUniquenessOf('date');
+	// Attendance.validatesUniquenessOf('date');
 };
