@@ -1,3 +1,3 @@
 module.exports = function(Orders) {
-	Orders.validatesUniquenessOf('date');
+	// Orders.validatesUniquenessOf('date');
 };
