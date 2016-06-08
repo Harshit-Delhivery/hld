@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="col-md-1" ng-show="edit" style="width: 8%">
-                           <input type="text" class="form-control" placeholder="0" ng-model="data.restaurant" valid-int>
+                           <input type="text" class="form-control" placeholder="ABC" ng-model="data.restaurant">
                         </div>
                         <div class="col-md-1 text-center" ng-show="!edit" style="width: 8%" ng-bind="data.restaurant">
                         </div>
@@ -90,9 +90,7 @@
                            {{data.assigned_at|date: 'hh:mm a'}}
                         </div>
                         <div class="col-md-1" ng-show="edit" style="width: 8%">
-                           
-                               <ng-timepicker ng-model="assign" ng-change="time({time: assign, id: 1})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
-                            
+                          <ng-timepicker ng-model="assign" ng-change="time({time: assign, id: 1})" init-time="{{data.assigned_at|date: 'hh:mm'}}" step="1" theme="green" show-meridian="true"></ng-timepicker>
                         </div>
 
                         <div class="col-md-1" ng-show="!edit" style="width: 8%">
@@ -100,7 +98,7 @@
                         </div>
                         <div class="col-md-1" ng-show="edit" style="width: 8%">
                            <div class="form-group">
-                               <ng-timepicker ng-model="cancelledAt" ng-change="time({time: cancelledAt, id: 2})" init-time="01:00" step="1" theme="green" show-meridian="true"></ng-timepicker>
+                               <ng-timepicker ng-model="cancelledAt" ng-change="time({time: cancelledAt, id: 2})" init-time="{{data.cancelled_at|date: 'hh:mm'}}" step="1" theme="green" show-meridian="true"></ng-timepicker>
                             </div>
                         </div>
 
