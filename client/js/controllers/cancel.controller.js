@@ -120,16 +120,16 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 							    "order_code": record.order_code,
 								"source": record.source,
 								"fe_id": record.fe_id,
-								"assigned_at": $scope.assigned_at,
-								"cancelled_at": $scope.cancelled_at,
+								"assigned_at": $scope.assigned_at || record.assigned_at,
+								"cancelled_at": $scope.cancelled_at || record.cancelled_at,
 								"cancellation_reason": record.cancellation_reason,
 								"description": record.description,
 								"final_status": record.final_status
 								}, 
 		function(successResponse) {
 			// console.log('update response = ', successResponse);
-			record.assigned_at = angular.copy($scope.assigned_at);
-			record.cancelled_at = angular.copy($scope.cancelled_at);
+			record.assigned_at = angular.copy($scope.assigned_at || record.assigned_at);
+			record.cancelled_at = angular.copy($scope.cancelled_at || record.cancelled_at);
 		}, function(error) {
 			console.log(error);
 		});
