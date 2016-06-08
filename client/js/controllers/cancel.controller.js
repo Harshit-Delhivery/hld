@@ -21,7 +21,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	$scope.dc;
 
 	$scope.time = function(obj) {
-		console.log('obj = ', obj);
+		// console.log('obj = ', obj);
 		var hm = obj.time.split(':'),
 			hours = hm[0],
 			mins = hm[1];
@@ -35,7 +35,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			$scope.cancelled_at = angular.copy(parsedDate);
 			// console.log('changed time = ', $scope.cancelled_at);
 		}
-		console.log('changed time = ', parsedDate);
+		// console.log('changed time = ', parsedDate);
 	};
 
 
@@ -100,7 +100,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			query.and.push({'dcName': $scope.dc});
 			// {date: {between: [$scope.fromDate, $scope.toDate]}, hub: $rootScope._user.dc_name, dcName: $scope.dcName}
 		}
-		console.log(query);
+		// console.log(query);
 		Cancelled.find({filter: {where: query}}, function(successResponse) {
 			if(successResponse) {
 				// console.log(successResponse);
