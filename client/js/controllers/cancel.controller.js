@@ -21,6 +21,7 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 	$scope.dc;
 
 	$scope.time = function(obj) {
+		console.log('obj = ', obj);
 		var hm = obj.time.split(':'),
 			hours = hm[0],
 			mins = hm[1];
@@ -29,12 +30,12 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 			dateInMili = zeroHour + hours*3600000 + mins*60000,
 			parsedDate = new Date(dateInMili);
 		if(obj.id == 1) {
-			$scope.assigned_at = parsedDate;
+			$scope.assigned_at = angular.copy(parsedDate);
 		} else {
-			$scope.cancelled_at = parsedDate;
+			$scope.cancelled_at = angular.copy(parsedDate);
 			// console.log('changed time = ', $scope.cancelled_at);
 		}
-		// console.log('changed time = ', parsedDate);
+		console.log('changed time = ', parsedDate);
 	};
 
 
@@ -119,13 +120,16 @@ app.controller('CancelController', ['$scope', '$state', '$http', 'Enduser', 'not
 							    "order_code": record.order_code,
 								"source": record.source,
 								"fe_id": record.fe_id,
-								"assigned_at": record.assigned_at,
-								"cancelled_at": record.cancelled_at,
+								"assigned_at": $scope.assigned_at,
+								"cancelled_at": $scope.cancelled_at,
 								"cancellation_reason": record.cancellation_reason,
 								"description": record.description,
 								"final_status": record.final_status
-												}, function(successResponse) {
+								}, 
+		function(successResponse) {
 			// console.log('update response = ', successResponse);
+			record.assigned_at = angular.copy($scope.assigned_at);
+			record.cancelled_at = angular.copy($scope.cancelled_at);
 		}, function(error) {
 			console.log(error);
 		});
